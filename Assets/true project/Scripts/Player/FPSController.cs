@@ -6,6 +6,8 @@ using UnityEngine;
 public class FPSController : MonoBehaviour
 {
     public Camera Cam;
+    public bullet sound_bullet;
+    public Transform boquilla;
 
     //velocidad de movimiento de la camara
     private float mouseHorizontal = 1f;
@@ -19,6 +21,7 @@ public class FPSController : MonoBehaviour
     public float moveSpeed = 2.5f;
     public float silenceSpeed = 0.3f;
     public float shootInterval;
+
 
     float h;
     float v;
@@ -42,11 +45,6 @@ public class FPSController : MonoBehaviour
 
     void Move()
     {
-        //si el player esta tocando el suelo
-        //if (characterController.isGrounded)
-        //{
-
-            //movimiento de camara
             h_mouse = mouseHorizontal * Input.GetAxis("Mouse X");
             v_mouse = mouseVertical * -Input.GetAxis("Mouse Y");
 
@@ -64,7 +62,7 @@ public class FPSController : MonoBehaviour
 
             transform.Translate(direction * moveSpeed * Time.deltaTime);
 
-            //pa correr
+            //pa andar quaiet
             if (Input.GetButton("Fire3"))
             {
                 speed = silenceSpeed;
@@ -77,11 +75,13 @@ public class FPSController : MonoBehaviour
             }
 
             Vector3 floor = transform.TransformDirection(Vector3.down);
-        //}
     }
 
+    //disparo
     private void Shoot() {
-        
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.identity);
+        }      
     }
 }

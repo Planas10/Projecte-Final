@@ -5,38 +5,41 @@ using UnityEngine.AI;
 
 public class AI_Enemy : MonoBehaviour
 {
-    public Transform[] patrolPoints;
+    public Transform[] waypoints;
     public GameObject Player;
 
-    private GameObject NextDestination;
+    [SerializeField]
+    private int currentPoint = 0;
+
+    public float speed = 5f;
 
     public NavMeshAgent IA;
-
-    public float Velocidad;
 
     public Animation Anim;
 
     private void Awake()
     {
-        transform.position = patrolPoints[0].gameObject.transform.position;
-        Patrol(NextDestination);
+        transform.position = waypoints[0].position;
+        currentPoint++;
     }
 
     void Update()
     {
-        IA.speed = Velocidad;
-    }
-
-    private void Patrol(GameObject destination) {
-        for (int i = 0; i < patrolPoints.Length; i++)
+        if(Vector3.Distance(transform.position, waypoints[currentPoint].position) < 1)
         {
-            destination = patrolPoints[i + 1].gameObject;
-            IA.SetDestination(destination.transform.position);
-            if (i > patrolPoints.Length) { i = 0; }
+            currentPoint++;
+            if (currentPoint >= waypoints.Length)
+            {
+                currentPoint = 0;
+            }
         }
+
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentPoint].position, speed * Time.deltaTime);
+        
     }
 
-    private void FollowPlayer() {
+    private void FollowPlayer()
+    {
         IA.SetDestination(Player.transform.position);
     }
 }
