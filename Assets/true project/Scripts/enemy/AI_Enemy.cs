@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AI_Enemy : MonoBehaviour
 {
-    public Transform[] waypoints;
+    static public List<PatrolPoint> waypoints;
     public GameObject Player;
 
     [SerializeField]
@@ -13,29 +13,61 @@ public class AI_Enemy : MonoBehaviour
 
     public float speed = 5f;
 
+    private bool IsChasingPlayer = false;
+
     public NavMeshAgent IA;
+
+    public AudioClip soundEffect;
+    private AudioSource audioSource;
 
     public Animation Anim;
 
     private void Awake()
     {
-        transform.position = waypoints[0].position;
+        audioSource = GetComponent<AudioSource>();
+
+        waypoints = new(FindObjectsOfType<PatrolPoint>());
+        waypoints.Sort((a, b) => { return a.name.CompareTo(b.name); });
+        transform.position = waypoints[currentPoint].transform.position;
         currentPoint++;
     }
 
     void Update()
     {
-        if(Vector3.Distance(transform.position, waypoints[currentPoint].position) < 1)
+        if (!IsChasingPlayer)
         {
-            currentPoint++;
-            if (currentPoint >= waypoints.Length)
+            //Debug.Log("Patrullando");
+            if (Vector3.Distance(transform.position, waypoints[currentPoint].transform.position) < 1)
             {
-                currentPoint = 0;
+                currentPoint++;
+                if (currentPoint >= waypoints.Count)
+                {
+                    currentPoint = 0;
+                }
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[currentPoint].transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            //Debug.Log("Siguiendo al player");
+            FollowPlayer();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (!IsChasingPlayer) {
+                //Debug.Log("Player detectado");
+                IsChasingPlayer = true;
+            }
+            else if (IsChasingPlayer)
+            {
+                IsChasingPlayer = false;
             }
         }
-
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentPoint].position, speed * Time.deltaTime);
-        
     }
 
     private void FollowPlayer()
