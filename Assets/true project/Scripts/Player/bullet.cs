@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    private float force = 4f;
-    public float lifeTime = 1000f;
+    private float force = 3f;
+    public float lifeTime;
 
     private FPSController PlayerScript;
 
@@ -14,7 +14,6 @@ public class bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = transform.position;
-        force = 100 * Random.Range(1.3f, 1.7f);
         Fire(Vector3.forward);
     }
 
@@ -28,7 +27,6 @@ public class bullet : MonoBehaviour
     {
         Debug.Log("Me voy a destruir");
         yield return new WaitForSeconds(lifeTime);
-        PlayerScript.CurrentShoots--;
         Destroy(gameObject);
 
     }

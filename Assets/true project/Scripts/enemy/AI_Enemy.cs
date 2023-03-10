@@ -57,10 +57,10 @@ public class AI_Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
             if (!IsChasingPlayer) {
-                //Debug.Log("Player detectado");
+                Debug.Log("Player detectado");
                 IsChasingPlayer = true;
             }
             else if (IsChasingPlayer)

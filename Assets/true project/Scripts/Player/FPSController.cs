@@ -8,6 +8,8 @@ public class FPSController : MonoBehaviour
     public Camera Cam;
     public bullet sound_bullet;
     public Transform boquilla;
+    CharacterController characterController;
+    SphereCollider sphereCollider;
 
     //velocidad de movimiento de la camara
     private float mouseHorizontal = 1f;
@@ -16,23 +18,25 @@ public class FPSController : MonoBehaviour
     float h_mouse;
     float v_mouse;
 
-    private float speed;
-
-    [Header("Stats")]
-    public float moveSpeed = 2.5f;
-    public float silenceSpeed = 0.3f;
-    public float shootInterval;
-    private float ShootIntensity = 10f;
-    private int MaxShoots = 999999;
-    public int CurrentShoots = 0;
-
-    public Rigidbody rb;
-
-
+    
     float h;
     float v;
 
-    CharacterController characterController;
+    private float speed;
+
+    [Header("Stats")]
+    //Move stats
+    public float moveSpeed = 2.5f;
+    public float silenceSpeed = 0.3f;
+
+    //Sooting stats
+    private int MaxShoots = 999999;
+
+    //Walking sound
+    private int WalkingSound;
+
+    public Rigidbody rb;
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -40,6 +44,7 @@ public class FPSController : MonoBehaviour
         
 
         characterController = GetComponent<CharacterController>();
+        sphereCollider = GetComponent<SphereCollider>();
         //esconder el mouse
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -77,13 +82,18 @@ public class FPSController : MonoBehaviour
         if (Input.GetButton("Fire3"))
         {
             speed = silenceSpeed;
+            WalkingSound = 3;
+            sphereCollider.radius = 3;
             transform.Translate(direction * speed * Time.deltaTime);
         }
         else
         {
+            WalkingSound = 5;
+            sphereCollider.radius = 5;
             speed = moveSpeed;
             transform.Translate(direction * speed * Time.deltaTime);
         }
+        //Debug.Log(WalkingSound);
 
         Vector3 floor = transform.TransformDirection(Vector3.down);
     }
@@ -92,10 +102,9 @@ public class FPSController : MonoBehaviour
     private void Shoot() {
         if (Input.GetMouseButtonDown(0))
         {
-            if (CurrentShoots < MaxShoots)
+            if (MaxShoots > 0)
             {
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
-                CurrentShoots++;
             }
         }      
     }
