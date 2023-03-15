@@ -56,9 +56,19 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+
         //Debug.Log(CurrentShoots);
-        Move();
-        Shoot();
+        if (!GameManager.Instance().IsPaused())
+        {
+            Move();
+            Shoot();
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        
     }
 
     void Move()
