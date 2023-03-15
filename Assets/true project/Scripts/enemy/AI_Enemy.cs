@@ -21,8 +21,12 @@ public class AI_Enemy : MonoBehaviour
 
     public Animation Anim;
 
+    private Vector3 InitialPos;
+
     private void Awake()
     {
+        
+
         IA = GetComponent<NavMeshAgent>();
 
         playerS = FindObjectOfType<FPSController>();
@@ -30,11 +34,19 @@ public class AI_Enemy : MonoBehaviour
         waypoints = new(FindObjectsOfType<PatrolPoint>());
         waypoints.Sort((a, b) => { return a.name.CompareTo(b.name); });
         transform.position = waypoints[currentPoint].transform.position;
+
+        InitialPos = transform.position;
+
         currentPoint++;
     }
 
     void Update()
     {
+        Vector3 TargetDir = Player.transform.position - transform.position;
+
+        Physics.Raycast(transform.position, Player.transform.position);
+        //float Angle = Vector3.SignedAngle(, Vector3.forward);
+
         if (!IsChasingPlayer)
         {
             Patrol();
@@ -50,11 +62,11 @@ public class AI_Enemy : MonoBehaviour
             switch (playerS.WalkingSound)
             {
                 case 5:
-                    Debug.Log("Veo al player bien");
+                    //Debug.Log("Veo al player bien");
                     ChasePlayer();
                     break;
                 case 3:
-                    Debug.Log("Veo al player mal");
+                    //Debug.Log("Veo al player mal");
                     LookAround();
                     break;
                 default:
@@ -68,6 +80,14 @@ public class AI_Enemy : MonoBehaviour
         IsChasingPlayer = false;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Reinicio");
+            transform.position = InitialPos;
+        }
+    }
     private void Patrol() {
 
         if (Vector3.Distance(transform.position, waypoints[currentPoint].transform.position) < 1)
@@ -87,7 +107,7 @@ public class AI_Enemy : MonoBehaviour
             currentPoint = 0;
             IA.SetDestination(waypoints[currentPoint].transform.position);
         }
-
+        transform.LookAt(waypoints[currentPoint].transform.position);
         IA.SetDestination(waypoints[currentPoint].transform.position);
     }
 
@@ -99,11 +119,7 @@ public class AI_Enemy : MonoBehaviour
     private void ChasePlayer()
     {
         IsChasingPlayer = true;
+        transform.LookAt(Player.transform.position);
         IA.SetDestination(Player.transform.position);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, transform.forward);
     }
 }

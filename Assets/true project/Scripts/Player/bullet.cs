@@ -4,23 +4,47 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    private float force = 3f;
+    private float speed = 10f;
     public float lifeTime;
 
-    private FPSController PlayerScript;
+    private bool CanMove;
 
-    protected Rigidbody rb;
+    private FPSController PlayerScript;
+    
+    private Vector3 direction;
+
+    //protected Rigidbody rb;
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = transform.position;
-        Fire(Vector3.forward);
+        CanMove = true;
+        PlayerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<FPSController>();
+        //rb = GetComponent<Rigidbody>();
+        //rb.centerOfMass = transform.position;
+        //Fire(transform.forward);
+        direction = PlayerScript.boquilla.transform.right;
+        StartCoroutine(Countdown());
     }
 
-    public virtual void Fire(Vector3 direction)
+    private void Update()
     {
-        rb.AddForce(direction * force, ForceMode.Impulse);
-        StartCoroutine(Countdown());
+        if (CanMove)
+        {
+            transform.Translate(direction * speed * Time.deltaTime);
+        }
+    }
+
+    //public void Fire(Vector3 direction)
+    //{
+    //    rb.AddForce(direction * force, ForceMode.Impulse);
+    //    StartCoroutine(Countdown());
+    //}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Obstaculo")
+        {
+            CanMove = false;
+        }
     }
 
     IEnumerator Countdown()
