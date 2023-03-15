@@ -9,29 +9,27 @@ public class FPSController : MonoBehaviour
     public bullet sound_bullet;
     public Transform boquilla;
     public Rigidbody rb;
-    private SpawnPointScript SpawnPoint;
+    public GameObject SpawnPoint;
 
     CharacterController characterController;
     SphereCollider sphereCollider;
 
     private Quaternion InitialRotation;
 
-    //Move stats
+    //Movimiento Player
     [Header("Stats")]
     public float silenceSpeed = 0.3f;
     public float moveSpeed = 2.5f;
     private float speed;
+    public int WalkingSound;
 
     float h;
     float v;
 
-    //Shooting stats
+    //Disparo
     private int MaxShoots = 999999;
 
-    //Walking sound
-    public int WalkingSound;
-
-    //velocidad de movimiento de la camara
+    //Movimiento camara
     private float mouseHorizontal = 1f;
     private float mouseVertical = 1f;
 
@@ -39,9 +37,11 @@ public class FPSController : MonoBehaviour
     float v_mouse;
 
 
-
     private void Awake()
     {
+
+        transform.position = SpawnPoint.transform.position;
+
         //esconder el mouse
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -49,7 +49,7 @@ public class FPSController : MonoBehaviour
         InitialRotation = transform.rotation;
 
         //Definir componentes(SpawnPoint, CharacterController y NavMesh)
-        SpawnPoint = GetComponent<SpawnPointScript>();
+        //SpawnPoint = FindObjectOfType<SpawnPointScript>();
         characterController = GetComponent<CharacterController>();
         sphereCollider = GetComponent<SphereCollider>();
     }
@@ -115,8 +115,8 @@ public class FPSController : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyAttackTag")
         {
-            transform.position = SpawnPoint.gameObject.transform.position;
-            transform.rotation = InitialRotation;
+            //Debug.Log("Me atacan");
+            transform.SetPositionAndRotation(SpawnPoint.gameObject.transform.position, InitialRotation);
         }
     }
 }
