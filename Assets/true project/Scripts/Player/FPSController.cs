@@ -8,6 +8,28 @@ public class FPSController : MonoBehaviour
     public Camera Cam;
     public bullet sound_bullet;
     public Transform boquilla;
+    public Rigidbody rb;
+    private SpawnPointScript SpawnPoint;
+
+    CharacterController characterController;
+    SphereCollider sphereCollider;
+
+    private Quaternion InitialRotation;
+
+    //Move stats
+    [Header("Stats")]
+    public float silenceSpeed = 0.3f;
+    public float moveSpeed = 2.5f;
+    private float speed;
+
+    float h;
+    float v;
+
+    //Shooting stats
+    private int MaxShoots = 999999;
+
+    //Walking sound
+    public int WalkingSound;
 
     //velocidad de movimiento de la camara
     private float mouseHorizontal = 1f;
@@ -16,35 +38,22 @@ public class FPSController : MonoBehaviour
     float h_mouse;
     float v_mouse;
 
-    private float speed;
-
-    [Header("Stats")]
-    public float moveSpeed = 2.5f;
-    public float silenceSpeed = 0.3f;
-    public float shootInterval;
-    private float ShootIntensity = 10f;
-    private int MaxShoots = 999999;
-    public int CurrentShoots = 0;
-
-    public Rigidbody rb;
 
 
-    float h;
-    float v;
-
-    CharacterController characterController;
-
-    // Start is called before the first frame update
     private void Awake()
     {
-        
-
-        characterController = GetComponent<CharacterController>();
         //esconder el mouse
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Guardar rotación inicial
+        InitialRotation = transform.rotation;
+
+        //Definir componentes(SpawnPoint, CharacterController y NavMesh)
+        SpawnPoint = GetComponent<SpawnPointScript>();
+        characterController = GetComponent<CharacterController>();
+        sphereCollider = GetComponent<SphereCollider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Debug.Log(CurrentShoots);
@@ -77,13 +86,16 @@ public class FPSController : MonoBehaviour
         if (Input.GetButton("Fire3"))
         {
             speed = silenceSpeed;
+            WalkingSound = 3;
             transform.Translate(direction * speed * Time.deltaTime);
         }
         else
         {
+            WalkingSound = 5;
             speed = moveSpeed;
             transform.Translate(direction * speed * Time.deltaTime);
         }
+        //Debug.Log(WalkingSound);
 
         Vector3 floor = transform.TransformDirection(Vector3.down);
     }
@@ -92,11 +104,19 @@ public class FPSController : MonoBehaviour
     private void Shoot() {
         if (Input.GetMouseButtonDown(0))
         {
-            if (CurrentShoots < MaxShoots)
+            if (MaxShoots > 0)
             {
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
-                CurrentShoots++;
             }
         }      
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyAttackTag")
+        {
+            transform.position = SpawnPoint.gameObject.transform.position;
+            transform.rotation = InitialRotation;
+        }
     }
 }
