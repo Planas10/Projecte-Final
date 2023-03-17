@@ -6,30 +6,32 @@ using UnityEngine;
 public class FPSController : MonoBehaviour
 {
     public Camera Cam;
+
     public bullet sound_bullet;
+
     public Transform boquilla;
+
     public Rigidbody rb;
+
     public GameObject SpawnPoint;
 
     CharacterController characterController;
+
     SphereCollider sphereCollider;
+
 
     private Quaternion InitialRotation;
 
-    //Movimiento Player
-    [Header("Stats")]
-    public float silenceSpeed = 0.3f;
-    public float moveSpeed = 2.5f;
-    private float speed;
-    public int WalkingSound;
 
-    float h;
-    float v;
+    [SerializeField] private float silenceSpeed = 2f;
 
-    //Disparo
-    private int MaxShoots = 999999;
+    [SerializeField] private float normalMoveSpeed = 5f;
 
-    //Movimiento camara
+    [SerializeField] public int WalkingSound;
+
+    [SerializeField] private int MaxShoots = 999999;
+
+
     private float mouseHorizontal = 1f;
     private float mouseVertical = 1f;
 
@@ -42,9 +44,6 @@ public class FPSController : MonoBehaviour
 
         transform.position = SpawnPoint.transform.position;
 
-        //esconder el mouse
-        Cursor.lockState = CursorLockMode.Locked;
-
         //Guardar rotación inicial
         InitialRotation = transform.rotation;
 
@@ -56,13 +55,21 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(CurrentShoots);
-        Move();
-        Shoot();
+        if (!GameManager.Instance().IsPaused())
+        {
+            Move();
+            Shoot();
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     void Move()
     {
+
         h_mouse = mouseHorizontal * Input.GetAxis("Mouse X");
         v_mouse = mouseVertical * -Input.GetAxis("Mouse Y");
 
@@ -71,33 +78,24 @@ public class FPSController : MonoBehaviour
 
         v_mouse = Mathf.Clamp(v_mouse, -80, 80);
 
-        //movimiento del player
-
-        speed = moveSpeed;
-
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
-
-        Vector3 direction = new Vector3(h, 0, v);
-
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Debug.Log(MoveDirection);
+        MoveDirection = transform.TransformDirection(MoveDirection);
 
         //pa andar quaiet
         if (Input.GetButton("Fire3"))
         {
-            speed = silenceSpeed;
             WalkingSound = 3;
-            transform.Translate(direction * speed * Time.deltaTime);
+            MoveDirection *= silenceSpeed;
+            characterController.Move(MoveDirection * Time.deltaTime);
         }
         else
         {
             WalkingSound = 5;
-            speed = moveSpeed;
-            transform.Translate(direction * speed * Time.deltaTime);
+            MoveDirection *= normalMoveSpeed;
+            characterController.Move(MoveDirection * Time.deltaTime);
         }
         //Debug.Log(WalkingSound);
-
-        Vector3 floor = transform.TransformDirection(Vector3.down);
     }
 
     //disparo

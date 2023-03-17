@@ -7,7 +7,7 @@ public class SettingsController : MonoBehaviour
 {
     public void ButtonBack()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void ButtonControls()
     {

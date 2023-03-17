@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
 
-    public static bool GameIsPaused = false;
+    public bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject PuntoDeMiraUI;
 
     // Update is called once per frame
     void Update()
@@ -31,6 +32,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        PuntoDeMiraUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -38,13 +40,14 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        PuntoDeMiraUI.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
