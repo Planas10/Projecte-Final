@@ -32,8 +32,8 @@ public class FPSController : MonoBehaviour
     [SerializeField] private int MaxShoots = 999999;
 
 
-    private float mouseHorizontal = 1f;
-    private float mouseVertical = 1f;
+    private float mouseHorizontal = 2f;
+    private float mouseVertical = 2f;
 
     float h_mouse;
     float v_mouse;
@@ -79,8 +79,11 @@ public class FPSController : MonoBehaviour
         v_mouse = Mathf.Clamp(v_mouse, -80, 80);
 
         Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        Debug.Log(MoveDirection);
+        //Debug.Log(MoveDirection);
         MoveDirection = transform.TransformDirection(MoveDirection);
+
+        Debug.Log("H" + Input.GetAxis("Horizontal"));
+        Debug.Log("V" + Input.GetAxis("Vertical"));
 
         //pa andar quaiet
         if (Input.GetButton("Fire3"))
