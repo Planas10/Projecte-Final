@@ -863,7 +863,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1660198048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c6f363879abdd74fb82cdd063de4622, type: 3}
+  m_Script: {fileID: 11500000, guid: ceca42dcb9d59f44aa80514a7cfba49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1660198050
@@ -1080,13 +1080,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: My Game
+  m_Text: Endless Incursion
 --- !u!222 &1779491613
 CanvasRenderer:
   m_ObjectHideFlags: 0

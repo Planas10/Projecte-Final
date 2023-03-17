@@ -10,8 +10,6 @@ TagManager:
   - Puerta
   - Bomb
   - EnemyAttackTag
-  - Obstaculos
-  - SueloTecho
   layers:
   - Default
   - TransparentFX
