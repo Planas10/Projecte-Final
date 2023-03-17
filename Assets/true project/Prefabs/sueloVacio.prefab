@@ -99,6 +99,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: suelos
       objectReference: {fileID: 0}
+    - target: {fileID: 1620678106093747283, guid: 5819578bd00feb043b59cdd536dee419,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620678106093747283, guid: 5819578bd00feb043b59cdd536dee419,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2032815560384152623, guid: 5819578bd00feb043b59cdd536dee419,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

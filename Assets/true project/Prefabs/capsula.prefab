@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 2328573046600538873}
   - component: {fileID: 3656438332731893376}
   - component: {fileID: 9185463607348339671}
+  - component: {fileID: 3747921827356001881}
   m_Layer: 0
   m_Name: manacCapsula
   m_TagString: Untagged
@@ -202,6 +203,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3747921827356001881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261706095665617209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6048726, y: 0.75830805, z: 6.6225057}
+  m_Center: {x: 0.000003322959, y: -0.000000461936, z: -0.0000004768373}
 --- !u!1 &6661279521006601814
 GameObject:
   m_ObjectHideFlags: 0

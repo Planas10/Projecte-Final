@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2033554631469591465}
   - component: {fileID: 5330553519300715143}
   - component: {fileID: 546107101038659151}
+  - component: {fileID: 7475813353998663564}
   m_Layer: 0
   m_Name: pantalla004
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7475813353998663564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831735679295018067}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7949759, y: 0.48029017, z: 0.096234955}
+  m_Center: {x: 0.00000071525574, y: 0.00000047843326, z: -0.017853417}
 --- !u!1 &3115483894356001855
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +108,7 @@ GameObject:
   - component: {fileID: 4652103847593783104}
   - component: {fileID: 4424104758779920192}
   - component: {fileID: 8111929612151747262}
+  - component: {fileID: 8164236447714542156}
   m_Layer: 0
   m_Name: ordinadorTorre004
   m_TagString: Untagged
@@ -166,6 +181,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8164236447714542156
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115483894356001855}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21404085, y: 0.11482646, z: 0.61979926}
+  m_Center: {x: 0.00000047664463, y: -0.0064594075, z: 0.039995536}
 --- !u!1 &3266070106334437319
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +205,7 @@ GameObject:
   - component: {fileID: 6699312746575073256}
   - component: {fileID: 1775673400682063895}
   - component: {fileID: 333288542497036721}
+  - component: {fileID: 4178972759896158175}
   m_Layer: 0
   m_Name: ordinadorTorre003
   m_TagString: Untagged
@@ -249,6 +278,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4178972759896158175
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266070106334437319}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2140408, y: 0.11482646, z: 0.61979926}
+  m_Center: {x: -1.8048708e-10, y: -0.0064598843, z: 0.039995536}
 --- !u!1 &3407231318010621619
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +302,7 @@ GameObject:
   - component: {fileID: 1737864801969268950}
   - component: {fileID: 6401420923580900588}
   - component: {fileID: 4248447625801939512}
+  - component: {fileID: 6251514442142151963}
   m_Layer: 0
   m_Name: pantalla001
   m_TagString: Untagged
@@ -332,6 +375,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6251514442142151963
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407231318010621619}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7949755, y: 0.4802901, z: 0.096234865}
+  m_Center: {x: 0.00000047790127, y: -2.660223e-10, z: -0.017852454}
 --- !u!1 &3646894360036958697
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +399,7 @@ GameObject:
   - component: {fileID: 2316380502786709192}
   - component: {fileID: 1005093989847915968}
   - component: {fileID: 3066392610417532517}
+  - component: {fileID: 1631684957896270722}
   m_Layer: 0
   m_Name: pantalla002
   m_TagString: Untagged
@@ -415,6 +472,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1631684957896270722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646894360036958697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.79497564, y: 0.4802901, z: 0.09623488}
+  m_Center: {x: -0.0000004773692, y: 0.00000023895063, z: -0.017853407}
 --- !u!1 &3749407009441574507
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +538,7 @@ GameObject:
   - component: {fileID: 6660791409545094239}
   - component: {fileID: 6286124587231707523}
   - component: {fileID: 8660224424409625658}
+  - component: {fileID: 120443107059265242}
   m_Layer: 0
   m_Name: ordinadorTorre
   m_TagString: Untagged
@@ -540,6 +611,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &120443107059265242
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323722134425628736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21404085, y: 0.114826486, z: 0.61979926}
+  m_Center: {x: 0.0000009536743, y: -0.0064601237, z: 0.039995536}
 --- !u!1 &8108981659687157350
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +635,7 @@ GameObject:
   - component: {fileID: 1382353963865340810}
   - component: {fileID: 5863837579200088219}
   - component: {fileID: 1337121026046064661}
+  - component: {fileID: 3514231070856377427}
   m_Layer: 0
   m_Name: pantalla003
   m_TagString: Untagged
@@ -623,6 +708,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3514231070856377427
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108981659687157350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7949755, y: 0.4802901, z: 0.09623487}
+  m_Center: {x: 0.00000047627185, y: -0.00000025421446, z: -0.017852213}
 --- !u!1 &8264338557703318183
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +732,7 @@ GameObject:
   - component: {fileID: 6027178671690367034}
   - component: {fileID: 2070634128134654507}
   - component: {fileID: 3433650900309727123}
+  - component: {fileID: 3060528715662059216}
   m_Layer: 0
   m_Name: pantalla
   m_TagString: Untagged
@@ -706,6 +805,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3060528715662059216
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8264338557703318183}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.79497564, y: 0.4802901, z: 0.09623491}
+  m_Center: {x: 0.00000095314226, y: -0.00000023895063, z: -0.017854363}
 --- !u!1 &8675412065285319525
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +829,7 @@ GameObject:
   - component: {fileID: 2986953348303836146}
   - component: {fileID: 2369803548775921251}
   - component: {fileID: 5937297066030674445}
+  - component: {fileID: 1058096309494094190}
   m_Layer: 0
   m_Name: ordinadorTorre002
   m_TagString: Untagged
@@ -789,6 +902,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1058096309494094190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675412065285319525}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21404085, y: 0.1148265, z: 0.6197994}
+  m_Center: {x: -0.00000035624, y: -0.0064594094, z: 0.039995547}
 --- !u!1 &8848441707783960475
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,6 +1009,7 @@ GameObject:
   - component: {fileID: 1147172941208182406}
   - component: {fileID: 5921520333727456152}
   - component: {fileID: 6364879752788654940}
+  - component: {fileID: 3778232474071866095}
   m_Layer: 0
   m_Name: ordinadorTorre001
   m_TagString: Untagged
@@ -955,3 +1082,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3778232474071866095
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136262376819822231}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21404082, y: 0.11482646, z: 0.61979926}
+  m_Center: {x: 0.000001430319, y: -0.006459884, z: 0.039995536}
