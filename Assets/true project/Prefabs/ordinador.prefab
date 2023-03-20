@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1737864801969268950}
   - component: {fileID: 6401420923580900588}
   - component: {fileID: 4248447625801939512}
-  - component: {fileID: 1326248987261751475}
   m_Layer: 0
   m_Name: pantalla001
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1326248987261751475
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407231318010621619}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7949757, y: 0.48029023, z: 0.09623499}
-  m_Center: {x: 0.0000019078973, y: 0.0000002426256, z: -0.017851744}
 --- !u!1 &3749407009441574507
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,9 +92,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4558559144754263249}
+  - component: {fileID: 3760186298938130910}
   m_Layer: 0
   m_Name: ordinador
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,6 +117,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3760186298938130910
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749407009441574507}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6798446, y: 0.84575063, z: 0.26073638}
+  m_Center: {x: 0.010452658, y: 0.40857503, z: 0.025491208}
 --- !u!1 &9136262376819822231
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 1147172941208182406}
   - component: {fileID: 5921520333727456152}
   - component: {fileID: 6364879752788654940}
-  - component: {fileID: 5894284924781630434}
   m_Layer: 0
   m_Name: ordinadorTorre001
   m_TagString: Untagged
@@ -214,16 +213,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5894284924781630434
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9136262376819822231}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.21404089, y: 0.11482651, z: 0.61979926}
-  m_Center: {x: -0.0000004770658, y: -0.006459411, z: 0.039995536}

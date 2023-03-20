@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7114335097920419845}
   - component: {fileID: 6130781734136772512}
   - component: {fileID: 8282153561907528554}
+  - component: {fileID: 5327479310866700905}
   m_Layer: 0
   m_Name: tuberia
   m_TagString: Untagged
@@ -115,3 +116,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5327479310866700905
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7633850650946937535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2304199, y: 0.49287948, z: 0.5763604}
+  m_Center: {x: 0, y: 0.15874219, z: 0.01486958}

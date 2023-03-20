@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1642600715557331708}
   - component: {fileID: 2406165957385383257}
   - component: {fileID: 468546406672963987}
+  - component: {fileID: 9143804317653227162}
   m_Layer: 0
   m_Name: reixaArriba
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9143804317653227162
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125804617033365574}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32621515, y: 2.0101168, z: 0.16530228}
+  m_Center: {x: 0, y: -0.00000047683716, z: 0}

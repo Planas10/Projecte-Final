@@ -27,6 +27,10 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] private float normalMoveSpeed = 5f;
 
+    private float currentSpeed;
+    
+    private float Gravity = -9.8f;
+
     [SerializeField] public int WalkingSound;
 
     [SerializeField] private int MaxShoots = 999999;
@@ -69,7 +73,6 @@ public class FPSController : MonoBehaviour
 
     void Move()
     {
-
         h_mouse = mouseHorizontal * Input.GetAxis("Mouse X");
         v_mouse = mouseVertical * -Input.GetAxis("Mouse Y");
 
@@ -78,25 +81,24 @@ public class FPSController : MonoBehaviour
 
         v_mouse = Mathf.Clamp(v_mouse, -80, 80);
 
-        Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), Gravity, Input.GetAxis("Vertical"));
         //Debug.Log(MoveDirection);
         MoveDirection = transform.TransformDirection(MoveDirection);
 
-        Debug.Log("H" + Input.GetAxis("Horizontal"));
-        Debug.Log("V" + Input.GetAxis("Vertical"));
+        //Debug.Log(MoveDirection);
 
         //pa andar quaiet
         if (Input.GetButton("Fire3"))
         {
             WalkingSound = 3;
-            MoveDirection *= silenceSpeed;
-            characterController.Move(MoveDirection * Time.deltaTime);
+            currentSpeed = silenceSpeed;
+            characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
         }
         else
         {
             WalkingSound = 5;
-            MoveDirection *= normalMoveSpeed;
-            characterController.Move(MoveDirection * Time.deltaTime);
+            currentSpeed = normalMoveSpeed;
+            characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
         }
         //Debug.Log(WalkingSound);
     }
@@ -114,10 +116,10 @@ public class FPSController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "EnemyAttackTag")
+        if (other.gameObject.CompareTag("EnemyAttackTag"))
         {
-            //Debug.Log("Me atacan");
-            transform.SetPositionAndRotation(SpawnPoint.gameObject.transform.position, InitialRotation);
+            Debug.Log("Me atacan");
+            transform.SetPositionAndRotation(SpawnPoint.transform.position, InitialRotation);
         }
     }
 }
