@@ -17,8 +17,6 @@ public class FPSController : MonoBehaviour
 
     CharacterController characterController;
 
-    SphereCollider sphereCollider;
-
 
     private Quaternion InitialRotation;
 
@@ -33,7 +31,7 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] public int WalkingSound;
 
-    [SerializeField] private int MaxShoots = 999999;
+    [SerializeField] public int MaxShoots = 1;
 
 
     private float mouseHorizontal = 2f;
@@ -41,6 +39,32 @@ public class FPSController : MonoBehaviour
 
     float h_mouse;
     float v_mouse;
+
+    //Abrir puertas
+
+    public GameObject light1;
+    public GameObject light2;
+    public GameObject light3;
+    public GameObject light4;
+    public GameObject light5;
+
+    public GameObject doorLeft;
+    public GameObject doorRight;
+    public GameObject doorLeft2;
+    public GameObject doorRight2;
+
+    private int numCollisions = 0;
+
+    private bool light1Activated = false;
+    private bool light2Activated = false;
+    private bool light3Activated = false;
+    private bool light4Activated = false;
+    private bool light5Activated = false;
+
+    public GameObject emptyObjectDoorRight;
+    public GameObject emptyObjectDoorLeft;
+    public GameObject emptyObjectDoorRight2;
+    public GameObject emptyObjectDoorLeft2;
 
 
     private void Awake()
@@ -54,7 +78,6 @@ public class FPSController : MonoBehaviour
         //Definir componentes(SpawnPoint, CharacterController y NavMesh)
         //SpawnPoint = FindObjectOfType<SpawnPointScript>();
         characterController = GetComponent<CharacterController>();
-        sphereCollider = GetComponent<SphereCollider>();
     }
 
     void Update()
@@ -68,6 +91,22 @@ public class FPSController : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+        //Debug.Log(SpawnPoint.transform.position);
+
+        if (light1Activated == true && light2Activated == true && light3Activated == true)
+        {
+            doorRight2.GetComponent<BoxCollider>().isTrigger = true;
+            doorLeft2.GetComponent<BoxCollider>().isTrigger = true;
+            doorRight2.transform.position = Vector3.MoveTowards(doorRight2.transform.position, emptyObjectDoorRight2.transform.position, 0.5f * Time.deltaTime); // Move doorRight to the right
+            doorLeft2.transform.position = Vector3.MoveTowards(doorLeft2.transform.position, emptyObjectDoorLeft2.transform.position, 0.5f * Time.deltaTime); // Move doorLeft to the left
+        }
+        if (light4Activated == true && light5Activated == true)
+        {
+            doorRight.GetComponent<BoxCollider>().isTrigger = true;
+            doorLeft.GetComponent<BoxCollider>().isTrigger = true;
+            doorRight.transform.position = Vector3.MoveTowards(doorRight.transform.position, emptyObjectDoorRight.transform.position, 0.5f * Time.deltaTime); // Move doorRight to the right
+            doorLeft.transform.position = Vector3.MoveTowards(doorLeft.transform.position, emptyObjectDoorLeft.transform.position, 0.5f * Time.deltaTime); // Move doorLeft to the left
         }
     }
 
@@ -113,13 +152,39 @@ public class FPSController : MonoBehaviour
             }
         }      
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("EnemyAttackTag"))
         {
             Debug.Log("Me atacan");
+            Debug.Log(SpawnPoint.transform.position);
             transform.SetPositionAndRotation(SpawnPoint.transform.position, InitialRotation);
+        }
+
+        if (other.gameObject.CompareTag("Object1") && !light1Activated)
+        {
+            light1.SetActive(true);
+            light1Activated = true;
+        }
+        if (other.gameObject.CompareTag("Object2") && !light2Activated)
+        {
+            light2.SetActive(true);
+            light2Activated = true;
+        }
+        if (other.gameObject.CompareTag("Object3") && !light3Activated)
+        {
+            light3.SetActive(true);
+            light3Activated = true;
+        }
+        if (other.gameObject.CompareTag("Object4") && !light4Activated)
+        {
+            light4.SetActive(true);
+            light4Activated = true;
+        }
+        if (other.gameObject.CompareTag("Object5") && !light5Activated)
+        {
+            light5.SetActive(true);
+            light5Activated = true;
         }
     }
 }

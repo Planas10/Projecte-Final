@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5126442426643804355}
   - component: {fileID: 5775820796736578137}
   - component: {fileID: 2904200987784077260}
+  - component: {fileID: 3752617777620877962}
   m_Layer: 0
   m_Name: tuberia002
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3752617777620877962
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2590662885102331547}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8208276903342151435, guid: c3157ea0ab31e754eadc6b58f436706f, type: 3}
 --- !u!1 &4608736016552064320
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +109,7 @@ GameObject:
   - component: {fileID: 1394768694125521022}
   - component: {fileID: 7187207365667092645}
   - component: {fileID: 2504503904228415705}
-  - component: {fileID: 8840028393587261510}
+  - component: {fileID: 7379719587026203028}
   m_Layer: 0
   m_Name: columna
   m_TagString: Untagged
@@ -167,8 +182,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8840028393587261510
-BoxCollider:
+--- !u!64 &7379719587026203028
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -177,9 +192,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5402805, y: 0.56142306, z: 2.004033}
-  m_Center: {x: -0.067247435, y: -0.10029912, z: 1.026159}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8572687728477853599, guid: c3157ea0ab31e754eadc6b58f436706f, type: 3}
 --- !u!1 &5748265282881222114
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +207,7 @@ GameObject:
   - component: {fileID: 1005293219397907875}
   - component: {fileID: 851756640444848854}
   - component: {fileID: 646352400225299332}
+  - component: {fileID: 502552108628952930}
   m_Layer: 0
   m_Name: tuberia1
   m_TagString: Untagged
@@ -263,6 +280,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &502552108628952930
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748265282881222114}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7010003531922374287, guid: c3157ea0ab31e754eadc6b58f436706f, type: 3}
 --- !u!1 &7027034405286466707
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +341,7 @@ GameObject:
   - component: {fileID: 6118935379584815680}
   - component: {fileID: 323352416291707530}
   - component: {fileID: 2679678186144870072}
+  - component: {fileID: 190828268229632961}
   m_Layer: 0
   m_Name: tuberia003
   m_TagString: Untagged
@@ -382,6 +414,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &190828268229632961
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529373880624162434}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8457103875916682624, guid: c3157ea0ab31e754eadc6b58f436706f, type: 3}
 --- !u!1 &7991181048171718459
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +439,7 @@ GameObject:
   - component: {fileID: 2916533931991360978}
   - component: {fileID: 4997630929512050820}
   - component: {fileID: 2980488003769461378}
-  - component: {fileID: 7715498488727583851}
+  - component: {fileID: 5384363421583201094}
   m_Layer: 0
   m_Name: paret
   m_TagString: Untagged
@@ -466,8 +512,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7715498488727583851
-BoxCollider:
+--- !u!64 &5384363421583201094
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -476,6 +522,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.6883247, y: 0.1949605, z: 2.5354767}
-  m_Center: {x: 0, y: 0.000000014901161, z: -0.000000059604645}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2929064672489739120, guid: c3157ea0ab31e754eadc6b58f436706f, type: 3}

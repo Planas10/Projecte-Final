@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6508563661183318124}
   - component: {fileID: 5450268849822560046}
   - component: {fileID: 8393445260693597723}
+  - component: {fileID: 6056340250826337995}
   m_Layer: 0
   m_Name: vidreCapsula
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6056340250826337995
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936529453285641733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2841984616094770070, guid: 8d7e4ce8e07c47747ae57df33fa7768b, type: 3}
 --- !u!1 &1961541090216084613
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,10 +145,10 @@ GameObject:
   - component: {fileID: 2328573046600538873}
   - component: {fileID: 3656438332731893376}
   - component: {fileID: 9185463607348339671}
-  - component: {fileID: 3747921827356001881}
+  - component: {fileID: 7257472480093756407}
   m_Layer: 0
   m_Name: manacCapsula
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,8 +218,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3747921827356001881
-BoxCollider:
+--- !u!64 &7257472480093756407
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -213,9 +228,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6048726, y: 0.75830805, z: 6.6225057}
-  m_Center: {x: 0.000003322959, y: -0.000000461936, z: -0.0000004768373}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6301897506036231650, guid: 8d7e4ce8e07c47747ae57df33fa7768b, type: 3}
 --- !u!1 &6661279521006601814
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,9 +243,10 @@ GameObject:
   - component: {fileID: 823118997726081484}
   - component: {fileID: 7388312849562561435}
   - component: {fileID: 4307005678389251325}
+  - component: {fileID: 6559637307981597110}
   m_Layer: 0
   m_Name: sostreCapsula
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,6 +316,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6559637307981597110
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661279521006601814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7234912650859046260, guid: 8d7e4ce8e07c47747ae57df33fa7768b, type: 3}
 --- !u!1 &6720393733785905362
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,9 +341,10 @@ GameObject:
   - component: {fileID: 6092145657583696932}
   - component: {fileID: 8636531807445649398}
   - component: {fileID: 1168519658988483202}
+  - component: {fileID: 2550793172879866471}
   m_Layer: 0
   m_Name: interiorDalt
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,6 +414,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2550793172879866471
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6720393733785905362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6805577444856644078, guid: 8d7e4ce8e07c47747ae57df33fa7768b, type: 3}
 --- !u!1 &8401476397766760386
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,9 +439,10 @@ GameObject:
   - component: {fileID: 8713609555041594134}
   - component: {fileID: 475874406006782023}
   - component: {fileID: 4127144845133788649}
+  - component: {fileID: 2347931343505333196}
   m_Layer: 0
   m_Name: interiorSota
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -465,3 +512,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2347931343505333196
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401476397766760386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4049605021753365255, guid: 8d7e4ce8e07c47747ae57df33fa7768b, type: 3}

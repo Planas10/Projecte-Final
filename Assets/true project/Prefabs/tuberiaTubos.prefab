@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8758012788157640619}
   - component: {fileID: 8941130060618974303}
   - component: {fileID: 5491093362179979499}
-  - component: {fileID: 4248442218366903625}
+  - component: {fileID: 8092430961579034929}
   m_Layer: 0
   m_Name: tuberia
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4248442218366903625
-BoxCollider:
+--- !u!64 &8092430961579034929
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,9 +94,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.2304199, y: 0.479055, z: 0.60997856}
-  m_Center: {x: 0, y: 0.16565359, z: -0.0019395371}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7979140393938698530, guid: 4f99b043c345a7743abd5c2ade8629f2, type: 3}
 --- !u!1 &4079863246806542415
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +109,7 @@ GameObject:
   - component: {fileID: 715910235385445876}
   - component: {fileID: 5162601143854907665}
   - component: {fileID: 7649908675902240155}
-  - component: {fileID: 3759386066136677613}
+  - component: {fileID: 3684560221179750406}
   m_Layer: 0
   m_Name: tubos
   m_TagString: Untagged
@@ -181,8 +182,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3759386066136677613
-BoxCollider:
+--- !u!64 &3684560221179750406
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -191,9 +192,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.30946466, y: 0.2766502, z: 2.481988}
-  m_Center: {x: -0.00000027567148, y: 0.000000007450581, z: 0.0000001788139}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8001770463305595575, guid: 4f99b043c345a7743abd5c2ade8629f2, type: 3}
 --- !u!1 &5967386402941082133
 GameObject:
   m_ObjectHideFlags: 0

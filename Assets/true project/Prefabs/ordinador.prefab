@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1737864801969268950}
   - component: {fileID: 6401420923580900588}
   - component: {fileID: 4248447625801939512}
+  - component: {fileID: 4772994034341571500}
   m_Layer: 0
   m_Name: pantalla001
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4772994034341571500
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407231318010621619}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8005274111808171082, guid: 27d36e6460a0af24e9df366d9c5a8692, type: 3}
 --- !u!1 &3749407009441574507
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4558559144754263249}
-  - component: {fileID: 3760186298938130910}
+  - component: {fileID: 5594248493575010630}
   m_Layer: 0
   m_Name: ordinador
   m_TagString: Obstacles
@@ -114,11 +129,12 @@ Transform:
   m_Children:
   - {fileID: 1147172941208182406}
   - {fileID: 1737864801969268950}
+  - {fileID: 1902554778851917279}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3760186298938130910
-BoxCollider:
+--- !u!64 &5594248493575010630
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,9 +143,55 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!1 &4834401354741259699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1902554778851917279}
+  - component: {fileID: 4999853479616257525}
+  m_Layer: 0
+  m_Name: ColliderLuces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1902554778851917279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834401354741259699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4558559144754263249}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4999853479616257525
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834401354741259699}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6798446, y: 0.84575063, z: 0.26073638}
-  m_Center: {x: 0.010452658, y: 0.40857503, z: 0.025491208}
+  m_Size: {x: 0.9538009, y: 0.74319696, z: 0.60854244}
+  m_Center: {x: -0.004462123, y: 0.42377818, z: -0.012024283}
 --- !u!1 &9136262376819822231
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +203,7 @@ GameObject:
   - component: {fileID: 1147172941208182406}
   - component: {fileID: 5921520333727456152}
   - component: {fileID: 6364879752788654940}
+  - component: {fileID: 8773957335179332599}
   m_Layer: 0
   m_Name: ordinadorTorre001
   m_TagString: Untagged
@@ -213,3 +276,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8773957335179332599
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136262376819822231}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6159510426806871472, guid: 27d36e6460a0af24e9df366d9c5a8692, type: 3}

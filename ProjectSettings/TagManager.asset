@@ -10,6 +10,11 @@ TagManager:
   - Puerta
   - Bomb
   - EnemyAttackTag
+  - Object2
+  - Object1
+  - Object3
+  - Object4
+  - Object5
   layers:
   - Default
   - TransparentFX

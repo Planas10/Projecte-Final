@@ -10,18 +10,21 @@ public class AI_Enemy : MonoBehaviour
 
     public FPSController playerS;
 
-    [SerializeField]
-    private int currentPoint = 0;
+    [SerializeField] private int currentPoint = 0;
+
+    [SerializeField] private float SearchTime = 4f;
+    private float ChangingSearchTime;
 
     public float speed = 5f;
 
     private NavMeshAgent IA;
 
-    private bool IsChasingPlayer;
-
     public Animation Anim;
 
     private Vector3 InitialPos;
+
+    private bool IsChasingPlayer;
+    private bool LookingForPlayer;
 
     private void Awake()
     {
@@ -39,7 +42,7 @@ public class AI_Enemy : MonoBehaviour
 
         currentPoint++;
     }
-
+     
     void Update()
     {
         Vector3 TargetDir = Player.transform.position - transform.position;
@@ -74,6 +77,7 @@ public class AI_Enemy : MonoBehaviour
             }
         }
     }
+    
 
     private void OnTriggerExit(Collider other)
     {
@@ -107,13 +111,33 @@ public class AI_Enemy : MonoBehaviour
             currentPoint = 0;
             IA.SetDestination(waypoints[currentPoint].transform.position);
         }
-        transform.LookAt(waypoints[currentPoint].transform.position);
-        IA.SetDestination(waypoints[currentPoint].transform.position);
+        if (!LookingForPlayer)
+        {
+            transform.LookAt(waypoints[currentPoint].transform.position);
+            IA.SetDestination(waypoints[currentPoint].transform.position);
+        }
     }
 
     private void LookAround()
     {
-        transform.Rotate(0, (transform.rotation.y + 90f) * Time.deltaTime, 0);
+        ChangingSearchTime = SearchTime;
+        Vector3 playerPos = Player.transform.position;
+        IA.SetDestination(playerPos);
+        if (transform.position == playerPos)
+        {
+            ChangingSearchTime -= Time.deltaTime;
+            switch (transform.rotation.y)
+            {
+                case >= -45:
+                    transform.Rotate(0, (transform.rotation.y + 5f) * Time.deltaTime, 0);
+                    break;
+                case <= 45:
+                    transform.Rotate(0, (transform.rotation.y - 5f) * Time.deltaTime, 0);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private void ChasePlayer()
