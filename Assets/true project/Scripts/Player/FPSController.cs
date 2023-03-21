@@ -59,10 +59,10 @@ public class FPSController : MonoBehaviour
     private bool light4Activated = false;
     private bool light5Activated = false;
 
-    public GameObject emptyObjectDoorRight;
-    public GameObject emptyObjectDoorLeft;
-    public GameObject emptyObjectDoorRight2;
-    public GameObject emptyObjectDoorLeft2;
+    //public GameObject emptyObjectDoorRight;
+    //public GameObject emptyObjectDoorLeft;
+    //public GameObject emptyObjectDoorRight2;
+    //public GameObject emptyObjectDoorLeft2;
 
 
     private void Awake()

@@ -15,6 +15,7 @@ TagManager:
   - Object3
   - Object4
   - Object5
+  - Bullet
   layers:
   - Default
   - TransparentFX

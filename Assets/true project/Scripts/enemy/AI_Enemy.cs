@@ -11,6 +11,9 @@ public class AI_Enemy : MonoBehaviour
     public FPSController playerS;
     private bullet Bullet;
 
+    public GameObject ChasingLight;
+    public GameObject AlertLight;
+
     [SerializeField] private int currentPoint = 0;
 
     [SerializeField] private float SearchTime = 4f;
@@ -29,7 +32,6 @@ public class AI_Enemy : MonoBehaviour
 
     private void Awake()
     {
-
         IA = GetComponent<NavMeshAgent>();
 
         playerS = FindObjectOfType<FPSController>();
@@ -48,7 +50,16 @@ public class AI_Enemy : MonoBehaviour
         Bullet = FindObjectOfType<bullet>();
         if (Bullet == null)
         {
+            AlertLight.SetActive(false);
             IsDistracted = false;
+        }
+        if (IsChasingPlayer)
+        {
+            ChasingLight.SetActive(true);
+        }
+        else
+        {
+            ChasingLight.SetActive(false);
         }
 
         Debug.Log(IsDistracted);
@@ -101,7 +112,16 @@ public class AI_Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Bullet"))
         {
             IsDistracted = true;
+            AlertLight.SetActive(true);
             IA.SetDestination(other.transform.position);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            IsChasingPlayer = false;
         }
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextoTutorial : MonoBehaviour
+public class TextoTutorial3 : MonoBehaviour
 {
 
     public Text textTutorial;

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextoTutorial : MonoBehaviour
+public class TextoTutorial2 : MonoBehaviour
 {
 
-    public Text textTutorial;
+    public Text TextTutorial;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            textTutorial.gameObject.SetActive(true);
+            TextTutorial.gameObject.SetActive(true);
         }
     }
 
@@ -19,7 +19,7 @@ public class TextoTutorial : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            textTutorial.gameObject.SetActive(false);
+            TextTutorial.gameObject.SetActive(false);
         }
     }
 }
