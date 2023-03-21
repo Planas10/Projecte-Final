@@ -9,11 +9,11 @@ public class AI_Enemy : MonoBehaviour
     public GameObject Player;
 
     public FPSController playerS;
+    private bullet Bullet;
 
     [SerializeField] private int currentPoint = 0;
 
     [SerializeField] private float SearchTime = 4f;
-    private float ChangingSearchTime;
 
     public float speed = 5f;
 
@@ -25,10 +25,10 @@ public class AI_Enemy : MonoBehaviour
 
     private bool IsChasingPlayer;
     private bool LookingForPlayer;
+    private bool IsDistracted;
 
     private void Awake()
     {
-        
 
         IA = GetComponent<NavMeshAgent>();
 
@@ -45,12 +45,20 @@ public class AI_Enemy : MonoBehaviour
      
     void Update()
     {
+        Bullet = FindObjectOfType<bullet>();
+        if (Bullet == null)
+        {
+            IsDistracted = false;
+        }
+
+        Debug.Log(IsDistracted);
+
         Vector3 TargetDir = Player.transform.position - transform.position;
 
         Physics.Raycast(transform.position, Player.transform.position);
         //float Angle = Vector3.SignedAngle(, Vector3.forward);
 
-        if (!IsChasingPlayer)
+        if (!IsChasingPlayer && !IsDistracted)
         {
             Patrol();
         }
@@ -58,30 +66,43 @@ public class AI_Enemy : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //Debug.Log("Veo al player");
-
-        if (other.gameObject.tag == "Player")
+        if (!IsDistracted)
         {
-            switch (playerS.WalkingSound)
+            //Debug.Log("Veo al player");
+            if (other.gameObject.tag == "Player")
             {
-                case 5:
-                    //Debug.Log("Veo al player bien");
-                    ChasePlayer();
-                    break;
-                case 3:
-                    //Debug.Log("Veo al player mal");
-                    LookAround();
-                    break;
-                default:
-                    break;
+                switch (playerS.WalkingSound)
+                {
+                    case 5:
+                        //Debug.Log("Veo al player bien");
+                        ChasePlayer();
+                        break;
+                    //case 3:
+                    //    //Debug.Log("Veo al player mal");
+                    //    LookAround();
+                    //    break;
+                    default:
+                        break;
+                }
             }
         }
     }
-    
 
-    private void OnTriggerExit(Collider other)
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Bullet"))
+    //    {
+    //        IsDistracted = false;
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        IsChasingPlayer = false;
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            IsDistracted = true;
+            IA.SetDestination(other.transform.position);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -118,32 +139,40 @@ public class AI_Enemy : MonoBehaviour
         }
     }
 
-    private void LookAround()
-    {
-        ChangingSearchTime = SearchTime;
-        Vector3 playerPos = Player.transform.position;
-        IA.SetDestination(playerPos);
-        if (transform.position == playerPos)
-        {
-            ChangingSearchTime -= Time.deltaTime;
-            switch (transform.rotation.y)
-            {
-                case >= -45:
-                    transform.Rotate(0, (transform.rotation.y + 5f) * Time.deltaTime, 0);
-                    break;
-                case <= 45:
-                    transform.Rotate(0, (transform.rotation.y - 5f) * Time.deltaTime, 0);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+    //private void LookAround()
+    //{
+    //    ChangingSearchTime = SearchTime;
+    //    Vector3 playerPos = Player.transform.position;
+    //    IA.SetDestination(playerPos);
+    //    if (transform.position == playerPos)
+    //    {
+    //        ChangingSearchTime -= Time.deltaTime;
+    //        switch (transform.rotation.y)
+    //        {
+    //            case >= -45:
+    //                transform.Rotate(0, (transform.rotation.y + 5f) * Time.deltaTime, 0);
+    //                break;
+    //            case <= 45:
+    //                transform.Rotate(0, (transform.rotation.y - 5f) * Time.deltaTime, 0);
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //}
 
     private void ChasePlayer()
     {
-        IsChasingPlayer = true;
-        transform.LookAt(Player.transform.position);
-        IA.SetDestination(Player.transform.position);
+        if (!IsDistracted)
+        {
+            IsChasingPlayer = true;
+            transform.LookAt(Player.transform.position);
+            IA.SetDestination(Player.transform.position);
+        }
+
     }
+
+    //IEnumerator Distracted() {
+    //    yield return new WaitForSeconds(DistractionTime);
+    //}
 }

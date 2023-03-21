@@ -13,13 +13,9 @@ public class FPSController : MonoBehaviour
 
     public Rigidbody rb;
 
-    public GameObject SpawnPoint;
+    //public GameObject SpawnPoint;
 
     CharacterController characterController;
-
-
-    private Quaternion InitialRotation;
-
 
     [SerializeField] private float silenceSpeed = 2f;
 
@@ -31,8 +27,12 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] public int WalkingSound;
 
-    [SerializeField] public int MaxShoots = 1;
+    [SerializeField] public int MaxShoots = 5;
+    private float ShootInterval = 10f;
+    private int CurrentShoots = 0;
 
+    private Quaternion InitialRotation;
+    private Vector3 InitialPos;
 
     private float mouseHorizontal = 2f;
     private float mouseVertical = 2f;
@@ -53,8 +53,6 @@ public class FPSController : MonoBehaviour
     public GameObject doorLeft2;
     public GameObject doorRight2;
 
-    private int numCollisions = 0;
-
     private bool light1Activated = false;
     private bool light2Activated = false;
     private bool light3Activated = false;
@@ -69,11 +67,8 @@ public class FPSController : MonoBehaviour
 
     private void Awake()
     {
-
-        transform.position = SpawnPoint.transform.position;
-
-        //Guardar rotación inicial
         InitialRotation = transform.rotation;
+        InitialPos = transform.position;
 
         //Definir componentes(SpawnPoint, CharacterController y NavMesh)
         //SpawnPoint = FindObjectOfType<SpawnPointScript>();
@@ -82,6 +77,7 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(InitialPos);
         if (!GameManager.Instance().IsPaused())
         {
             Move();
@@ -94,19 +90,15 @@ public class FPSController : MonoBehaviour
         }
         //Debug.Log(SpawnPoint.transform.position);
 
-        if (light1Activated == true && light2Activated == true && light3Activated == true)
-        {
-            doorRight2.GetComponent<BoxCollider>().isTrigger = true;
-            doorLeft2.GetComponent<BoxCollider>().isTrigger = true;
-            doorRight2.transform.position = Vector3.MoveTowards(doorRight2.transform.position, emptyObjectDoorRight2.transform.position, 0.5f * Time.deltaTime); // Move doorRight to the right
-            doorLeft2.transform.position = Vector3.MoveTowards(doorLeft2.transform.position, emptyObjectDoorLeft2.transform.position, 0.5f * Time.deltaTime); // Move doorLeft to the left
-        }
         if (light4Activated == true && light5Activated == true)
         {
-            doorRight.GetComponent<BoxCollider>().isTrigger = true;
-            doorLeft.GetComponent<BoxCollider>().isTrigger = true;
-            doorRight.transform.position = Vector3.MoveTowards(doorRight.transform.position, emptyObjectDoorRight.transform.position, 0.5f * Time.deltaTime); // Move doorRight to the right
-            doorLeft.transform.position = Vector3.MoveTowards(doorLeft.transform.position, emptyObjectDoorLeft.transform.position, 0.5f * Time.deltaTime); // Move doorLeft to the left
+            doorRight2.gameObject.SetActive(false);
+            doorLeft2.gameObject.SetActive(false);
+        }
+        if (light1Activated == true && light2Activated == true && light3Activated == true)
+        {
+            doorRight.gameObject.SetActive(false);
+            doorLeft.gameObject.SetActive(false);
         }
     }
 
@@ -146,9 +138,10 @@ public class FPSController : MonoBehaviour
     private void Shoot() {
         if (Input.GetMouseButtonDown(0))
         {
-            if (MaxShoots > 0)
+            if (CurrentShoots < 5)
             {
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
+                CurrentShoots++;
             }
         }      
     }
@@ -156,9 +149,9 @@ public class FPSController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EnemyAttackTag"))
         {
-            Debug.Log("Me atacan");
-            Debug.Log(SpawnPoint.transform.position);
-            transform.SetPositionAndRotation(SpawnPoint.transform.position, InitialRotation);
+            //Debug.Log(transform.position);
+            transform.SetPositionAndRotation(InitialPos, InitialRotation);
+            //Debug.Log(transform.position);
         }
 
         if (other.gameObject.CompareTag("Object1") && !light1Activated)

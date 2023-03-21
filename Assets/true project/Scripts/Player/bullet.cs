@@ -7,27 +7,26 @@ public class bullet : MonoBehaviour
     [SerializeField] private float force = 10f;
     [SerializeField] private float lifeTime;
 
+    public GameObject DistractionCollider;
+    private SphereCollider SC;
+
     private FPSController PlayerScript;
 
     private Rigidbody rb;
 
     void Awake()
     {
+        SC = DistractionCollider.GetComponent<SphereCollider>();
         PlayerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<FPSController>();
         rb = GetComponent<Rigidbody>();
         Vector3 direction = PlayerScript.boquilla.transform.right;
         rb.AddForce(direction * force, ForceMode.Impulse);
-        StartCoroutine(Countdown());
     }
 
     IEnumerator Countdown()
     {
-        Debug.Log("Me voy a destruir");
+        //Debug.Log("Me voy a destruir");
         yield return new WaitForSeconds(lifeTime);
-        if (lifeTime == 0)
-        {
-            PlayerScript.MaxShoots++;
-        }
         Destroy(gameObject);
 
     }
@@ -39,6 +38,7 @@ public class bullet : MonoBehaviour
             Debug.Log("colisión");
             //transform.parent = collision.transform;
             rb.isKinematic = true;
+            SC.enabled = true;
             StartCoroutine(Countdown());
         }
     }
