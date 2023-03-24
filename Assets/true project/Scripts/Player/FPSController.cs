@@ -12,8 +12,6 @@ public class FPSController : MonoBehaviour
 
     public Transform boquilla;
 
-    public Rigidbody rb;
-
     //public GameObject SpawnPoint;
 
     CharacterController characterController;
@@ -43,16 +41,16 @@ public class FPSController : MonoBehaviour
 
     //Abrir puertas
 
+    public bool IsHacking = false;
+
     public GameObject light1;
     public GameObject light2;
     public GameObject light3;
     public GameObject light4;
     public GameObject light5;
 
-    public GameObject doorLeft;
-    public GameObject doorRight;
-    public GameObject doorLeft2;
-    public GameObject doorRight2;
+    public bool CanOpen1;
+    public bool CanOpen2;
 
     private bool light1Activated = false;
     private bool light2Activated = false;
@@ -73,13 +71,13 @@ public class FPSController : MonoBehaviour
     private bool isInteractable;
     private float fillAmount;
 
-    [SerializeField] private GameObject scrollbar;
+    [SerializeField] private GameObject scrollbar5;
 
 
     void Start()
     {
         interactText.enabled = false;
-        scrollbar.SetActive(false); 
+        scrollbar5.SetActive(false); 
         progressBar.fillAmount = 0f;
         isInteractable = false;
         fillAmount = 0f;
@@ -99,7 +97,7 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(progressBar.enabled);
+        //Debug.Log(fillAmount);
         //Debug.Log(InitialPos);
         if (!GameManager.Instance().IsPaused())
         {
@@ -113,43 +111,12 @@ public class FPSController : MonoBehaviour
         }
         //Debug.Log(SpawnPoint.transform.position);
 
-        if (light4Activated == true && light5Activated == true)
-        {
-            doorRight2.gameObject.SetActive(false);
-            doorLeft2.gameObject.SetActive(false);
-        }
-        if (light1Activated == true && light2Activated == true && light3Activated == true)
-        {
-            doorRight.gameObject.SetActive(false);
-            doorLeft.gameObject.SetActive(false);
-        }
+        if (light4Activated == true && light5Activated == true) { CanOpen1 = true; }
+        if (light1Activated == true && light2Activated == true && light3Activated == true) { CanOpen2 = true; }
 
         //Hackeo
+        Hacking(light5, scrollbar5, interactText);
 
-        if (isInteractable)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                fillAmount = 0f;
-            }
-
-            if (Input.GetKey(KeyCode.E))
-            {
-                fillAmount += Time.deltaTime;
-                progressBar.fillAmount = fillAmount;
-                if (fillAmount >= 1f)
-                {
-                    Debug.Log("Interaction complete!");
-                    // Do something when the interaction is complete
-                    // For example, you could call another function here
-                }
-            }
-            else
-            {
-                progressBar.fillAmount = 0f;
-                fillAmount = 0f;
-            }
-        }
     }
 
     void Move()
@@ -226,31 +193,58 @@ public class FPSController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Object5") && !light5Activated)
         {
-            light5.SetActive(true);
-            light5Activated = true;
-        }
-
-        //Hackeo
-
-        if (other.CompareTag("Object1"))
-        {
             isInteractable = true;
             interactText.enabled = true;
             progressBar.enabled = true;
-            scrollbar.SetActive(true);
+            scrollbar5.SetActive(true);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Object1"))
+        if (other.CompareTag("Object5"))
         {
             isInteractable = false;
             interactText.enabled = false;
             progressBar.enabled = false;
             progressBar.fillAmount = 0f;
             fillAmount = 0f;
-            scrollbar.SetActive(false);
+            scrollbar5.SetActive(false);
+        }
+    }
+
+    private void Hacking(GameObject light, GameObject scrollBar, Text texto) {
+        if (isInteractable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                fillAmount = 0f;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                fillAmount += (Time.deltaTime / 5);
+                progressBar.fillAmount = fillAmount;
+                IsHacking = true;
+                if (fillAmount >= 1f)
+                {
+                    Debug.Log("Interaction complete!");
+                    light.SetActive(true);
+                    light5Activated = true;
+                    isInteractable = false;
+                    texto.enabled = false;
+                    progressBar.enabled = false;
+                    progressBar.fillAmount = 0f;
+                    fillAmount = 0f;
+                    scrollBar.SetActive(false);
+                }
+            }
+            else
+            {
+                IsHacking = false;
+                progressBar.fillAmount = 0f;
+                fillAmount = 0f;
+            }
         }
     }
 }
