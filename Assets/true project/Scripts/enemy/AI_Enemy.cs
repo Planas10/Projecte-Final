@@ -62,7 +62,7 @@ public class AI_Enemy : MonoBehaviour
             ChasingLight.SetActive(false);
         }
 
-        Debug.Log(IsDistracted);
+        //Debug.Log(IsDistracted);
 
         Vector3 TargetDir = Player.transform.position - transform.position;
 
