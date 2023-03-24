@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
@@ -22,7 +23,7 @@ public class FPSController : MonoBehaviour
     [SerializeField] private float normalMoveSpeed = 5f;
 
     private float currentSpeed;
-    
+
     private float Gravity = -9.8f;
 
     [SerializeField] public int WalkingSound;
@@ -64,6 +65,27 @@ public class FPSController : MonoBehaviour
     //public GameObject emptyObjectDoorRight2;
     //public GameObject emptyObjectDoorLeft2;
 
+    //Hackeo
+
+    public Text interactText;
+    public Image progressBar;
+
+    private bool isInteractable;
+    private float fillAmount;
+
+    [SerializeField] private GameObject scrollbar;
+
+
+    void Start()
+    {
+        interactText.enabled = false;
+        scrollbar.SetActive(false); 
+        progressBar.fillAmount = 0f;
+        isInteractable = false;
+        fillAmount = 0f;
+
+    }
+
 
     private void Awake()
     {
@@ -77,6 +99,7 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(progressBar.enabled);
         //Debug.Log(InitialPos);
         if (!GameManager.Instance().IsPaused())
         {
@@ -99,6 +122,33 @@ public class FPSController : MonoBehaviour
         {
             doorRight.gameObject.SetActive(false);
             doorLeft.gameObject.SetActive(false);
+        }
+
+        //Hackeo
+
+        if (isInteractable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                fillAmount = 0f;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                fillAmount += Time.deltaTime;
+                progressBar.fillAmount = fillAmount;
+                if (fillAmount >= 1f)
+                {
+                    Debug.Log("Interaction complete!");
+                    // Do something when the interaction is complete
+                    // For example, you could call another function here
+                }
+            }
+            else
+            {
+                progressBar.fillAmount = 0f;
+                fillAmount = 0f;
+            }
         }
     }
 
@@ -178,6 +228,29 @@ public class FPSController : MonoBehaviour
         {
             light5.SetActive(true);
             light5Activated = true;
+        }
+
+        //Hackeo
+
+        if (other.CompareTag("Object1"))
+        {
+            isInteractable = true;
+            interactText.enabled = true;
+            progressBar.enabled = true;
+            scrollbar.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Object1"))
+        {
+            isInteractable = false;
+            interactText.enabled = false;
+            progressBar.enabled = false;
+            progressBar.fillAmount = 0f;
+            fillAmount = 0f;
+            scrollbar.SetActive(false);
         }
     }
 }
