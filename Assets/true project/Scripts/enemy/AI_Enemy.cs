@@ -192,7 +192,8 @@ public class AI_Enemy : MonoBehaviour
 
     }
 
-    //IEnumerator Distracted() {
+    //IEnumerator Distracted()
+    //{
     //    yield return new WaitForSeconds(DistractionTime);
     //}
 }

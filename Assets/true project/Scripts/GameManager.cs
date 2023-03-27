@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     public GameObject doorLeft2;
     public GameObject doorRight2;
 
+    //public GameObject emptyObjectDoorRight;
+    //public GameObject emptyObjectDoorLeft;
+    //public GameObject emptyObjectDoorRight2;
+    //public GameObject emptyObjectDoorLeft2;
+
     private static GameManager instance;
     public static GameManager Instance() {
         return instance;
@@ -48,4 +53,6 @@ public class GameManager : MonoBehaviour
     //private void ActivarHackeo(bool ActiveStatus, GameObject scrollbar, Text texto, Image progressbar, float fillprogress) { }
     private void OpenDoor1(GameObject Rdoor, GameObject Ldoor) { Rdoor.gameObject.SetActive(false); Ldoor.gameObject.SetActive(false); }
     private void OpenDoor2(GameObject Rdoor, GameObject Ldoor) { Rdoor.gameObject.SetActive(false); Ldoor.gameObject.SetActive(false); }
+
+
 }

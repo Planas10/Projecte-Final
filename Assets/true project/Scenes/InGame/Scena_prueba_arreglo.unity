@@ -14125,6 +14125,41 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.1837
       objectReference: {fileID: 0}
+    - target: {fileID: -8965811294570246362, guid: 4ce362423f2c451499a0aab6f8a4c83e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.3782012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8965811294570246362, guid: 4ce362423f2c451499a0aab6f8a4c83e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.37706402
+      objectReference: {fileID: 0}
+    - target: {fileID: -8965811294570246362, guid: 4ce362423f2c451499a0aab6f8a4c83e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.59341055
+      objectReference: {fileID: 0}
+    - target: {fileID: -8965811294570246362, guid: 4ce362423f2c451499a0aab6f8a4c83e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6022048
+      objectReference: {fileID: 0}
+    - target: {fileID: -8965811294570246362, guid: 4ce362423f2c451499a0aab6f8a4c83e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 25.436
+      objectReference: {fileID: 0}
+    - target: {fileID: -8965811294570246362, guid: 4ce362423f2c451499a0aab6f8a4c83e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -89.278
+      objectReference: {fileID: 0}
+    - target: {fileID: -8965811294570246362, guid: 4ce362423f2c451499a0aab6f8a4c83e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90.613
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ce362423f2c451499a0aab6f8a4c83e,
         type: 3}
       propertyPath: m_RootOrder
@@ -14205,6 +14240,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5101652917950168801, guid: 4ce362423f2c451499a0aab6f8a4c83e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0155b35e53eb39a47a84b94c3ff962fd, type: 2}
     - target: {fileID: 919132149155446097, guid: 4ce362423f2c451499a0aab6f8a4c83e,
         type: 3}
       propertyPath: m_Name
@@ -39592,7 +39632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370162281595884988}
   m_LocalRotation: {x: -0.054721706, y: -0.7482638, z: 0.062208787, w: 0.65820736}
-  m_LocalPosition: {x: 0.562, y: -0.345, z: 1.225}
+  m_LocalPosition: {x: 0.46, y: -0.268, z: 1.084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39680,12 +39720,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8db37222451fae4ba13b0e128ad0d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
   Cam: {fileID: 1370162281305962091}
   sound_bullet: {fileID: -2574999195590560912, guid: c5b6c44f79eaa1443aae532b2d7edc6c,
     type: 3}
   boquilla: {fileID: 1370162281595884963}
   silenceSpeed: 2
-  normalMoveSpeed: 10
+  normalMoveSpeed: 6
   WalkingSound: 0
   MaxShoots: 999999
   IsHacking: 0
@@ -39698,7 +39739,7 @@ MonoBehaviour:
   CanOpen2: 0
   interactText: {fileID: 248917324}
   progressBar: {fileID: 1668008086}
-  scrollbar5: {fileID: 432539472}
+  scrollbar: {fileID: 1731417666}
 --- !u!95 &1370162281661188809
 Animator:
   serializedVersion: 4
@@ -39708,7 +39749,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370162281661188801}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 520c6d3df052f6143a9296ec5a1d56e0, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 4ce362423f2c451499a0aab6f8a4c83e, type: 3}
   m_Controller: {fileID: 9100000, guid: acb8193fc28f04d479660c48a16bb3e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0

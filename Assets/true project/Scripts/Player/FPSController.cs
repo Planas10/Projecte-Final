@@ -6,10 +6,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {
+    public GameManager GameManager;
+
     public Camera Cam;
-
     public bullet sound_bullet;
-
     public Transform boquilla;
 
     //public GameObject SpawnPoint;
@@ -58,11 +58,6 @@ public class FPSController : MonoBehaviour
     private bool light4Activated = false;
     private bool light5Activated = false;
 
-    //public GameObject emptyObjectDoorRight;
-    //public GameObject emptyObjectDoorLeft;
-    //public GameObject emptyObjectDoorRight2;
-    //public GameObject emptyObjectDoorLeft2;
-
     //Hackeo
 
     public Text interactText;
@@ -71,13 +66,13 @@ public class FPSController : MonoBehaviour
     private bool isInteractable;
     private float fillAmount;
 
-    [SerializeField] private GameObject scrollbar5;
+    [SerializeField] private GameObject scrollbar;
 
 
     void Start()
     {
         interactText.enabled = false;
-        scrollbar5.SetActive(false); 
+        scrollbar.SetActive(false); 
         progressBar.fillAmount = 0f;
         isInteractable = false;
         fillAmount = 0f;
@@ -115,7 +110,7 @@ public class FPSController : MonoBehaviour
         if (light1Activated == true && light2Activated == true && light3Activated == true) { CanOpen2 = true; }
 
         //Hackeo
-        Hacking(light5, scrollbar5, interactText);
+        //Hacking(light5, scrollbar5, interactText);
 
     }
 
@@ -162,6 +157,11 @@ public class FPSController : MonoBehaviour
             }
         }      
     }
+    IEnumerator Distracted()
+    {
+        yield return new WaitForSeconds(ShootInterval);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("EnemyAttackTag"))
@@ -170,50 +170,59 @@ public class FPSController : MonoBehaviour
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
             //Debug.Log(transform.position);
         }
+    }
 
-        if (other.gameObject.CompareTag("Object1") && !light1Activated)
-        {
-            light1.SetActive(true);
-            light1Activated = true;
-        }
-        if (other.gameObject.CompareTag("Object2") && !light2Activated)
-        {
-            light2.SetActive(true);
-            light2Activated = true;
-        }
-        if (other.gameObject.CompareTag("Object3") && !light3Activated)
-        {
-            light3.SetActive(true);
-            light3Activated = true;
-        }
-        if (other.gameObject.CompareTag("Object4") && !light4Activated)
-        {
-            light4.SetActive(true);
-            light4Activated = true;
-        }
-        if (other.gameObject.CompareTag("Object5") && !light5Activated)
-        {
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log(other.gameObject.tag);
+        if (other.gameObject.CompareTag("Object1") && !light1Activated){
             isInteractable = true;
             interactText.enabled = true;
-            progressBar.enabled = true;
-            scrollbar5.SetActive(true);
+            Hacking(light1, scrollbar, interactText, light1Activated);
+            Debug.Log(isInteractable + "1");
+            Debug.Log(light1Activated + "1");
+        }
+        if (other.gameObject.CompareTag("Object2") && !light2Activated){
+            isInteractable = true;
+            interactText.enabled = true;
+            Hacking(light2, scrollbar, interactText, light2Activated);
+            Debug.Log(isInteractable + "2");
+            Debug.Log(light2Activated + "2");
+        }
+        if (other.gameObject.CompareTag("Object3") && !light3Activated){
+            isInteractable = true;
+            interactText.enabled = true;
+            Hacking(light3, scrollbar, interactText, light3Activated);
+            Debug.Log(isInteractable + "3");
+            Debug.Log(light3Activated + "3");
+        }
+        if (other.gameObject.CompareTag("Object4") && !light4Activated){
+            isInteractable = true;
+            interactText.enabled = true;
+            Hacking(light4, scrollbar, interactText, light4Activated);
+            Debug.Log(isInteractable + "4");
+            Debug.Log(light4Activated + "4");
+        }
+        if (other.gameObject.CompareTag("Object5") && !light5Activated) {
+            isInteractable = true;
+            interactText.enabled = true;
+            Hacking(light5, scrollbar, interactText, light5Activated);
+            Debug.Log(isInteractable + "5");
+            Debug.Log(light5Activated + "5");
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Object5"))
-        {
-            isInteractable = false;
-            interactText.enabled = false;
-            progressBar.enabled = false;
-            progressBar.fillAmount = 0f;
-            fillAmount = 0f;
-            scrollbar5.SetActive(false);
-        }
+        if (other.CompareTag("Object1") ||
+            other.CompareTag("Object2") ||
+            other.CompareTag("Object3") ||
+            other.CompareTag("Object4") ||
+            other.CompareTag("Object5")) { DeactivateHackingUI(); }
     }
 
-    private void Hacking(GameObject light, GameObject scrollBar, Text texto) {
+    private void Hacking(GameObject light, GameObject scrollBar, Text texto, bool lightActivated)
+    {
         if (isInteractable)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -223,14 +232,16 @@ public class FPSController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.E))
             {
+                scrollbar.SetActive(true);
                 fillAmount += (Time.deltaTime / 5);
                 progressBar.fillAmount = fillAmount;
                 IsHacking = true;
                 if (fillAmount >= 1f)
                 {
-                    Debug.Log("Interaction complete!");
+                    Debug.Log("desactivar cosas");
+                    IsHacking = false;
                     light.SetActive(true);
-                    light5Activated = true;
+                    lightActivated = true;
                     isInteractable = false;
                     texto.enabled = false;
                     progressBar.enabled = false;
@@ -247,4 +258,20 @@ public class FPSController : MonoBehaviour
             }
         }
     }
+
+    private void DeactivateHackingUI() { 
+        isInteractable = false;
+        interactText.enabled = false;
+        progressBar.enabled = false;
+        progressBar.fillAmount = 0f;
+        fillAmount = 0f;
+        scrollbar.SetActive(false);
+    }
+    //private void CheckLightBool(bool checklight) {
+    //    if (checklight == light1Activated) { Debug.Log("1"); }
+    //    else if (checklight == light2Activated) { Debug.Log("2"); }
+    //    else if (checklight == light3Activated) { Debug.Log("3"); }
+    //    else if (checklight == light4Activated) { Debug.Log("4"); }
+    //    else if (checklight == light5Activated) { Debug.Log("5"); }
+    //}
 }
