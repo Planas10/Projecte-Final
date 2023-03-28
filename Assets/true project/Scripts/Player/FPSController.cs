@@ -60,24 +60,15 @@ public class FPSController : MonoBehaviour
 
     //Hackeo
 
-    public Text interactText;
-    public Image progressBar;
+    private bool CanMove;
 
-    private bool isInteractable;
-    private float fillAmount;
+    [SerializeField] private Text interactText; //texto interactuar con E
+    [SerializeField] private Image progressBar;
+
+    [SerializeField] private bool isInteractable;
+    [SerializeField] private float fillAmount; //progreso del hackeo
 
     [SerializeField] private GameObject scrollbar;
-
-
-    void Start()
-    {
-        interactText.enabled = false;
-        scrollbar.SetActive(false); 
-        progressBar.fillAmount = 0f;
-        isInteractable = false;
-        fillAmount = 0f;
-    }
-
 
     private void Awake()
     {
@@ -89,20 +80,36 @@ public class FPSController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
+    void Start()
+    {
+        interactText.enabled = false;
+        scrollbar.SetActive(false);
+        progressBar.fillAmount = 0f;
+        isInteractable = false;
+        fillAmount = 0f;
+    }
+
     void Update()
     {
         //Debug.Log(fillAmount);
         //Debug.Log(InitialPos);
         if (!GameManager.Instance().IsPaused())
         {
-            Move();
-            Shoot();
+            if (CanMove)
+            {
+                Move();
+                Shoot();
+            }
             Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
         }
+
+        if (!IsHacking) { CanMove = true; }
+        else { CanMove = false; }
+
         //Debug.Log(SpawnPoint.transform.position);
 
         if (light4Activated == true && light5Activated == true) { CanOpen1 = true; }
@@ -175,41 +182,28 @@ public class FPSController : MonoBehaviour
     {
         //Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Object1") && !light1Activated){
-            Hacking(light1 /*light1Activated*/);
-            light1Activated = true;
-            Debug.Log(light1.name + "1");
-            Debug.Log(light1Activated + "1");
+            ActivateHackingUI();
+            Hacking1();
         }
         if (other.gameObject.CompareTag("Object2") && !light2Activated){
-            isInteractable = true;
-            interactText.enabled = true;
-            Hacking(light2 /*light2Activated*/);
-            light2Activated = true;
-            Debug.Log(light2.name + "2");
-            Debug.Log(light2Activated + "2");
+            ActivateHackingUI();
+            Hacking2();
         }
         if (other.gameObject.CompareTag("Object3") && !light3Activated){
-            isInteractable = true;
-            interactText.enabled = true;
-            Hacking(light3 /*light3Activated*/);
-            light3Activated = true;
-            Debug.Log(light3.name + "3");
-            Debug.Log(light3Activated + "3");
+            ActivateHackingUI();
+            Hacking3();
         }
         if (other.gameObject.CompareTag("Object4") && !light4Activated){
-            isInteractable = true;
-            interactText.enabled = true;
-            Hacking(light4 /*light4Activated*/);
-            Debug.Log(light4.name + "4");
-            Debug.Log(light4Activated + "4");
+            ActivateHackingUI();
+            Hacking4();
         }
-        if (other.gameObject.CompareTag("Object5") && !light5Activated) {
-            isInteractable = true;
-            interactText.enabled = true;
-            Hacking(light5 /*light5Activated*/);
-            light5Activated = true;
-            Debug.Log(light5.name + "5");
-            Debug.Log(light5Activated + "5");
+        if (other.gameObject.CompareTag("Object5") && !light5Activated){
+            ActivateHackingUI();
+            Hacking5();
+        }
+        if (other.gameObject.CompareTag("FinalPC")){
+            ActivateHackingUI();
+            FinalHacking();
         }
     }
 
@@ -219,11 +213,45 @@ public class FPSController : MonoBehaviour
             other.CompareTag("Object2") ||
             other.CompareTag("Object3") ||
             other.CompareTag("Object4") ||
-            other.CompareTag("Object5")) { DeactivateHackingUI(); }
+            other.CompareTag("Object5") ||
+            other.CompareTag("FinalPC")) { DeactivateHackingUI(); }
     }
 
-    private void Hacking(GameObject light /*bool lightActivated*/)
+    //private void Hacking(GameObject light bool lightActivated)
+    //{
+    //    if (isInteractable)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            fillAmount = 0f;
+    //        }
+
+    //        if (Input.GetKey(KeyCode.E))
+    //        {
+    //            scrollbar.SetActive(true);
+    //            fillAmount += (Time.deltaTime / 6);
+    //            progressBar.fillAmount = fillAmount;
+    //            IsHacking = true;
+    //            if (fillAmount >= 1f)
+    //            {
+    //                //Debug.Log("desactivar cosas");
+    //                IsHacking = false;
+    //                light.SetActive(true);
+    //                lightActivated = true;
+    //                DeactivateHackingUI();
+    //            }
+    //        }
+    //        else
+    //        {
+    //            IsHacking = false;
+    //            progressBar.fillAmount = 0f;
+    //            fillAmount = 0f;
+    //        }
+    //    }
+    //}
+    private void Hacking1()
     {
+        ActivateHackingUI();
         if (isInteractable)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -233,17 +261,185 @@ public class FPSController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.E))
             {
-                scrollbar.SetActive(true);
-                fillAmount += (Time.deltaTime / 5);
-                progressBar.fillAmount = fillAmount;
                 IsHacking = true;
+                scrollbar.SetActive(true);
+                fillAmount += (Time.deltaTime / 6);
+                progressBar.fillAmount = fillAmount;
+                if (fillAmount >= 1f)
+                {
+                    IsHacking = false;
+                    light1.SetActive(true);
+                    light1Activated = true;
+                    DeactivateHackingUI();
+                }
+            }
+            else
+            {
+                CanMove = true;
+                IsHacking = false;
+                progressBar.fillAmount = 0f;
+                fillAmount = 0f;
+            }
+        }
+    }
+    private void Hacking2()
+    {
+        ActivateHackingUI();
+        if (isInteractable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                fillAmount = 0f;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            { 
+                IsHacking = true;
+                scrollbar.SetActive(true);
+                fillAmount += (Time.deltaTime / 6);
+                progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
                 {
                     //Debug.Log("desactivar cosas");
                     IsHacking = false;
-                    light.SetActive(true);
+                    light2.SetActive(true);
+                    light2Activated = true;
+                    DeactivateHackingUI();
+                }
+            }
+            else
+            {
+                CanMove = true;
+                IsHacking = false;
+                progressBar.fillAmount = 0f;
+                fillAmount = 0f;
+            }
+        }
+    }
+    private void Hacking3()
+    {
+        ActivateHackingUI();
+        if (isInteractable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                fillAmount = 0f;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                IsHacking = true;
+                scrollbar.SetActive(true);
+                fillAmount += (Time.deltaTime / 6);
+                progressBar.fillAmount = fillAmount;
+                if (fillAmount >= 1f)
+                {
+                    //Debug.Log("desactivar cosas");
+                    IsHacking = false;
+                    light3.SetActive(true);
+                    light3Activated = true;
+                    DeactivateHackingUI();
+                }
+            }
+            else
+            {
+                CanMove = true;
+                IsHacking = false;
+                progressBar.fillAmount = 0f;
+                fillAmount = 0f;
+            }
+        }
+    }
+    private void Hacking4()
+    {
+        ActivateHackingUI();
+        if (isInteractable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                fillAmount = 0f;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                IsHacking = true;
+                scrollbar.SetActive(true);
+                fillAmount += (Time.deltaTime / 6);
+                progressBar.fillAmount = fillAmount;
+                if (fillAmount >= 1f)
+                {
+                    //Debug.Log("desactivar cosas");
+                    IsHacking = false;
+                    light4.SetActive(true);
                     light4Activated = true;
                     DeactivateHackingUI();
+                }
+            }
+            else
+            {
+                CanMove = true;
+                IsHacking = false;
+                progressBar.fillAmount = 0f;
+                fillAmount = 0f;
+            }
+        }
+    }
+    private void Hacking5()
+    {
+        ActivateHackingUI();
+        if (isInteractable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                fillAmount = 0f;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                IsHacking = true;
+                scrollbar.SetActive(true);
+                fillAmount += (Time.deltaTime / 6);
+                progressBar.fillAmount = fillAmount;
+                if (fillAmount >= 1f)
+                {
+                    //Debug.Log("desactivar cosas");
+                    IsHacking = false;
+                    light5.SetActive(true);
+                    light5Activated = true;
+                    DeactivateHackingUI();
+                }
+            }
+            else
+            {
+                CanMove = true;
+                IsHacking = false;
+                progressBar.fillAmount = 0f;
+                fillAmount = 0f;
+            }
+        }
+    }
+    private void FinalHacking()
+    {
+        ActivateHackingUI();
+        if (isInteractable)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                fillAmount = 0f;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                IsHacking = true;
+                scrollbar.SetActive(true);
+                fillAmount += (Time.deltaTime / 8);
+                progressBar.fillAmount = fillAmount;
+                if (fillAmount >= 1f)
+                {
+                    //Debug.Log("desactivar cosas");
+                    IsHacking = false;
+                    DeactivateHackingUI();
+                    GameManager.ChangeScene(1);
                 }
             }
             else
@@ -255,6 +451,10 @@ public class FPSController : MonoBehaviour
         }
     }
 
+    private void ActivateHackingUI() {
+        isInteractable = true;
+        interactText.enabled = true;
+    }
     private void DeactivateHackingUI() { 
         isInteractable = false;
         interactText.enabled = false;

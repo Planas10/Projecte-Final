@@ -16,6 +16,9 @@ TagManager:
   - Object4
   - Object5
   - Bullet
+  - PPenemy1
+  - PPenemy2
+  - FinalPC
   layers:
   - Default
   - TransparentFX

@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SettingsController : MonoBehaviour
 {
-    public void ButtonBack()
-    {
-        SceneManager.LoadScene(1);
-    }
-    public void ButtonControls()
-    {
-        SceneManager.LoadScene(3);
-    }
+    public void ButtonBack() { SceneManager.LoadScene(1); }
+    public void ButtonControls() { SceneManager.LoadScene(3); }
 }

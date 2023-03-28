@@ -107,7 +107,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4558559144754263249}
-  - component: {fileID: 5594248493575010630}
   m_Layer: 0
   m_Name: ordinador
   m_TagString: Obstacles
@@ -133,20 +132,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5594248493575010630
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3749407009441574507}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &4834401354741259699
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,8 +175,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9538009, y: 0.74319696, z: 0.60854244}
-  m_Center: {x: -0.004462123, y: 0.42377818, z: -0.012024283}
+  m_Size: {x: 0.60126513, y: 0.74319696, z: 0.33803812}
+  m_Center: {x: -0.00033196807, y: 0.42377818, z: 0.123797104}
 --- !u!1 &9136262376819822231
 GameObject:
   m_ObjectHideFlags: 0

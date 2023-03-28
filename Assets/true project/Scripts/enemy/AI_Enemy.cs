@@ -18,7 +18,7 @@ public class AI_Enemy : MonoBehaviour
 
     [SerializeField] private float SearchTime = 4f;
 
-    public float speed = 5f;
+    [SerializeField] private float speed = -5f;
 
     private NavMeshAgent IA;
 
