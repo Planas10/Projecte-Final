@@ -52,11 +52,11 @@ public class FPSController : MonoBehaviour
     public bool CanOpen1;
     public bool CanOpen2;
 
-    private bool light1Activated = false;
-    private bool light2Activated = false;
-    private bool light3Activated = false;
-    private bool light4Activated = false;
-    private bool light5Activated = false;
+    private bool light1Activated;
+    private bool light2Activated;
+    private bool light3Activated;
+    private bool light4Activated;
+    private bool light5Activated;
 
     //Hackeo
 
@@ -76,7 +76,6 @@ public class FPSController : MonoBehaviour
         progressBar.fillAmount = 0f;
         isInteractable = false;
         fillAmount = 0f;
-
     }
 
 
@@ -174,40 +173,42 @@ public class FPSController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
+        //Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Object1") && !light1Activated){
-            isInteractable = true;
-            interactText.enabled = true;
-            Hacking(light1, scrollbar, interactText, light1Activated);
-            Debug.Log(isInteractable + "1");
+            Hacking(light1 /*light1Activated*/);
+            light1Activated = true;
+            Debug.Log(light1.name + "1");
             Debug.Log(light1Activated + "1");
         }
         if (other.gameObject.CompareTag("Object2") && !light2Activated){
             isInteractable = true;
             interactText.enabled = true;
-            Hacking(light2, scrollbar, interactText, light2Activated);
-            Debug.Log(isInteractable + "2");
+            Hacking(light2 /*light2Activated*/);
+            light2Activated = true;
+            Debug.Log(light2.name + "2");
             Debug.Log(light2Activated + "2");
         }
         if (other.gameObject.CompareTag("Object3") && !light3Activated){
             isInteractable = true;
             interactText.enabled = true;
-            Hacking(light3, scrollbar, interactText, light3Activated);
-            Debug.Log(isInteractable + "3");
+            Hacking(light3 /*light3Activated*/);
+            light3Activated = true;
+            Debug.Log(light3.name + "3");
             Debug.Log(light3Activated + "3");
         }
         if (other.gameObject.CompareTag("Object4") && !light4Activated){
             isInteractable = true;
             interactText.enabled = true;
-            Hacking(light4, scrollbar, interactText, light4Activated);
-            Debug.Log(isInteractable + "4");
+            Hacking(light4 /*light4Activated*/);
+            Debug.Log(light4.name + "4");
             Debug.Log(light4Activated + "4");
         }
         if (other.gameObject.CompareTag("Object5") && !light5Activated) {
             isInteractable = true;
             interactText.enabled = true;
-            Hacking(light5, scrollbar, interactText, light5Activated);
-            Debug.Log(isInteractable + "5");
+            Hacking(light5 /*light5Activated*/);
+            light5Activated = true;
+            Debug.Log(light5.name + "5");
             Debug.Log(light5Activated + "5");
         }
     }
@@ -221,7 +222,7 @@ public class FPSController : MonoBehaviour
             other.CompareTag("Object5")) { DeactivateHackingUI(); }
     }
 
-    private void Hacking(GameObject light, GameObject scrollBar, Text texto, bool lightActivated)
+    private void Hacking(GameObject light /*bool lightActivated*/)
     {
         if (isInteractable)
         {
@@ -238,16 +239,11 @@ public class FPSController : MonoBehaviour
                 IsHacking = true;
                 if (fillAmount >= 1f)
                 {
-                    Debug.Log("desactivar cosas");
+                    //Debug.Log("desactivar cosas");
                     IsHacking = false;
                     light.SetActive(true);
-                    lightActivated = true;
-                    isInteractable = false;
-                    texto.enabled = false;
-                    progressBar.enabled = false;
-                    progressBar.fillAmount = 0f;
-                    fillAmount = 0f;
-                    scrollBar.SetActive(false);
+                    light4Activated = true;
+                    DeactivateHackingUI();
                 }
             }
             else

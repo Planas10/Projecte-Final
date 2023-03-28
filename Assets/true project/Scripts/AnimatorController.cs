@@ -9,7 +9,7 @@ public class AnimatorController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(fpsController.IsHacking);
+        //Debug.Log(fpsController.IsHacking);
         PlayerAnimator.SetBool("IsHacking",fpsController.IsHacking);
     }
 
