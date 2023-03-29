@@ -26,9 +26,9 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] public int WalkingSound;
 
-    private int MaxShoots = 10;
     private float ShootInterval = 10f;
-    private int CurrentShoots = 0;
+    public int MaxAmmo;
+    public int RemainingAmmo;
 
     private Quaternion InitialRotation;
     private Vector3 InitialPos;
@@ -63,6 +63,7 @@ public class FPSController : MonoBehaviour
     private bool CanMove;
 
     [SerializeField] private Text interactText; //texto interactuar con E
+    [SerializeField] private Text hackingText; //Texto hackeo
     [SerializeField] private Image progressBar;
 
     [SerializeField] private bool isInteractable;
@@ -82,6 +83,7 @@ public class FPSController : MonoBehaviour
 
     void Start()
     {
+        hackingText.enabled = false;
         interactText.enabled = false;
         scrollbar.SetActive(false);
         progressBar.fillAmount = 0f;
@@ -156,10 +158,10 @@ public class FPSController : MonoBehaviour
     private void Shoot() {
         if (Input.GetMouseButtonDown(0))
         {
-            if (CurrentShoots < MaxShoots)
+            if (RemainingAmmo > 0)
             {
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
-                CurrentShoots++;
+                RemainingAmmo--;
             }
         }      
     }
@@ -264,7 +266,7 @@ public class FPSController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 IsHacking = true;
-                scrollbar.SetActive(true);
+                HackingBar();
                 fillAmount += (Time.deltaTime / 6);
                 progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
@@ -277,8 +279,8 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                CanMove = true;
                 IsHacking = false;
+                scrollbar.SetActive(false);
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -297,7 +299,7 @@ public class FPSController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             { 
                 IsHacking = true;
-                scrollbar.SetActive(true);
+                HackingBar();
                 fillAmount += (Time.deltaTime / 6);
                 progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
@@ -311,8 +313,8 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                CanMove = true;
                 IsHacking = false;
+                scrollbar.SetActive(false);
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -331,7 +333,7 @@ public class FPSController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 IsHacking = true;
-                scrollbar.SetActive(true);
+                HackingBar();
                 fillAmount += (Time.deltaTime / 6);
                 progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
@@ -345,8 +347,8 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                CanMove = true;
                 IsHacking = false;
+                scrollbar.SetActive(false);
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -365,7 +367,7 @@ public class FPSController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 IsHacking = true;
-                scrollbar.SetActive(true);
+                HackingBar();
                 fillAmount += (Time.deltaTime / 6);
                 progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
@@ -379,8 +381,8 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                CanMove = true;
                 IsHacking = false;
+                scrollbar.SetActive(false);
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -399,7 +401,7 @@ public class FPSController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 IsHacking = true;
-                scrollbar.SetActive(true);
+                HackingBar();
                 fillAmount += (Time.deltaTime / 6);
                 progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
@@ -413,8 +415,8 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                CanMove = true;
                 IsHacking = false;
+                scrollbar.SetActive(false);
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -433,7 +435,7 @@ public class FPSController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 IsHacking = true;
-                scrollbar.SetActive(true);
+                HackingBar();
                 fillAmount += (Time.deltaTime / 10);
                 progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
@@ -447,12 +449,17 @@ public class FPSController : MonoBehaviour
             else
             {
                 IsHacking = false;
-                //progressBar.fillAmount = 0f;
-                //fillAmount = 0f;
+                scrollbar.SetActive(false);
+                progressBar.fillAmount = 0f;
+                fillAmount = 0f;
             }
         }
     }
 
+    private void HackingBar() {
+        scrollbar.SetActive(true);
+        hackingText.enabled = true;
+    }
     private void ActivateHackingUI() {
         isInteractable = true;
         progressBar.enabled = true;
@@ -461,6 +468,7 @@ public class FPSController : MonoBehaviour
     private void DeactivateHackingUI() { 
         isInteractable = false;
         interactText.enabled = false;
+        hackingText.enabled = false;
         progressBar.enabled = false;
         progressBar.fillAmount = 0f;
         fillAmount = 0f;

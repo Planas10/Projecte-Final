@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     //public GameObject emptyObjectDoorLeft2;
 
     private static GameManager instance;
+    [SerializeField] private Text BulletText;
     public static GameManager Instance() {
         return instance;
     }
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        BulletText.text = fpsController.RemainingAmmo + "/" + fpsController.MaxAmmo;
         if (fpsController.CanOpen1)
         {
             OpenDoor1(doorRight, doorLeft);
