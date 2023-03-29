@@ -18,7 +18,9 @@ public class AI_Enemy : MonoBehaviour
 
     [SerializeField] private float SearchTime = 4f;
 
-    [SerializeField] private float speed = -5f;
+    private float normalSpeed = 5f;
+    private float alertSpeed = 6.5f;
+    private float chaseSpeed = 8f;
 
     private NavMeshAgent IA;
 
@@ -111,6 +113,7 @@ public class AI_Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            IA.speed = alertSpeed;
             IsDistracted = true;
             AlertLight.SetActive(true);
             IA.SetDestination(other.transform.position);
@@ -134,7 +137,7 @@ public class AI_Enemy : MonoBehaviour
         }
     }
     private void Patrol() {
-
+        IA.speed = normalSpeed;
         if (Vector3.Distance(transform.position, waypoints[currentPoint].transform.position) < 1)
         {
             if (currentPoint != 0)
@@ -147,6 +150,7 @@ public class AI_Enemy : MonoBehaviour
         }
         if (currentPoint >= waypoints.Count)
         {
+            Debug.Log("2");
             transform.Rotate(0, 0, 0);
             //Debug.Log("Final de trayecto");
             currentPoint = 0;
@@ -154,6 +158,7 @@ public class AI_Enemy : MonoBehaviour
         }
         if (!LookingForPlayer)
         {
+            Debug.Log("3");
             transform.LookAt(waypoints[currentPoint].transform.position);
             IA.SetDestination(waypoints[currentPoint].transform.position);
         }
@@ -185,15 +190,10 @@ public class AI_Enemy : MonoBehaviour
     {
         if (!IsDistracted)
         {
+            IA.speed = chaseSpeed;
             IsChasingPlayer = true;
             transform.LookAt(Player.transform.position);
             IA.SetDestination(Player.transform.position);
         }
-
     }
-
-    //IEnumerator Distracted()
-    //{
-    //    yield return new WaitForSeconds(DistractionTime);
-    //}
 }

@@ -26,7 +26,7 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] public int WalkingSound;
 
-    [SerializeField] public int MaxShoots = 5;
+    private int MaxShoots = 10;
     private float ShootInterval = 10f;
     private int CurrentShoots = 0;
 
@@ -156,7 +156,7 @@ public class FPSController : MonoBehaviour
     private void Shoot() {
         if (Input.GetMouseButtonDown(0))
         {
-            if (CurrentShoots < 5)
+            if (CurrentShoots < MaxShoots)
             {
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
                 CurrentShoots++;
@@ -172,8 +172,10 @@ public class FPSController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EnemyAttackTag"))
         {
-            //Debug.Log(transform.position);
-            transform.SetPositionAndRotation(InitialPos, InitialRotation);
+            Debug.Log("Ataque");
+            characterController.enabled = false;
+            transform.SetPositionAndRotation(InitialPos,InitialRotation);
+            characterController.enabled = true;
             //Debug.Log(transform.position);
         }
     }
@@ -432,27 +434,28 @@ public class FPSController : MonoBehaviour
             {
                 IsHacking = true;
                 scrollbar.SetActive(true);
-                fillAmount += (Time.deltaTime / 8);
+                fillAmount += (Time.deltaTime / 10);
                 progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
                 {
                     //Debug.Log("desactivar cosas");
                     IsHacking = false;
                     DeactivateHackingUI();
-                    GameManager.ChangeScene(1);
+                    GameManager.ChangeScene(0);
                 }
             }
             else
             {
                 IsHacking = false;
-                progressBar.fillAmount = 0f;
-                fillAmount = 0f;
+                //progressBar.fillAmount = 0f;
+                //fillAmount = 0f;
             }
         }
     }
 
     private void ActivateHackingUI() {
         isInteractable = true;
+        progressBar.enabled = true;
         interactText.enabled = true;
     }
     private void DeactivateHackingUI() { 

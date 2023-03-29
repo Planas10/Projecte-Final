@@ -6,9 +6,6 @@ TagManager:
   tags:
   - Obstacles
   - Enemy
-  - Explosion
-  - Puerta
-  - Bomb
   - EnemyAttackTag
   - Object2
   - Object1
@@ -19,6 +16,8 @@ TagManager:
   - PPenemy1
   - PPenemy2
   - FinalPC
+  - enemy1
+  - enemy2
   layers:
   - Default
   - TransparentFX

@@ -5,5 +5,5 @@ using UnityEngine.SceneManagement;
 
 public class CreditsController : MonoBehaviour
 {
-    public void ButtonBack() { SceneManager.LoadScene(1); }
+    public void ButtonBack() { SceneManager.LoadScene(0); }
 }
