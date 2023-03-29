@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    [SerializeField] private float force = 10f;
-    [SerializeField] private float lifeTime;
+    private float force = 10f;
+    private float lifeTime = 6;
 
     public GameObject DistractionCollider;
     private SphereCollider SC;

@@ -99,6 +99,7 @@ public class FPSController : MonoBehaviour
         {
             if (CanMove)
             {
+                Reload();
                 Move();
                 Shoot();
             }
@@ -280,7 +281,7 @@ public class FPSController : MonoBehaviour
             else
             {
                 IsHacking = false;
-                scrollbar.SetActive(false);
+                DeactivateHackingBar();
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -314,7 +315,7 @@ public class FPSController : MonoBehaviour
             else
             {
                 IsHacking = false;
-                scrollbar.SetActive(false);
+                DeactivateHackingBar();
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -348,7 +349,7 @@ public class FPSController : MonoBehaviour
             else
             {
                 IsHacking = false;
-                scrollbar.SetActive(false);
+                DeactivateHackingBar();
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -382,7 +383,7 @@ public class FPSController : MonoBehaviour
             else
             {
                 IsHacking = false;
-                scrollbar.SetActive(false);
+                DeactivateHackingBar();
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -416,7 +417,7 @@ public class FPSController : MonoBehaviour
             else
             {
                 IsHacking = false;
-                scrollbar.SetActive(false);
+                DeactivateHackingBar();
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -449,7 +450,7 @@ public class FPSController : MonoBehaviour
             else
             {
                 IsHacking = false;
-                scrollbar.SetActive(false);
+                DeactivateHackingBar();
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }
@@ -459,6 +460,10 @@ public class FPSController : MonoBehaviour
     private void HackingBar() {
         scrollbar.SetActive(true);
         hackingText.enabled = true;
+    }
+    private void DeactivateHackingBar() {
+        scrollbar.SetActive(false);
+        hackingText.enabled = false;
     }
     private void ActivateHackingUI() {
         isInteractable = true;
@@ -481,4 +486,11 @@ public class FPSController : MonoBehaviour
     //    else if (checklight == light4Activated) { Debug.Log("4"); }
     //    else if (checklight == light5Activated) { Debug.Log("5"); }
     //}
+
+    private void Reload() {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RemainingAmmo = MaxAmmo;
+        }
+    }
 }

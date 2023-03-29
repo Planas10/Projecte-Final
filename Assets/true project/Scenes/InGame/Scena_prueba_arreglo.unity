@@ -999,7 +999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &53760893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11016,6 +11016,7 @@ MonoBehaviour:
   GameIsPaused: 0
   pauseMenuUI: {fileID: 1435803376}
   PuntoDeMiraUI: {fileID: 1603754659}
+  HUD: {fileID: 2118429553}
 --- !u!114 &592491845
 MonoBehaviour:
   m_ObjectHideFlags: 0

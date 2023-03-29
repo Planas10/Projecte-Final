@@ -87,7 +87,6 @@ public class AI_Enemy : MonoBehaviour
                 switch (playerS.WalkingSound)
                 {
                     case 5:
-                        //Debug.Log("Veo al player bien");
                         ChasePlayer();
                         break;
                     //case 3:
@@ -118,10 +117,18 @@ public class AI_Enemy : MonoBehaviour
             AlertLight.SetActive(true);
             IA.SetDestination(other.transform.position);
         }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            IsChasingPlayer = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            IsDistracted = false;
+        }
         if (other.gameObject.CompareTag("Player"))
         {
             IsChasingPlayer = false;
