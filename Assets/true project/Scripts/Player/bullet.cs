@@ -37,7 +37,7 @@ public class bullet : MonoBehaviour
         {
             Debug.Log("colisión");
             //transform.parent = collision.transform;
-            rb.isKinematic = true;
+            //rb.isKinematic = true;
             SC.enabled = true;
             StartCoroutine(Countdown());
         }

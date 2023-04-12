@@ -45,11 +45,6 @@ public class FPSController : MonoBehaviour
 
     static public List<LightObject> lights;
 
-    public LightObject light1;
-    public LightObject light2;
-    public LightObject light3;
-    public LightObject light4;
-    public LightObject light5;
 
     public bool CanOpen1;
     public bool CanOpen2;
@@ -68,8 +63,14 @@ public class FPSController : MonoBehaviour
 
     private void Awake()
     {
-        lights = new(FindObjectsOfType<LightS>());
+        lights = new(FindObjectsOfType<LightObject>());
         lights.Sort((a, b) => { return a.name.CompareTo(b.name); });
+
+        for (int i = 0; i < lights.Count; i++)
+        {
+            Debug.Log(lights[i]);
+        }
+
 
         InitialRotation = transform.rotation;
         InitialPos = transform.position;
@@ -113,8 +114,8 @@ public class FPSController : MonoBehaviour
 
         //Debug.Log(SpawnPoint.transform.position);
 
-        if (light1.IsActivated == true && light2.IsActivated == true) { CanOpen1 = true; }
-        if (light3.IsActivated == true && light4.IsActivated == true && light5.IsActivated == true) { CanOpen2 = true; }
+        if (lights[0].IsActivated == true && lights[1].IsActivated == true) { CanOpen1 = true; }
+        if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
 
         //Hackeo
         //Hacking(light5, scrollbar5, interactText);
@@ -164,8 +165,9 @@ public class FPSController : MonoBehaviour
                 RemainingAmmo--;
             }
         }
+        StartCoroutine(CShootInterval());
     }
-    IEnumerator Distracted()
+    IEnumerator CShootInterval()
     {
         yield return new WaitForSeconds(ShootInterval);
     }
@@ -187,30 +189,30 @@ public class FPSController : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //Debug.Log(other.gameObject.tag);
-        if (other.gameObject.CompareTag("Object1") && !light1.IsActivated)
+        if (other.gameObject.CompareTag("Object1") && !lights[0].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(light1);
+            Hacking(lights[0]);
         }
-        if (other.gameObject.CompareTag("Object2") && !light2.IsActivated)
+        if (other.gameObject.CompareTag("Object2") && !lights[1].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(light2);
+            Hacking(lights[1]);
         }
-        if (other.gameObject.CompareTag("Object3") && !light3.IsActivated)
+        if (other.gameObject.CompareTag("Object3") && !lights[2].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(light3);
+            Hacking(lights[2]);
         }
-        if (other.gameObject.CompareTag("Object4") && !light4.IsActivated)
+        if (other.gameObject.CompareTag("Object4") && !lights[3].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(light4);
+            Hacking(lights[3]);
         }
-        if (other.gameObject.CompareTag("Object5") && !light5.IsActivated)
+        if (other.gameObject.CompareTag("Object5") && !lights[4].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(light5);
+            Hacking(lights[4]);
         }
         if (other.gameObject.CompareTag("FinalPC"))
         {
