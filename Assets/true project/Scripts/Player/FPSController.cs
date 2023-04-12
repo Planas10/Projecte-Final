@@ -29,6 +29,7 @@ public class FPSController : MonoBehaviour
     private float ShootInterval = 10f;
     public int MaxAmmo;
     public int RemainingAmmo;
+    private bool CanReload;
 
     private Quaternion InitialRotation;
     private Vector3 InitialPos;
@@ -44,6 +45,7 @@ public class FPSController : MonoBehaviour
     public bool IsHacking = false;
 
     static public List<LightObject> lights;
+    static public List<PcLightObject> PClights;
 
 
     public bool CanOpen1;
@@ -66,11 +68,8 @@ public class FPSController : MonoBehaviour
         lights = new(FindObjectsOfType<LightObject>());
         lights.Sort((a, b) => { return a.name.CompareTo(b.name); });
 
-        for (int i = 0; i < lights.Count; i++)
-        {
-            Debug.Log(lights[i]);
-        }
-
+        PClights = new(FindObjectsOfType<PcLightObject>());
+        PClights.Sort((a, b) => { return a.name.CompareTo(b.name); });
 
         InitialRotation = transform.rotation;
         InitialPos = transform.position;
@@ -82,6 +81,7 @@ public class FPSController : MonoBehaviour
 
     void Start()
     {
+        RemainingAmmo = MaxAmmo;
         hackingText.enabled = false;
         interactText.enabled = false;
         scrollbar.SetActive(false);
@@ -165,11 +165,6 @@ public class FPSController : MonoBehaviour
                 RemainingAmmo--;
             }
         }
-        StartCoroutine(CShootInterval());
-    }
-    IEnumerator CShootInterval()
-    {
-        yield return new WaitForSeconds(ShootInterval);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -192,27 +187,27 @@ public class FPSController : MonoBehaviour
         if (other.gameObject.CompareTag("Object1") && !lights[0].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(lights[0]);
+            Hacking(lights[0], PClights[0]);
         }
         if (other.gameObject.CompareTag("Object2") && !lights[1].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(lights[1]);
+            Hacking(lights[1], PClights[1]);
         }
         if (other.gameObject.CompareTag("Object3") && !lights[2].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(lights[2]);
+            Hacking(lights[2], PClights[2]);
         }
         if (other.gameObject.CompareTag("Object4") && !lights[3].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(lights[3]);
+            Hacking(lights[3], PClights[3]);
         }
         if (other.gameObject.CompareTag("Object5") && !lights[4].IsActivated)
         {
             ActivateHackingUI();
-            Hacking(lights[4]);
+            Hacking(lights[4], PClights[4]);
         }
         if (other.gameObject.CompareTag("FinalPC"))
         {
@@ -231,9 +226,9 @@ public class FPSController : MonoBehaviour
             other.CompareTag("FinalPC")) { DeactivateHackingUI(); }
     }
 
-    private void Hacking(LightObject light)
+    private void Hacking(LightObject light, PcLightObject PcLight)
     {
-        if (isInteractable)
+        if (isInteractable )
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -251,6 +246,7 @@ public class FPSController : MonoBehaviour
                     //Debug.Log("desactivar cosas");
                     IsHacking = false;
                     light.ActivateLight(true);
+                    PcLight.GetComponent<Light>().color = Color.green;
                     DeactivateHackingUI();
                 }
             }
@@ -332,9 +328,25 @@ public class FPSController : MonoBehaviour
 
     private void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) && RemainingAmmo < MaxAmmo)
         {
-            RemainingAmmo = MaxAmmo;
+            Debug.Log(fillAmount);
+            scrollbar.SetActive(true);
+            fillAmount += (Time.deltaTime / 6);
+            progressBar.fillAmount = fillAmount;
+            if (fillAmount >= 1f)
+            {
+                RemainingAmmo = MaxAmmo;
+                fillAmount = 0f;
+                progressBar.fillAmount = fillAmount;
+                scrollbar.SetActive(false);
+            }
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                fillAmount = 0f;
+                progressBar.fillAmount = fillAmount;
+                scrollbar.SetActive(false);
+            }
         }
     }
 }

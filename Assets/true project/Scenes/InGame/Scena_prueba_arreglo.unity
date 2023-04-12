@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 27834930}
   - component: {fileID: 27834929}
   - component: {fileID: 27834928}
+  - component: {fileID: 27834931}
   m_Layer: 0
   m_Name: PClight1
   m_TagString: Untagged
@@ -370,6 +371,18 @@ Transform:
   m_Father: {fileID: 1875434248}
   m_RootOrder: 281
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &27834931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27834927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5fba8c15616f4f87febbd803e125e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &29617419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -799,6 +812,7 @@ GameObject:
   - component: {fileID: 47496871}
   - component: {fileID: 47496870}
   - component: {fileID: 47496869}
+  - component: {fileID: 47496872}
   m_Layer: 0
   m_Name: PClight4
   m_TagString: Untagged
@@ -903,6 +917,18 @@ Transform:
   m_Father: {fileID: 1875434248}
   m_RootOrder: 284
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &47496872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47496868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5fba8c15616f4f87febbd803e125e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &53760892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2403,6 +2429,7 @@ GameObject:
   - component: {fileID: 110011382}
   - component: {fileID: 110011381}
   - component: {fileID: 110011380}
+  - component: {fileID: 110011383}
   m_Layer: 0
   m_Name: PClight5
   m_TagString: Untagged
@@ -2507,6 +2534,18 @@ Transform:
   m_Father: {fileID: 1875434248}
   m_RootOrder: 285
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &110011383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110011379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5fba8c15616f4f87febbd803e125e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &110949896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11955,6 +11994,7 @@ GameObject:
   - component: {fileID: 628087665}
   - component: {fileID: 628087667}
   - component: {fileID: 628087666}
+  - component: {fileID: 628087668}
   m_Layer: 0
   m_Name: PClight6
   m_TagString: Untagged
@@ -12059,6 +12099,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &628087668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628087664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5fba8c15616f4f87febbd803e125e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &630025966
 GameObject:
   m_ObjectHideFlags: 0
@@ -32463,6 +32515,7 @@ GameObject:
   - component: {fileID: 1676246982}
   - component: {fileID: 1676246981}
   - component: {fileID: 1676246980}
+  - component: {fileID: 1676246983}
   m_Layer: 0
   m_Name: PClight2
   m_TagString: Untagged
@@ -32567,6 +32620,18 @@ Transform:
   m_Father: {fileID: 1875434248}
   m_RootOrder: 282
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1676246983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676246979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5fba8c15616f4f87febbd803e125e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1688635482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36140,6 +36205,7 @@ GameObject:
   - component: {fileID: 1878721454}
   - component: {fileID: 1878721453}
   - component: {fileID: 1878721452}
+  - component: {fileID: 1878721455}
   m_Layer: 0
   m_Name: PClight3
   m_TagString: Untagged
@@ -36244,6 +36310,18 @@ Transform:
   m_Father: {fileID: 1875434248}
   m_RootOrder: 283
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1878721455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878721451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee5fba8c15616f4f87febbd803e125e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1886770948
 PrefabInstance:
   m_ObjectHideFlags: 0
