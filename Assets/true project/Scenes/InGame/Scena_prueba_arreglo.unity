@@ -41725,11 +41725,6 @@ MonoBehaviour:
   MaxAmmo: 10
   RemainingAmmo: 10
   IsHacking: 0
-  light1: {fileID: 1939106522}
-  light2: {fileID: 380702597}
-  light3: {fileID: 136948470}
-  light4: {fileID: 478149922}
-  light5: {fileID: 679558915}
   CanOpen1: 0
   CanOpen2: 0
   interactText: {fileID: 1369366733}
