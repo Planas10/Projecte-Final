@@ -5,7 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     private float force = 10f;
-    private float lifeTime = 6;
+    private float lifeTime = 6f;
 
     public GameObject DistractionCollider;
     private SphereCollider SC;
@@ -31,13 +31,14 @@ public class bullet : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Obstacles"))
+        if (collision.gameObject.CompareTag("Obstacles"))
         {
-            Debug.Log("colisión");
+            Debug.Log("colisiï¿½n");
             //transform.parent = collision.transform;
             //rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints.FreezePosition;
             SC.enabled = true;
             StartCoroutine(Countdown());
         }

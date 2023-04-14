@@ -56,12 +56,19 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] private Text interactText; //texto interactuar con E
     [SerializeField] private Text hackingText; //Texto hackeo
-    [SerializeField] private Image progressBar;
-
     [SerializeField] private bool isInteractable;
-    [SerializeField] private float fillAmount; //progreso del hackeo
 
+    private float fillAmount; //progreso del hackeo
+    [SerializeField] private Image progressBar;
     [SerializeField] private GameObject scrollbar;
+
+    private float bulletFillAmount = 1f;
+    private float reloadTime = 3f;
+    private float reloadingTime;
+    private bool reloading = false;
+    [SerializeField] private Image bulletProgressBar;
+    [SerializeField] private GameObject bulletScrollbar;
+
 
     private void Awake()
     {
@@ -74,6 +81,9 @@ public class FPSController : MonoBehaviour
         InitialRotation = transform.rotation;
         InitialPos = transform.position;
 
+        reloadingTime = reloadTime;
+        bulletProgressBar.fillAmount = bulletFillAmount;
+
         //Definir componentes(SpawnPoint, CharacterController y NavMesh)
         //SpawnPoint = FindObjectOfType<SpawnPointScript>();
         characterController = GetComponent<CharacterController>();
@@ -85,6 +95,7 @@ public class FPSController : MonoBehaviour
         hackingText.enabled = false;
         interactText.enabled = false;
         scrollbar.SetActive(false);
+        bulletScrollbar.SetActive(true);
         progressBar.fillAmount = 0f;
         isInteractable = false;
         fillAmount = 0f;
@@ -163,6 +174,8 @@ public class FPSController : MonoBehaviour
             {
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
                 RemainingAmmo--;
+                bulletFillAmount -= 0.1f;
+                bulletProgressBar.fillAmount = bulletFillAmount;
             }
         }
     }
@@ -171,7 +184,6 @@ public class FPSController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EnemyAttackTag"))
         {
-            Debug.Log("Ataque");
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
             IsHacking = false;
@@ -234,7 +246,6 @@ public class FPSController : MonoBehaviour
             {
                 fillAmount = 0f;
             }
-
             if (Input.GetKey(KeyCode.E))
             {
                 scrollbar.SetActive(true);
@@ -243,7 +254,6 @@ public class FPSController : MonoBehaviour
                 IsHacking = true;
                 if (fillAmount >= 1f)
                 {
-                    //Debug.Log("desactivar cosas");
                     IsHacking = false;
                     light.ActivateLight(true);
                     PcLight.GetComponent<Light>().color = Color.green;
@@ -276,7 +286,6 @@ public class FPSController : MonoBehaviour
                 progressBar.fillAmount = fillAmount;
                 if (fillAmount >= 1f)
                 {
-                    //Debug.Log("desactivar cosas");
                     IsHacking = false;
                     DeactivateHackingUI();
                     GameManager.ChangeScene(0);
@@ -318,34 +327,24 @@ public class FPSController : MonoBehaviour
         fillAmount = 0f;
         scrollbar.SetActive(false);
     }
-    //private void CheckLightBool(bool checklight) {
-    //    if (checklight == light1Activated) { Debug.Log("1"); }
-    //    else if (checklight == light2Activated) { Debug.Log("2"); }
-    //    else if (checklight == light3Activated) { Debug.Log("3"); }
-    //    else if (checklight == light4Activated) { Debug.Log("4"); }
-    //    else if (checklight == light5Activated) { Debug.Log("5"); }
-    //}
 
     private void Reload()
     {
         if (Input.GetKey(KeyCode.R) && RemainingAmmo < MaxAmmo)
         {
-            Debug.Log(fillAmount);
-            scrollbar.SetActive(true);
-            fillAmount += (Time.deltaTime / 6);
-            progressBar.fillAmount = fillAmount;
-            if (fillAmount >= 1f)
+            reloading = true;
+            if (reloading == true)
+            {
+                Debug.Log(reloadingTime);
+                reloadingTime -= Time.deltaTime;
+            }
+            if (reloadingTime <= 0f)
             {
                 RemainingAmmo = MaxAmmo;
-                fillAmount = 0f;
-                progressBar.fillAmount = fillAmount;
-                scrollbar.SetActive(false);
-            }
-            if (Input.GetKeyUp(KeyCode.R))
-            {
-                fillAmount = 0f;
-                progressBar.fillAmount = fillAmount;
-                scrollbar.SetActive(false);
+                reloadingTime = reloadTime;
+                bulletFillAmount = 1f;
+                bulletProgressBar.fillAmount = bulletFillAmount;
+                reloading = false;
             }
         }
     }

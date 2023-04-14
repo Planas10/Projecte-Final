@@ -139,7 +139,6 @@ public class AI_Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Reinicio");
             transform.position = InitialPos;
         }
     }
@@ -157,7 +156,6 @@ public class AI_Enemy : MonoBehaviour
         }
         if (currentPoint >= waypoints.Count)
         {
-            Debug.Log("2");
             transform.Rotate(0, 0, 0);
             //Debug.Log("Final de trayecto");
             currentPoint = 0;
@@ -165,7 +163,6 @@ public class AI_Enemy : MonoBehaviour
         }
         if (!LookingForPlayer)
         {
-            Debug.Log("3");
             transform.LookAt(waypoints[currentPoint].transform.position);
             IA.SetDestination(waypoints[currentPoint].transform.position);
         }
