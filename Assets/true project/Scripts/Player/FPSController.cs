@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {
-    public GameManager GameManager;
+    public GameManager gamemanager;
 
     public Camera Cam;
     public bullet sound_bullet;
@@ -44,8 +44,8 @@ public class FPSController : MonoBehaviour
 
     public bool IsHacking = false;
 
-    static public List<LightObject> lights;
-    static public List<PcLightObject> PClights;
+    public List<LightObject> lights;
+    public List<PcLightObject> PClights;
 
 
     public bool CanOpen1;
@@ -103,6 +103,7 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.H)) { gamemanager.GODmode(); }
         //Debug.Log(fillAmount);
         //Debug.Log(InitialPos);
         if (!GameManager.Instance().IsPaused())
@@ -182,7 +183,7 @@ public class FPSController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("EnemyAttackTag"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
@@ -289,7 +290,7 @@ public class FPSController : MonoBehaviour
                 {
                     IsHacking = false;
                     DeactivateHackingUI();
-                    GameManager.ChangeScene(0);
+                    gamemanager.ChangeScene(0);
                 }
             }
             else
