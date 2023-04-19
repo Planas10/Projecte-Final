@@ -262,6 +262,7 @@ public class FPSController : MonoBehaviour
             }
             else
             {
+                scrollbar.SetActive(false);
                 IsHacking = false;
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
