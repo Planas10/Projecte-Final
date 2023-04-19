@@ -137,7 +137,7 @@ public class AI_Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             transform.position = InitialPos;
         }

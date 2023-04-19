@@ -60,5 +60,14 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene(int sceneNumber) { SceneManager.LoadScene(sceneNumber); }
 
+    public void GODmode() {
+
+        for (int i = 0; i < fpsController.lights.ToArray().Length; i++)
+        {
+            fpsController.lights[i].IsActivated = true;
+        }
+        
+    }
+
 
 }
