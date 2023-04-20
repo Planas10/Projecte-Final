@@ -103,7 +103,14 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.H)) { gamemanager.GODmode(); }
+        if (Input.GetKey(KeyCode.H)) 
+        {
+            gamemanager.GODmode();
+            for (int i = 0; i < lights.ToArray().Length; i++)
+            {
+                gamemanager.GODmodeActivateLights(lights[i], PClights[i]);
+            }
+        }
         //Debug.Log(fillAmount);
         //Debug.Log(InitialPos);
         if (!GameManager.Instance().IsPaused())

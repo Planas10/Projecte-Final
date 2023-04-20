@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour
         {
             fpsController.lights[i].IsActivated = true;
         }
-        
     }
+    public void GODmodeActivateLights(LightObject light, PcLightObject PcLight) { light.ActivateLight(true); PcLight.GetComponent<Light>().color = Color.green; }
 
 
 }

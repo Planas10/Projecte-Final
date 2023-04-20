@@ -142,8 +142,29 @@ public class AI_Enemy : MonoBehaviour
             transform.position = InitialPos;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward);
+    }
+
     private void Patrol() {
         IA.speed = normalSpeed;
+        RaycastHit hit;
+        if (Physics.Linecast(transform.position, Player.transform.position, out hit))
+        {
+            if (hit.collider.gameObject.CompareTag("Player") && Vector3.Distance(Player.transform.position, transform.position) <= 5f)
+            {
+                //Miro si se encuentra en mi angulo de visión
+                Vector3 vectorPlayerSelf = Player.transform.position - transform.position;
+                vectorPlayerSelf.Normalize();
+                if (Vector3.Angle(transform.forward, vectorPlayerSelf) <= 45f) {
+                    Debug.Log("veo al player");
+                }
+            }
+        }
+
         if (Vector3.Distance(transform.position, waypoints[currentPoint].transform.position) < 1)
         {
             if (currentPoint != 0)
@@ -168,29 +189,7 @@ public class AI_Enemy : MonoBehaviour
         }
     }
 
-    //private void LookAround()
-    //{
-    //    ChangingSearchTime = SearchTime;
-    //    Vector3 playerPos = Player.transform.position;
-    //    IA.SetDestination(playerPos);
-    //    if (transform.position == playerPos)
-    //    {
-    //        ChangingSearchTime -= Time.deltaTime;
-    //        switch (transform.rotation.y)
-    //        {
-    //            case >= -45:
-    //                transform.Rotate(0, (transform.rotation.y + 5f) * Time.deltaTime, 0);
-    //                break;
-    //            case <= 45:
-    //                transform.Rotate(0, (transform.rotation.y - 5f) * Time.deltaTime, 0);
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //    }
-    //}
-
-    private void ChasePlayer()
+private void ChasePlayer()
     {
         if (!IsDistracted)
         {
