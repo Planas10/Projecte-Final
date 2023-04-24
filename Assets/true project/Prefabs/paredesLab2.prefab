@@ -92,6 +92,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5591536728857850689}
+  - component: {fileID: 7773141880218254845}
+  - component: {fileID: 7751446925643970567}
+  - component: {fileID: 7941336056763101032}
+  - component: {fileID: 5647626624461799096}
   m_Layer: 0
   m_Name: paredesLab2
   m_TagString: Untagged
@@ -116,6 +120,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7773141880218254845
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5103407044550945275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9806144, y: 1.2725054, z: 0.1166352}
+  m_Center: {x: -0.14515388, y: 0.63982314, z: -0.73961455}
+--- !u!65 &7751446925643970567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5103407044550945275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.18835545, y: 1.2970438, z: 0.0692507}
+  m_Center: {x: -1.7418528, y: 0.6364424, z: -0.39224058}
+--- !u!65 &7941336056763101032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5103407044550945275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25754762, y: 1.2781962, z: 0.1263032}
+  m_Center: {x: -1.5088552, y: 0.6353677, z: -0.52667}
+--- !u!65 &5647626624461799096
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5103407044550945275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27978635, y: 1.2749043, z: 0.11004752}
+  m_Center: {x: -1.2278067, y: 0.6306008, z: -0.66700065}
 --- !u!1 &8921707904630552717
 GameObject:
   m_ObjectHideFlags: 0
