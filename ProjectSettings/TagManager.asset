@@ -18,6 +18,12 @@ TagManager:
   - FinalPC
   - enemy1
   - enemy2
+  - UpButton
+  - pcRojo
+  - PCluz1
+  - PCluz2
+  - PCluz3
+  - PCluz4
   layers:
   - Default
   - TransparentFX
