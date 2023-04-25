@@ -127,7 +127,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3941327418036678783}
-  - component: {fileID: 3941327418036678782}
   m_Layer: 0
   m_Name: enemybody
   m_TagString: EnemyAttackTag
@@ -150,19 +149,6 @@ Transform:
   m_Father: {fileID: 140070461385316928}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &3941327418036678782
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3941327418036678780}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4311394504810640257
 GameObject:
   m_ObjectHideFlags: 0

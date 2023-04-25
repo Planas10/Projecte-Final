@@ -49,6 +49,7 @@ public class AI_Enemy : MonoBehaviour
      
     void Update()
     {
+        Look();
         Bullet = FindObjectOfType<bullet>();
         if (Bullet == null)
         {
@@ -143,32 +144,43 @@ public class AI_Enemy : MonoBehaviour
         }
     }
 
+    [SerializeField] private GameObject RayLimit;
+    private void Look() {
+        RaycastHit hit;
+        Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
+        if (Physics.Raycast(InitPos, Player.transform.position, out hit))
+        {
+            if (hit.collider.gameObject.CompareTag("Player") && Vector3.Distance(Player.transform.position, InitPos) <= 10f)
+            {
+                Debug.Log("Player");
+                IsChasingPlayer = true;
+                //Miro si se encuentra en mi angulo de visión
+                Vector3 vectorPlayerSelf = Player.transform.position - transform.position;
+                vectorPlayerSelf.Normalize();
+                if (Vector3.Angle(RayLimit.transform.position, vectorPlayerSelf) <= 30f)
+                {
+                    Debug.Log("veo al player");
+                    IsChasingPlayer = true;
+                }
+                else
+                {
+                    IsChasingPlayer = false;
+                }
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
-        Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(InitPos, FinalPos);
+        Gizmos.DrawLine(InitPos, RayLimit.transform.position);
+
     }
 
     private void Patrol() {
         IA.speed = normalSpeed;
-        RaycastHit hit;
-        Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
-        Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
-        if (Physics.Linecast(InitPos, Player.transform.position, out hit))
-        {
-            if (hit.collider.gameObject.CompareTag("Player") && Vector3.Distance(Player.transform.position, InitPos) <= 10f)
-            {
-                //Miro si se encuentra en mi angulo de visión
-                Vector3 vectorPlayerSelf = Player.transform.position - transform.position;
-                vectorPlayerSelf.Normalize();
-                if (Vector3.Angle(FinalPos, vectorPlayerSelf) <= 45f) {
-                    Debug.Log("veo al player");
-                }
-            }
-        }
 
         if (Vector3.Distance(transform.position, waypoints[currentPoint].transform.position) < 1)
         {
