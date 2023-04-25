@@ -19,7 +19,14 @@ public class invisibilityScript : MonoBehaviour
     public float shaderVarRefreshRate = 0.05f;
 
     private bool isTrailActive;
-    private SkinnedMeshRenderer[] skinnedMeshRenderes; 
+    private SkinnedMeshRenderer[] skinnedMeshRenderes;
+
+    private Renderer _renderer;
+
+    void Start()
+    {
+        _renderer = GetComponent<Renderer>();
+    }
 
     void Update()
     {
@@ -27,6 +34,7 @@ public class invisibilityScript : MonoBehaviour
         {
             isTrailActive = true;
             StartCoroutine(ActivateTrail(activeTime));
+            _renderer.material = mat;
         }
     }
 
