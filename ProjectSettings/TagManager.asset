@@ -18,14 +18,6 @@ TagManager:
   - FinalPC
   - enemy1
   - enemy2
-  - Object6
-  - Object7
-  - UpButton
-  - PanelDistraction1
-  - PanelDistraction2
-  - PanelDistraction3
-  - PanelDistraction4
-  - RayLimit
   layers:
   - Default
   - TransparentFX
