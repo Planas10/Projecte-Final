@@ -9884,7 +9884,7 @@ PrefabInstance:
         type: 3}
       propertyPath: pasos
       value: 
-      objectReference: {fileID: 1318903806}
+      objectReference: {fileID: 2006000147}
     - target: {fileID: 572439183569220474, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
       propertyPath: boquilla
@@ -23734,12 +23734,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!82 &1318903806 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1509406478858890951, guid: db32b50d23999f441921af6f601c9a4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 506580545}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1331110919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38013,6 +38007,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8db37222451fae4ba13b0e128ad0d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2006000147 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 572439183569220465, guid: db32b50d23999f441921af6f601c9a4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 506580545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2011249990
 GameObject:
   m_ObjectHideFlags: 0
