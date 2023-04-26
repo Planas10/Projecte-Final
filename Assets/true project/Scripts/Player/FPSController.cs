@@ -160,37 +160,37 @@ public class FPSController : MonoBehaviour
 
         v_mouse = Mathf.Clamp(v_mouse, -80, 80);
 
-        if(Input.GetButtonDown("Horizontal"))
-        {
-            Hactive = true;
-            pasos.Play();
-        }
+        //if(Input.GetButtonDown("Horizontal"))
+        //{
+        //    Hactive = true;
+        //    pasos.Play();
+        //}
 
-        if(Input.GetButtonDown("Vertical"))
-        {
-            Vactive = true;
-            pasos.Play();
-        }
+        //if(Input.GetButtonDown("Vertical"))
+        //{
+        //    Vactive = true;
+        //    pasos.Play();
+        //}
 
-        if(Input.GetButtonUp("Horizontal"))
-        {
-            Hactive = false;
+        //if(Input.GetButtonUp("Horizontal"))
+        //{
+        //    Hactive = false;
 
-            if(Vactive==false)
-            {
-                pasos.Pause();
-            }
-        }
+        //    if(Vactive==false)
+        //    {
+        //        pasos.Pause();
+        //    }
+        //}
 
-        if (Input.GetButtonUp("Vertical"))
-        {
-            Vactive=false;
+        //if (Input.GetButtonUp("Vertical"))
+        //{
+        //    Vactive=false;
 
-            if(Hactive==false)
-            {
-                pasos.Pause();
-            }
-        }
+        //    if(Hactive==false)
+        //    {
+        //        pasos.Pause();
+        //    }
+        //}
 
         Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), Gravity, Input.GetAxis("Vertical"));
         //Debug.Log(MoveDirection);
@@ -229,9 +229,9 @@ public class FPSController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
@@ -343,7 +343,7 @@ public class FPSController : MonoBehaviour
                 {
                     IsHacking = false;
                     DeactivateHackingUI();
-                    gamemanager.ChangeScene(0);
+                    gamemanager.ChangeScene(5);
                 }
             }
             else

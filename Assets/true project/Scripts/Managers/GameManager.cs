@@ -58,7 +58,10 @@ public class GameManager : MonoBehaviour
     private void OpenDoor1(GameObject Rdoor, GameObject Ldoor) { Rdoor.gameObject.SetActive(false); Ldoor.gameObject.SetActive(false); }
     private void OpenDoor2(GameObject Rdoor, GameObject Ldoor) { Rdoor.gameObject.SetActive(false); Ldoor.gameObject.SetActive(false); }
 
-    public void ChangeScene(int sceneNumber) { SceneManager.LoadScene(sceneNumber); }
+    public void ChangeScene(int sceneNumber) {
+        Debug.LogError("Cambio de escena");
+        SceneManager.LoadScene(sceneNumber); 
+    }
 
     public void GODmode() {
 

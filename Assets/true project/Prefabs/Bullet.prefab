@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 224123035088566565}
   - component: {fileID: 6650755822598117601}
   - component: {fileID: -2574999195590560912}
-  - component: {fileID: 6101417706017666332}
+  - component: {fileID: 3973579847358821505}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -78,11 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0268340143d7abd46a6d2e1ab7cd995f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 6101417706017666332}
+  audioSource: {fileID: 3973579847358821505}
   CanActivate: 0
   DistractionCollider: {fileID: 4595673825101195200}
   BulletDistractionS: {fileID: 858059898741828344}
---- !u!82 &6101417706017666332
+--- !u!82 &3973579847358821505
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +92,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: af43e43b7d4fe4a42abbae40ca585bc4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c99cb71a9af8b0743a5879738f9bccbd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
