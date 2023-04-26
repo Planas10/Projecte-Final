@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CompararLuces : MonoBehaviour
+public class CompararLucesLvL2 : MonoBehaviour
 {
     static public List<LuzAleatoria> lucesArriba;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
@@ -69,6 +70,13 @@ public class FPSController : MonoBehaviour
     [SerializeField] private Image bulletProgressBar;
     [SerializeField] private GameObject bulletScrollbar;
 
+    //Audio
+
+    public AudioSource pasos;
+
+    private bool Hactive;
+    private bool Vactive;
+
 
     private void Awake()
     {
@@ -133,6 +141,7 @@ public class FPSController : MonoBehaviour
 
         //Debug.Log(SpawnPoint.transform.position);
 
+
         if (lights[0].IsActivated == true && lights[1].IsActivated == true) { CanOpen1 = true; }
         if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
 
@@ -150,6 +159,38 @@ public class FPSController : MonoBehaviour
         Cam.transform.Rotate(v_mouse, 0, 0);
 
         v_mouse = Mathf.Clamp(v_mouse, -80, 80);
+
+        if(Input.GetButtonDown("Horizontal"))
+        {
+            Hactive = true;
+            pasos.Play();
+        }
+
+        if(Input.GetButtonDown("Vertical"))
+        {
+            Vactive = true;
+            pasos.Play();
+        }
+
+        if(Input.GetButtonUp("Horizontal"))
+        {
+            Hactive = false;
+
+            if(Vactive==false)
+            {
+                pasos.Pause();
+            }
+        }
+
+        if (Input.GetButtonUp("Vertical"))
+        {
+            Vactive=false;
+
+            if(Hactive==false)
+            {
+                pasos.Pause();
+            }
+        }
 
         Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), Gravity, Input.GetAxis("Vertical"));
         //Debug.Log(MoveDirection);
@@ -188,9 +229,9 @@ public class FPSController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
@@ -233,6 +274,10 @@ public class FPSController : MonoBehaviour
         {
             ActivateHackingUI();
             FinalHacking();
+        }
+        if (other.gameObject.CompareTag("PcTrampa1"))
+        {
+            Debug.Log("PcTrampa1");
         }
     }
 
@@ -277,6 +322,7 @@ public class FPSController : MonoBehaviour
             }
         }
     }
+
     private void FinalHacking()
     {
         ActivateHackingUI();
@@ -297,7 +343,7 @@ public class FPSController : MonoBehaviour
                 {
                     IsHacking = false;
                     DeactivateHackingUI();
-                    gamemanager.ChangeScene(0);
+                    gamemanager.ChangeScene(5);
                 }
             }
             else

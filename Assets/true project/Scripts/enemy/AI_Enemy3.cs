@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AI_Enemy : MonoBehaviour
+public class AI_Enemy3 : MonoBehaviour
 {
-    static public List<PatrolPoint1> waypoints;
+    static public List<PatrolPoint3> waypoints;
     public GameObject Player;
 
     public FPSController playerS;
@@ -38,7 +38,7 @@ public class AI_Enemy : MonoBehaviour
 
         playerS = FindObjectOfType<FPSController>();
 
-        waypoints = new(FindObjectsOfType<PatrolPoint1>());
+        waypoints = new(FindObjectsOfType<PatrolPoint3>());
         waypoints.Sort((a, b) => { return a.name.CompareTo(b.name); });
         transform.position = waypoints[currentPoint].transform.position;
 

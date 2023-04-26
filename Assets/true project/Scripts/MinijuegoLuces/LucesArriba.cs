@@ -11,8 +11,7 @@ public class LucesArriba : MonoBehaviour
     void Start()
     {
         // elegir un color al azar de entre las opciones
-        int randomIndex = Random.Range(0, colorOptions.Length);
-        Color randomColor = colorOptions[randomIndex];
+        Color randomColor = colorOptions[Random.Range(0, colorOptions.Length)];
 
         // cambiar el color de la luz
         lightToChange.color = randomColor;
