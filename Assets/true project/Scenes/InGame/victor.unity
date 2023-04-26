@@ -41659,8 +41659,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 4.5
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &773055609208217445
 GameObject:
   m_ObjectHideFlags: 0
@@ -41998,7 +41998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8db37222451fae4ba13b0e128ad0d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamemanager: {fileID: 0}
+  gamemanager: {fileID: 1444928468}
   Cam: {fileID: 1370162281305962091}
   sound_bullet: {fileID: -2574999195590560912, guid: c5b6c44f79eaa1443aae532b2d7edc6c,
     type: 3}

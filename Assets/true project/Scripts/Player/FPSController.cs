@@ -190,9 +190,9 @@ public class FPSController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
@@ -304,7 +304,7 @@ public class FPSController : MonoBehaviour
                 {
                     IsHacking = false;
                     DeactivateHackingUI();
-                    gamemanager.ChangeScene(0);
+                    gamemanager.ChangeScene(5);
                 }
             }
             else
