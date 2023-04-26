@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 6456960089683968175}
   m_Layer: 0
   m_Name: tuberiaTubos
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 3385178448032563592}
   m_Layer: 0
   m_Name: pasillo
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

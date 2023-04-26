@@ -137,13 +137,39 @@ public class AI_Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             transform.position = InitialPos;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
+        Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(InitPos, FinalPos);
+    }
+
     private void Patrol() {
         IA.speed = normalSpeed;
+        RaycastHit hit;
+        Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
+        Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
+        if (Physics.Linecast(InitPos, Player.transform.position, out hit))
+        {
+            if (hit.collider.gameObject.CompareTag("Player") && Vector3.Distance(Player.transform.position, InitPos) <= 10f)
+            {
+                //Miro si se encuentra en mi angulo de visión
+                Vector3 vectorPlayerSelf = Player.transform.position - transform.position;
+                vectorPlayerSelf.Normalize();
+                if (Vector3.Angle(FinalPos, vectorPlayerSelf) <= 45f) {
+                    Debug.Log("veo al player");
+                }
+            }
+        }
+
         if (Vector3.Distance(transform.position, waypoints[currentPoint].transform.position) < 1)
         {
             if (currentPoint != 0)
@@ -168,29 +194,7 @@ public class AI_Enemy : MonoBehaviour
         }
     }
 
-    //private void LookAround()
-    //{
-    //    ChangingSearchTime = SearchTime;
-    //    Vector3 playerPos = Player.transform.position;
-    //    IA.SetDestination(playerPos);
-    //    if (transform.position == playerPos)
-    //    {
-    //        ChangingSearchTime -= Time.deltaTime;
-    //        switch (transform.rotation.y)
-    //        {
-    //            case >= -45:
-    //                transform.Rotate(0, (transform.rotation.y + 5f) * Time.deltaTime, 0);
-    //                break;
-    //            case <= 45:
-    //                transform.Rotate(0, (transform.rotation.y - 5f) * Time.deltaTime, 0);
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //    }
-    //}
-
-    private void ChasePlayer()
+private void ChasePlayer()
     {
         if (!IsDistracted)
         {

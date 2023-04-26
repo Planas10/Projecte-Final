@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/true project/Scenes/Menu/Main_Menu.unity
     guid: 23a0495e995ed1d4cb0ed61406c929d0
   - enabled: 1
-    path: Assets/true project/Scenes/InGame/Scena_prueba_arreglo.unity
+    path: Assets/true project/Scenes/InGame/lvl1.unity
     guid: 88576fcafb2914641bf476c2753ef22c
   - enabled: 1
     path: Assets/true project/Scenes/Menu/Settings.unity

@@ -14,7 +14,7 @@ public class BulletDistraction : MonoBehaviour
     private void Awake()
     {
         CanDie = false;
-        ScaleChange = new Vector3(0.75f, 0.75f, 0.75f);
+        ScaleChange = new Vector3(1.5f, 1.5f, 1.5f);
         CurrentSize = transform.localScale;
     }
 
