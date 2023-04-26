@@ -70,6 +70,13 @@ public class FPSController : MonoBehaviour
     [SerializeField] private Image bulletProgressBar;
     [SerializeField] private GameObject bulletScrollbar;
 
+    //Audio
+
+    public AudioSource pasos;
+
+    private bool Hactive;
+    private bool Vactive;
+
 
     private void Awake()
     {
@@ -152,6 +159,38 @@ public class FPSController : MonoBehaviour
         Cam.transform.Rotate(v_mouse, 0, 0);
 
         v_mouse = Mathf.Clamp(v_mouse, -80, 80);
+
+        if(Input.GetButtonDown("Horizontal"))
+        {
+            Hactive = true;
+            pasos.Play();
+        }
+
+        if(Input.GetButtonDown("Vertical"))
+        {
+            Vactive = true;
+            pasos.Play();
+        }
+
+        if(Input.GetButtonUp("Horizontal"))
+        {
+            Hactive = false;
+
+            if(Vactive==false)
+            {
+                pasos.Pause();
+            }
+        }
+
+        if (Input.GetButtonUp("Vertical"))
+        {
+            Vactive=false;
+
+            if(Hactive==false)
+            {
+                pasos.Pause();
+            }
+        }
 
         Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), Gravity, Input.GetAxis("Vertical"));
         //Debug.Log(MoveDirection);
