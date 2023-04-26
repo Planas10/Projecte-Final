@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 2487913086097281077}
   - component: {fileID: 4240865436272619812}
   - component: {fileID: 491599646468891815}
+  - component: {fileID: 7262515260855015490}
   m_Layer: 0
   m_Name: chair
   m_TagString: Obstacles
@@ -230,6 +231,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1238218227891777710, guid: 61a0fd648583cfb4b90455be625c2a26, type: 3}
+--- !u!95 &7262515260855015490
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384059852237158198}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58cb7c9ff627180479cd600d16a3189f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8457270095205511538
 GameObject:
   m_ObjectHideFlags: 0

@@ -145,21 +145,26 @@ public class AI_Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
+        Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
+
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward);
+        Gizmos.DrawLine(InitPos, FinalPos);
     }
 
     private void Patrol() {
         IA.speed = normalSpeed;
         RaycastHit hit;
-        if (Physics.Linecast(transform.position, Player.transform.position, out hit))
+        Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
+        Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
+        if (Physics.Linecast(InitPos, Player.transform.position, out hit))
         {
-            if (hit.collider.gameObject.CompareTag("Player") && Vector3.Distance(Player.transform.position, transform.position) <= 5f)
+            if (hit.collider.gameObject.CompareTag("Player") && Vector3.Distance(Player.transform.position, InitPos) <= 10f)
             {
                 //Miro si se encuentra en mi angulo de visión
                 Vector3 vectorPlayerSelf = Player.transform.position - transform.position;
                 vectorPlayerSelf.Normalize();
-                if (Vector3.Angle(transform.forward, vectorPlayerSelf) <= 45f) {
+                if (Vector3.Angle(FinalPos, vectorPlayerSelf) <= 45f) {
                     Debug.Log("veo al player");
                 }
             }
