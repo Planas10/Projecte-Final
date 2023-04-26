@@ -40,28 +40,49 @@ public class CompararLucesLvL1 : MonoBehaviour
     private void Update()
     {
 
-        if (lucesAbajo[0].gameObject.GetComponent<Light>().color == lucesAbajo[0].gameObject.GetComponent<Light>().color)
+        if (lucesAbajo[0].gameObject.GetComponent<Light>().color == lucesArriba[0].gameObject.GetComponent<Light>().color)
         {
+            Debug.Log("luz1OK");
             Luz1Activada = true;
         }
-
-        if (lucesAbajo[1].gameObject.GetComponent<Light>().color == lucesAbajo[1].gameObject.GetComponent<Light>().color)
+        else
         {
+            Luz1Activada = false;
+        }
+
+        if (lucesAbajo[1].gameObject.GetComponent<Light>().color == lucesArriba[1].gameObject.GetComponent<Light>().color)
+        {
+            Debug.Log("luz2OK");
             Luz2Activada = true;
         }
-
-        if (lucesAbajo[2].gameObject.GetComponent<Light>().color == lucesAbajo[2].gameObject.GetComponent<Light>().color)
+        else
         {
-            Luz3Activada = true;
+            Luz2Activada = false;
         }
 
-        if (lucesAbajo[3].gameObject.GetComponent<Light>().color == lucesAbajo[3].gameObject.GetComponent<Light>().color)
+        if (lucesAbajo[2].gameObject.GetComponent<Light>().color == lucesArriba[2].gameObject.GetComponent<Light>().color)
         {
+            Debug.Log("luz3OK");
+            Luz3Activada = true;
+        }
+        else
+        {
+            Luz3Activada = false;
+        }
+
+        if (lucesAbajo[3].gameObject.GetComponent<Light>().color == lucesArriba[3].gameObject.GetComponent<Light>().color)
+        {
+            Debug.Log("luz4OK");
             Luz4Activada = true;    
+        }
+        else
+        {
+            Luz4Activada = false;
         }
 
         if (Luz1Activada && Luz2Activada && Luz3Activada && Luz4Activada)
         {
+            Debug.Log("lucesOK");
             SceneManager.LoadScene(5);
         }
 
