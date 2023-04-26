@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
+
+    public AudioSource audioSource;
     private float force = 10f;
     private float lifeTime = 6f;
 
@@ -19,7 +21,7 @@ public class bullet : MonoBehaviour
 
     void Awake()
     {
-        
+
         SC = DistractionCollider.GetComponent<SphereCollider>();
         PlayerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<FPSController>();
         rb = GetComponent<Rigidbody>();
@@ -53,6 +55,7 @@ public class bullet : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezePosition;
             SC.enabled = true;
             CanActivate = true;
+            audioSource.Play();
         }
     }
 }
