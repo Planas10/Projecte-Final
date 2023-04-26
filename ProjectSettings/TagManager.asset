@@ -19,11 +19,14 @@ TagManager:
   - enemy1
   - enemy2
   - UpButton
-  - pcRojo
   - PCluz1
   - PCluz2
   - PCluz3
   - PCluz4
+  - PcTrampa1
+  - PcTrampa2
+  - PcTrampa3
+  - PcTrampa4
   layers:
   - Default
   - TransparentFX

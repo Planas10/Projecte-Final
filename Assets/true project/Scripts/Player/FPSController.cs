@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
@@ -133,6 +134,7 @@ public class FPSController : MonoBehaviour
 
         //Debug.Log(SpawnPoint.transform.position);
 
+
         if (lights[0].IsActivated == true && lights[1].IsActivated == true) { CanOpen1 = true; }
         if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
 
@@ -234,6 +236,10 @@ public class FPSController : MonoBehaviour
             ActivateHackingUI();
             FinalHacking();
         }
+        if (other.gameObject.CompareTag("PcTrampa1"))
+        {
+            Debug.Log("PcTrampa1");
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -277,6 +283,7 @@ public class FPSController : MonoBehaviour
             }
         }
     }
+
     private void FinalHacking()
     {
         ActivateHackingUI();
