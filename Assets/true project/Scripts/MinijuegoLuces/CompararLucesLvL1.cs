@@ -16,8 +16,6 @@ public class CompararLucesLvL1 : MonoBehaviour
 
     private bool LucesBien = false;
 
-    public GameObject lasersPuerta;
-
 
     private void Awake()
     {

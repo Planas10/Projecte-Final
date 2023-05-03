@@ -8,10 +8,13 @@ using UnityEngine.SceneManagement;
 public class FPSController : MonoBehaviour
 {
     public GameManager gamemanager;
+    public TrapDoorManager trapdoormanager;
 
     public Camera Cam;
     public bullet sound_bullet;
     public Transform boquilla;
+
+    public int CurrentLevel;
 
     //public GameObject SpawnPoint;
 
@@ -78,6 +81,13 @@ public class FPSController : MonoBehaviour
     private bool Vactive;
 
 
+    public bool TrapPc1Active = false;
+    public bool TrapPc2Active = false;
+    public bool TrapPc3Active = false;
+    public bool TrapPc4Active = false;
+
+
+
     private void Awake()
     {
         lights = new(FindObjectsOfType<LightObject>());
@@ -141,9 +151,15 @@ public class FPSController : MonoBehaviour
 
         //Debug.Log(SpawnPoint.transform.position);
 
-
-        if (lights[0].IsActivated == true && lights[1].IsActivated == true) { CanOpen1 = true; }
-        if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
+        if (CurrentLevel == 1)
+        {
+            if (lights[0].IsActivated == true && lights[1].IsActivated == true) { CanOpen1 = true; }
+            if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
+        }
+        if (CurrentLevel == 2)
+        {
+            trapdoormanager.ActivateDoor();
+        }
 
         //Hackeo
         //Hacking(light5, scrollbar5, interactText);
@@ -240,6 +256,7 @@ public class FPSController : MonoBehaviour
             characterController.enabled = true;
             //Debug.Log(transform.position);
         }
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -270,15 +287,42 @@ public class FPSController : MonoBehaviour
             ActivateHackingUI();
             Hacking(lights[4], PClights[4]);
         }
-        if (other.gameObject.CompareTag("FinalPC"))
-        {
-            ActivateHackingUI();
-            FinalHacking();
-        }
+
         if (other.gameObject.CompareTag("PcTrampa1"))
         {
             Debug.Log("PcTrampa1");
+            if (Input.GetKey(KeyCode.E))
+            {
+                Debug.Log("Puerta1");
+                TrapPc1Active = true;
+            }
         }
+        if (other.gameObject.CompareTag("PcTrampa2"))
+        {
+            Debug.Log("PcTrampa2");
+            if (Input.GetKey(KeyCode.E))
+            {
+                TrapPc2Active = true;
+            }
+        }
+        if (other.gameObject.CompareTag("PcTrampa3"))
+        {
+            Debug.Log("PcTrampa3");
+            if (Input.GetKey(KeyCode.E))
+            {
+                TrapPc3Active = true;
+            }
+        }
+        if (other.gameObject.CompareTag("PcTrampa4"))
+        {
+            Debug.Log("PcTrampa4");
+            if (Input.GetKey(KeyCode.E))
+            {
+
+                TrapPc4Active = true;
+            }
+        }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -289,6 +333,14 @@ public class FPSController : MonoBehaviour
             other.CompareTag("Object4") ||
             other.CompareTag("Object5") ||
             other.CompareTag("FinalPC")) { DeactivateHackingUI(); }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("finalLevel"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void Hacking(LightObject light, PcLightObject PcLight)
@@ -317,39 +369,6 @@ public class FPSController : MonoBehaviour
             {
                 scrollbar.SetActive(false);
                 IsHacking = false;
-                progressBar.fillAmount = 0f;
-                fillAmount = 0f;
-            }
-        }
-    }
-
-    private void FinalHacking()
-    {
-        ActivateHackingUI();
-        if (isInteractable)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                fillAmount = 0f;
-            }
-
-            if (Input.GetKey(KeyCode.E))
-            {
-                IsHacking = true;
-                HackingBar();
-                fillAmount += (Time.deltaTime / 10);
-                progressBar.fillAmount = fillAmount;
-                if (fillAmount >= 1f)
-                {
-                    IsHacking = false;
-                    DeactivateHackingUI();
-                    gamemanager.ChangeScene(5);
-                }
-            }
-            else
-            {
-                IsHacking = false;
-                DeactivateHackingBar();
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }

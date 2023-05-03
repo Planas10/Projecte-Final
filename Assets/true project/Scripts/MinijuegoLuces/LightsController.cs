@@ -21,7 +21,6 @@ public class LightsController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PCluz1"))
         {
-            Debug.Log("WFERFWEGFEWWWWWWWWWWWWWWWF");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 // change the color of the panel light
@@ -34,7 +33,6 @@ public class LightsController : MonoBehaviour
 
         if (other.gameObject.CompareTag("PCluz2"))
         {
-            Debug.Log("WFERFWEGFEWWWWWWWWWWWWWWWF");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 // change the color of the panel light
@@ -47,7 +45,6 @@ public class LightsController : MonoBehaviour
 
         if (other.gameObject.CompareTag("PCluz3"))
         {
-            Debug.Log("WFERFWEGFEWWWWWWWWWWWWWWWF");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 // change the color of the panel light
@@ -60,7 +57,6 @@ public class LightsController : MonoBehaviour
 
         if (other.gameObject.CompareTag("PCluz4"))
         {
-            Debug.Log("WFERFWEGFEWWWWWWWWWWWWWWWF");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 // change the color of the panel light

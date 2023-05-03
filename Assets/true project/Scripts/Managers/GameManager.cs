@@ -72,5 +72,48 @@ public class GameManager : MonoBehaviour
     }
     public void GODmodeActivateLights(LightObject light, PcLightObject PcLight) { light.ActivateLight(true); PcLight.GetComponent<Light>().color = Color.green; }
 
+    public void OpenTrapDoors(GameObject Ldoor, GameObject Rdoor) {
+
+        Vector3 LdoorFpos = new Vector3(Ldoor.transform.position.x, Ldoor.transform.position.y, Ldoor.transform.position.z + 1.5f);
+        Vector3 RdoorFpos = new Vector3(Rdoor.transform.position.x, Rdoor.transform.position.y, Rdoor.transform.position.z - 1.5f);
+
+        if (Vector3.Distance(Ldoor.transform.position, LdoorFpos) > 0.1f)
+        {
+            Ldoor.transform.Translate(Ldoor.transform.forward * 0.8f * Time.deltaTime);
+        }
+        if (Vector3.Distance(Rdoor.transform.position, RdoorFpos) > 0.1f)
+        {
+            Ldoor.transform.Translate(-Rdoor.transform.forward * 0.8f * Time.deltaTime);
+        }
+        //Vector3 LFpose = new Vector3(Ldoor.transform.position.x, Ldoor.transform.position.y, Ldoor.transform.position.z + 1.5f);
+        //Vector3 RFpose = new Vector3(Rdoor.transform.position.x, Rdoor.transform.position.y, Rdoor.transform.position.z - 1.5f);
+        //vfvfdvfdgdf
+
+        //Ldoor.transform.position = LFpose;
+        //Rdoor.transform.position = RFpose;
+
+        //Ldoor.SetActive(false); Rdoor.SetActive(false);
+
+    }
+    public void CloseTrapDoors(GameObject Ldoor, GameObject Rdoor)
+    {
+        Vector3 LdoorFpos = new Vector3(Ldoor.transform.position.x, Ldoor.transform.position.y, Ldoor.transform.position.z - 1.5f);
+        //Vector3 RdoorFpos = new Vector3(Rdoor.transform.position.x, Rdoor.transform.position.y, Rdoor.transform.position.z + 1.5f);
+
+        if (Vector3.Distance(Ldoor.transform.position, LdoorFpos) > 0.1f)
+        {
+            Ldoor.transform.Translate(-Ldoor.transform.right * 0.8f * Time.deltaTime);
+        }
+        //if (Vector3.Distance(Rdoor.transform.position, RdoorFpos) > 0.1f)
+        //{
+        //    Ldoor.transform.Translate(Rdoor.transform.right * 0.8f * Time.deltaTime);
+        //}
+        //Vector3 LIpose = new Vector3(Ldoor.transform.position.x, Ldoor.transform.position.y, Ldoor.transform.position.z - 1.5f);
+        //Vector3 RIpose = new Vector3(Rdoor.transform.position.x, Rdoor.transform.position.y, Rdoor.transform.position.z + 1.5f);
+        //Ldoor.transform.position = LIpose;
+        //Rdoor.transform.position = RIpose;
+
+        //Ldoor.SetActive(true); Rdoor.SetActive(true);
+    }
 
 }

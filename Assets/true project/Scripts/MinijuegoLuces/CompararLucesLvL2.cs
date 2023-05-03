@@ -16,6 +16,8 @@ public class CompararLucesLvL2 : MonoBehaviour
     private bool LucesBien = false;
 
     public GameObject lasersPuerta;
+    public GameObject LPuerta;
+    public GameObject RPuerta;
 
 
     private void Awake()
@@ -39,29 +41,31 @@ public class CompararLucesLvL2 : MonoBehaviour
     private void Update()
     {
 
-        if (lucesAbajo[0].gameObject.GetComponent<Light>().color == lucesAbajo[0].gameObject.GetComponent<Light>().color)
+        if (lucesAbajo[0].gameObject.GetComponent<Light>().color == lucesArriba[0].gameObject.GetComponent<Light>().color)
         {
             Luz1Activada = true;
         }
 
-        if (lucesAbajo[1].gameObject.GetComponent<Light>().color == lucesAbajo[1].gameObject.GetComponent<Light>().color)
+        if (lucesAbajo[1].gameObject.GetComponent<Light>().color == lucesArriba[1].gameObject.GetComponent<Light>().color)
         {
             Luz2Activada = true;
         }
 
-        if (lucesAbajo[2].gameObject.GetComponent<Light>().color == lucesAbajo[2].gameObject.GetComponent<Light>().color)
+        if (lucesAbajo[2].gameObject.GetComponent<Light>().color == lucesArriba[2].gameObject.GetComponent<Light>().color)
         {
             Luz3Activada = true;
         }
 
-        if (lucesAbajo[3].gameObject.GetComponent<Light>().color == lucesAbajo[3].gameObject.GetComponent<Light>().color)
+        if (lucesAbajo[3].gameObject.GetComponent<Light>().color == lucesArriba[3].gameObject.GetComponent<Light>().color)
         {
-            Luz4Activada = true;    
+            Luz4Activada = true;
         }
 
         if (Luz1Activada && Luz2Activada && Luz3Activada && Luz4Activada)
         {
             lasersPuerta.SetActive(false);
+            RPuerta.SetActive(false);
+            LPuerta.SetActive(false);
         }
 
     }
