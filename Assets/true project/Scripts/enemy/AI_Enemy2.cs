@@ -66,7 +66,7 @@ public class AI_Enemy2 : MonoBehaviour
 
         //Debug.Log(IsDistracted);
 
-        Vector3 TargetDir = Player.transform.position - transform.position;
+        //Vector3 TargetDir = Player.transform.position - transform.position;
 
         Physics.Raycast(transform.position, Player.transform.position);
         //float Angle = Vector3.SignedAngle(, Vector3.forward);
