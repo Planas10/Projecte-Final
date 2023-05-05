@@ -215,18 +215,18 @@ public class FPSController : MonoBehaviour
         //Debug.Log(MoveDirection);
 
         //pa andar quaiet
-        if (Input.GetButton("Fire3"))
-        {
-            WalkingSound = 3;
-            currentSpeed = silenceSpeed;
-            characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
-        }
-        else
-        {
-            WalkingSound = 5;
-            currentSpeed = normalMoveSpeed;
-            characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
-        }
+        //if (Input.GetButton("Fire3"))
+        //{
+        //    WalkingSound = 3;
+        //    currentSpeed = silenceSpeed;
+        //    characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
+        //}
+        //else
+        //{
+        WalkingSound = 5;
+        currentSpeed = normalMoveSpeed;
+        characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
+        //}
         //Debug.Log(WalkingSound);
     }
 
@@ -290,36 +290,62 @@ public class FPSController : MonoBehaviour
 
         if (other.gameObject.CompareTag("PcTrampa1"))
         {
-            Debug.Log("PcTrampa1");
-            if (Input.GetKey(KeyCode.E))
+            //Debug.Log("PcTrampa1");
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("Puerta1");
-                TrapPc1Active = true;
+                if (!TrapPc1Active)
+                {
+                    TrapPc1Active = true;
+                }
+                else
+                {
+                    TrapPc1Active = false;
+                }
             }
         }
         if (other.gameObject.CompareTag("PcTrampa2"))
         {
             Debug.Log("PcTrampa2");
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                TrapPc2Active = true;
+                if (!TrapPc2Active)
+                {
+                    TrapPc2Active = true;
+                }
+                else
+                {
+                    TrapPc2Active = false;
+                }
             }
         }
         if (other.gameObject.CompareTag("PcTrampa3"))
         {
             Debug.Log("PcTrampa3");
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                TrapPc3Active = true;
+                if (!TrapPc3Active)
+                {
+                    TrapPc3Active = true;
+                }
+                else
+                {
+                    TrapPc3Active = false;
+                }
             }
         }
         if (other.gameObject.CompareTag("PcTrampa4"))
         {
             Debug.Log("PcTrampa4");
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-
-                TrapPc4Active = true;
+                if (!TrapPc4Active)
+                {
+                    TrapPc4Active = true;
+                }
+                else
+                {
+                    TrapPc4Active = false;
+                }
             }
         }
 

@@ -72,48 +72,39 @@ public class GameManager : MonoBehaviour
     }
     public void GODmodeActivateLights(LightObject light, PcLightObject PcLight) { light.ActivateLight(true); PcLight.GetComponent<Light>().color = Color.green; }
 
-    public void OpenTrapDoors(GameObject Ldoor, GameObject Rdoor) {
+    public void OpenTrapDoors(GameObject Ldoor, GameObject LdoorLimit, GameObject Rdoor, GameObject RdoorLimit) {
 
-        Vector3 LdoorFpos = new Vector3(Ldoor.transform.position.x, Ldoor.transform.position.y, Ldoor.transform.position.z + 1.5f);
-        Vector3 RdoorFpos = new Vector3(Rdoor.transform.position.x, Rdoor.transform.position.y, Rdoor.transform.position.z - 1.5f);
+        //Debug.Log("asignar destino puertas");
 
-        if (Vector3.Distance(Ldoor.transform.position, LdoorFpos) > 0.1f)
+
+        if (Vector3.Distance(Ldoor.transform.position, LdoorLimit.transform.position) > 5.5f)
         {
-            Ldoor.transform.Translate(Ldoor.transform.forward * 0.8f * Time.deltaTime);
+            Ldoor.transform.position -= Ldoor.transform.forward * 0.8f * Time.deltaTime;
+            //Vector3.MoveTowards(Ldoor.transform.position, LdoorLimit.transform.position, 0.2f);
+            Debug.Log("puerta L se mueve");
         }
-        if (Vector3.Distance(Rdoor.transform.position, RdoorFpos) > 0.1f)
+        if (Vector3.Distance(Rdoor.transform.position, RdoorLimit.transform.position) > 5.9f)
         {
-            Ldoor.transform.Translate(-Rdoor.transform.forward * 0.8f * Time.deltaTime);
+            Debug.Log(Vector3.Distance(Rdoor.transform.position, RdoorLimit.transform.position));
+            Rdoor.transform.position += Rdoor.transform.forward * 0.8f * Time.deltaTime;
+            //Vector3.MoveTowards(Rdoor.transform.position, RdoorLimit.transform.position, 0.2f);
+            Debug.Log("puerta R se mueve");
         }
-        //Vector3 LFpose = new Vector3(Ldoor.transform.position.x, Ldoor.transform.position.y, Ldoor.transform.position.z + 1.5f);
-        //Vector3 RFpose = new Vector3(Rdoor.transform.position.x, Rdoor.transform.position.y, Rdoor.transform.position.z - 1.5f);
-        //vfvfdvfdgdf
-
-        //Ldoor.transform.position = LFpose;
-        //Rdoor.transform.position = RFpose;
-
-        //Ldoor.SetActive(false); Rdoor.SetActive(false);
-
     }
-    public void CloseTrapDoors(GameObject Ldoor, GameObject Rdoor)
+    public void CloseTrapDoors(GameObject Ldoor, Vector3 LdoorLimit, GameObject Rdoor, Vector3 RdoorLimit)
     {
-        Vector3 LdoorFpos = new Vector3(Ldoor.transform.position.x, Ldoor.transform.position.y, Ldoor.transform.position.z - 1.5f);
-        //Vector3 RdoorFpos = new Vector3(Rdoor.transform.position.x, Rdoor.transform.position.y, Rdoor.transform.position.z + 1.5f);
-
-        if (Vector3.Distance(Ldoor.transform.position, LdoorFpos) > 0.1f)
+        Debug.Log(Vector3.Distance(Ldoor.transform.position, LdoorLimit));
+        if (Vector3.Distance(Ldoor.transform.position, LdoorLimit) > 5.5f)
         {
-            Ldoor.transform.Translate(-Ldoor.transform.right * 0.8f * Time.deltaTime);
+            Ldoor.transform.position += Ldoor.transform.forward * 0.8f * Time.deltaTime;
+            Debug.Log("puerta L se mueve");
         }
-        //if (Vector3.Distance(Rdoor.transform.position, RdoorFpos) > 0.1f)
-        //{
-        //    Ldoor.transform.Translate(Rdoor.transform.right * 0.8f * Time.deltaTime);
-        //}
-        //Vector3 LIpose = new Vector3(Ldoor.transform.position.x, Ldoor.transform.position.y, Ldoor.transform.position.z - 1.5f);
-        //Vector3 RIpose = new Vector3(Rdoor.transform.position.x, Rdoor.transform.position.y, Rdoor.transform.position.z + 1.5f);
-        //Ldoor.transform.position = LIpose;
-        //Rdoor.transform.position = RIpose;
-
-        //Ldoor.SetActive(true); Rdoor.SetActive(true);
+        if (Vector3.Distance(Rdoor.transform.position, RdoorLimit) > 5.9f)
+        {
+            Debug.Log(Vector3.Distance(Rdoor.transform.position, RdoorLimit));
+            Rdoor.transform.position -= Rdoor.transform.forward * 0.8f * Time.deltaTime;
+            Debug.Log("puerta R se mueve");
+        }
     }
 
 }
