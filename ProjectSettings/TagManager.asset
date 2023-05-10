@@ -27,6 +27,8 @@ TagManager:
   - PcTrampa2
   - PcTrampa3
   - PcTrampa4
+  - finalLevel
+  - TrapDoor
   layers:
   - Default
   - TransparentFX

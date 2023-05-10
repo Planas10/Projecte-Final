@@ -80,12 +80,6 @@ public class FPSController : MonoBehaviour
     private bool Vactive;
 
 
-    public bool TrapPc1Active = false;
-    public bool TrapPc2Active = false;
-    public bool TrapPc3Active = false;
-    public bool TrapPc4Active = false;
-
-
 
     private void Awake()
     {
@@ -287,64 +281,15 @@ public class FPSController : MonoBehaviour
             Hacking(lights[4], PClights[4]);
         }
 
-        if (other.gameObject.CompareTag("PcTrampa1"))
+        if (other.gameObject.CompareTag("TrapDoor"))
         {
             //Debug.Log("PcTrampa1");
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (!TrapPc1Active)
-                {
-                    TrapPc1Active = true;
-                }
-                else
-                {
-                    TrapPc1Active = false;
-                }
-            }
-        }
-        if (other.gameObject.CompareTag("PcTrampa2"))
-        {
-            Debug.Log("PcTrampa2");
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (!TrapPc2Active)
-                {
-                    TrapPc2Active = true;
-                }
-                else
-                {
-                    TrapPc2Active = false;
-                }
-            }
-        }
-        if (other.gameObject.CompareTag("PcTrampa3"))
-        {
-            Debug.Log("PcTrampa3");
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (!TrapPc3Active)
-                {
-                    TrapPc3Active = true;
-                }
-                else
-                {
-                    TrapPc3Active = false;
-                }
-            }
-        }
-        if (other.gameObject.CompareTag("PcTrampa4"))
-        {
-            Debug.Log("PcTrampa4");
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (!TrapPc4Active)
-                {
-                    TrapPc4Active = true;
-                }
-                else
-                {
-                    TrapPc4Active = false;
-                }
+                //cambiar la puerta de estado
+                //conseguir la puerta
+                TrapDoor td = other.gameObject.GetComponentInParent<TrapDoor>();
+                td.isOpened = !td.isOpened;
             }
         }
 

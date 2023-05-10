@@ -27,15 +27,6 @@ public class CompararLucesLvL2 : MonoBehaviour
 
         lucesArriba = new(FindObjectsOfType<LuzAleatoria>());
         lucesArriba.Sort((a, b) => { return a.name.CompareTo(b.name); });
-        for (int i = 0; i < lucesAbajo.ToArray().Length; i++)
-        {
-            Debug.Log(lucesAbajo[i].gameObject.name); 
-        }
-
-        for (int i = 0; i < lucesArriba.ToArray().Length; i++)
-        {
-            Debug.Log(lucesArriba[i].gameObject.name);
-        }
     }
 
     private void Update()

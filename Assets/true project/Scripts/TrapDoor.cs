@@ -58,10 +58,10 @@ public class TrapDoor : MonoBehaviour
     {
         if (isOpened)
         {
-            CloseTrapDoors();
+            OpenTrapDoors();
         }else
         {
-            OpenTrapDoors();
+            CloseTrapDoors();
         }
     }
 }
