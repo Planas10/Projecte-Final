@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolPoint2 : MonoBehaviour
+public class PatrolPoint : MonoBehaviour
 {
     private void OnDrawGizmos()
     {

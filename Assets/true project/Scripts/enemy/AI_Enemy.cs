@@ -5,10 +5,9 @@ using UnityEngine.AI;
 
 public class AI_Enemy : MonoBehaviour
 {
-    static public List<PatrolPoint1> waypoints;
-    public GameObject Player;
-
-    public FPSController playerS;
+    [SerializeField] private PatrolPoint[] waypoints;
+    private GameObject player;
+    private FPSController playerS;
     private bullet Bullet;
 
     public GameObject ChasingLight;
@@ -24,8 +23,6 @@ public class AI_Enemy : MonoBehaviour
 
     private NavMeshAgent IA;
 
-    public Animation Anim;
-
     private Vector3 InitialPos;
 
     private bool IsChasingPlayer;
@@ -38,11 +35,14 @@ public class AI_Enemy : MonoBehaviour
     {
         IA = GetComponent<NavMeshAgent>();
 
-        playerS = FindObjectOfType<FPSController>();
+        player = FindObjectOfType<FPSController>().gameObject;
+        playerS = player.GetComponent<FPSController>();   
 
+        /*
         waypoints = new(FindObjectsOfType<PatrolPoint1>());
         waypoints.Sort((a, b) => { return a.name.CompareTo(b.name); });
         transform.position = waypoints[currentPoint].transform.position;
+        */
 
         InitialPos = transform.position;
 
@@ -68,12 +68,12 @@ public class AI_Enemy : MonoBehaviour
 
         //Debug.Log(IsDistracted);
 
-        Vector3 TargetDir = Player.transform.position - transform.position;
+        Vector3 TargetDir = player.transform.position - transform.position;
 
-        Physics.Raycast(transform.position, Player.transform.position);
+        Physics.Raycast(transform.position, player.transform.position);
         //float Angle = Vector3.SignedAngle(, Vector3.forward);
 
-        if (!IsChasingPlayer && !IsDistracted)
+        if (!IsChasingPlayer && !IsDistracted && !Trapped)
         {
             Patrol();
         }
@@ -123,11 +123,6 @@ public class AI_Enemy : MonoBehaviour
         {
             IsChasingPlayer = true;
         }
-        if (other.gameObject.GetComponent<HologramaTrampa1>())
-        {
-            Trapped = true;
-            GetComponent<SphereCollider>().enabled = false;
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -149,6 +144,11 @@ public class AI_Enemy : MonoBehaviour
             transform.position = InitialPos;
             IsChasingPlayer = false;
         }
+
+        if (collision.gameObject.GetComponent<HologramaTrampa1>())
+        {
+            Trapped = true;
+        }
     }
 
     //private void OnDrawGizmos()
@@ -161,6 +161,11 @@ public class AI_Enemy : MonoBehaviour
     //}
 
     private void Patrol() {
+        if(waypoints.Length == 0) {
+            Debug.LogError("No has ficat el patrolpoints a un enemic: " + this.gameObject.name);
+            return; 
+        }
+
         IA.speed = normalSpeed;
         //RaycastHit hit;
         //Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
@@ -188,7 +193,7 @@ public class AI_Enemy : MonoBehaviour
             currentPoint++;
 
         }
-        if (currentPoint >= waypoints.Count)
+        if (currentPoint >= waypoints.Length)
         {
             transform.Rotate(0, 0, 0);
             //Debug.Log("Final de trayecto");
@@ -208,8 +213,8 @@ private void ChasePlayer()
         {
             IA.speed = chaseSpeed;
             IsChasingPlayer = true;
-            transform.LookAt(Player.transform.position);
-            IA.SetDestination(Player.transform.position);
+            transform.LookAt(player.transform.position);
+            IA.SetDestination(player.transform.position);
         }
     }
 }
