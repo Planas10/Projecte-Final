@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class FPSController : MonoBehaviour
 {
     public GameManager gamemanager;
-    public TrapDoorManager trapdoormanager;
 
     public Camera Cam;
     public bullet sound_bullet;
@@ -158,7 +157,7 @@ public class FPSController : MonoBehaviour
         }
         if (CurrentLevel == 2)
         {
-            trapdoormanager.ActivateDoor();
+            //trapdoormanager.ActivateDoor();
         }
 
         //Hackeo
