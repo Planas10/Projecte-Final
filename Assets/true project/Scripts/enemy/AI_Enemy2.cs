@@ -32,6 +32,7 @@ public class AI_Enemy2 : MonoBehaviour
     private bool LookingForPlayer;
     private bool IsDistracted;
 
+    public bool Trapped2 = false;
     private void Awake()
     {
         IA = GetComponent<NavMeshAgent>();
@@ -120,6 +121,11 @@ public class AI_Enemy2 : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             IsChasingPlayer = true;
+        }
+        if (other.gameObject.GetComponent<HologramaTrampa2>())
+        {
+            Trapped2 = true;
+            GetComponent<SphereCollider>().enabled = false;
         }
     }
 

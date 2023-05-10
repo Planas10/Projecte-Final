@@ -32,6 +32,8 @@ public class AI_Enemy3 : MonoBehaviour
     private bool LookingForPlayer;
     private bool IsDistracted;
 
+    public bool Trapped3 = false;
+
     private void Awake()
     {
         IA = GetComponent<NavMeshAgent>();
@@ -120,6 +122,11 @@ public class AI_Enemy3 : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             IsChasingPlayer = true;
+        }
+        if (other.gameObject.GetComponent<HologramaTrampa3>())
+        {
+            Trapped3 = true;
+            GetComponent<SphereCollider>().enabled = false;
         }
     }
 

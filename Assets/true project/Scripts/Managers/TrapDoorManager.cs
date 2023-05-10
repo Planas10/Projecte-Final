@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class TrapDoorManager : MonoBehaviour
 {
+
     public GameManager gamemanager;
     public FPSController fpsController;
+    public AI_Enemy Enemy1;
+    public AI_Enemy2 Enemy2;
+    public AI_Enemy3 Enemy3;
+    public AI_Enemy4 Enemy4;
 
     public GameObject LTrapDoor1;
     public GameObject LTrapDoorLimit1;
@@ -27,6 +32,9 @@ public class TrapDoorManager : MonoBehaviour
     public GameObject RTrapDoor4;
     public GameObject RTrapDoorLimit4;
 
+    [SerializeField]private GameObject LFinalDoor;
+    [SerializeField]private GameObject RFinalDoor;
+
     private Vector3 Ldoor1InitPos;
     private Vector3 Rdoor1InitPos;
     private Vector3 Ldoor2InitPos;
@@ -35,6 +43,11 @@ public class TrapDoorManager : MonoBehaviour
     private Vector3 Rdoor3InitPos;
     private Vector3 Ldoor4InitPos;
     private Vector3 Rdoor4InitPos;
+
+    private Vector3 LFinalDoorLimit;
+    private Vector3 RFinalDoorLimit;
+
+
 
     private void Awake()
     {
@@ -47,6 +60,18 @@ public class TrapDoorManager : MonoBehaviour
         Rdoor3InitPos = RTrapDoor3.transform.position;
         Rdoor4InitPos = RTrapDoor4.transform.position;
 
+        LFinalDoorLimit = new Vector3(LFinalDoor.transform.position.x + 1.8f, LFinalDoor.transform.position.y, LFinalDoor.transform.position.z);
+        RFinalDoorLimit = new Vector3(RFinalDoor.transform.position.x - 1.8f, RFinalDoor.transform.position.y, RFinalDoor.transform.position.z);
+
+    }
+
+    private void Update()
+    {
+        Debug.Log("Enemy1" + Enemy1.Trapped);
+        Debug.Log("Enemy2" + Enemy2.Trapped2);
+        Debug.Log("Enemy3" + Enemy3.Trapped3);
+        Debug.Log("Enemy4" + Enemy4.Trapped4);
+        OpenFinalDoor();
     }
 
     public void ActivateDoor()
@@ -83,6 +108,23 @@ public class TrapDoorManager : MonoBehaviour
         else
         {
             gamemanager.CloseTrapDoors(LTrapDoor4, Ldoor4InitPos, RTrapDoor4, Rdoor4InitPos);
+        }
+    }
+
+    private void OpenFinalDoor() {
+        
+        if (Enemy1.Trapped && Enemy2.Trapped2 && Enemy3.Trapped3 && Enemy3.Trapped3)
+        {
+            if (Vector3.Distance(LFinalDoor.transform.position, LFinalDoorLimit) >= 0.1f)
+            {
+                LFinalDoor.transform.position += LFinalDoor.transform.forward * 0.8f * Time.deltaTime;
+                Debug.Log("puerta L se mueve");
+            }
+            if (Vector3.Distance(RFinalDoor.transform.position, RFinalDoorLimit) >= 0.1f)
+            {
+                RFinalDoor.transform.position -= RFinalDoor.transform.forward * 0.8f * Time.deltaTime;
+                Debug.Log("puerta R se mueve");
+            }
         }
     }
 }

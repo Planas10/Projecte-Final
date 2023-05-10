@@ -32,6 +32,8 @@ public class AI_Enemy4 : MonoBehaviour
     private bool LookingForPlayer;
     private bool IsDistracted;
 
+    public bool Trapped4 = false;
+
     private void Awake()
     {
         IA = GetComponent<NavMeshAgent>();
@@ -100,14 +102,6 @@ public class AI_Enemy4 : MonoBehaviour
         }
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Bullet"))
-    //    {
-    //        IsDistracted = false;
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Bullet"))
@@ -120,6 +114,11 @@ public class AI_Enemy4 : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             IsChasingPlayer = true;
+        }
+        if (other.gameObject.GetComponent<HologramaTrampa4>())
+        {
+            Trapped4 = true;
+            GetComponent<SphereCollider>().enabled = false;
         }
     }
 

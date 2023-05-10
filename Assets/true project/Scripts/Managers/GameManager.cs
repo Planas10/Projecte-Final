@@ -94,12 +94,12 @@ public class GameManager : MonoBehaviour
     public void CloseTrapDoors(GameObject Ldoor, Vector3 LdoorLimit, GameObject Rdoor, Vector3 RdoorLimit)
     {
         Debug.Log(Vector3.Distance(Ldoor.transform.position, LdoorLimit));
-        if (Vector3.Distance(Ldoor.transform.position, LdoorLimit) > 5.5f)
+        if (Vector3.Distance(Ldoor.transform.position, LdoorLimit) > 0.01f)
         {
             Ldoor.transform.position += Ldoor.transform.forward * 0.8f * Time.deltaTime;
             Debug.Log("puerta L se mueve");
         }
-        if (Vector3.Distance(Rdoor.transform.position, RdoorLimit) > 5.9f)
+        if (Vector3.Distance(Rdoor.transform.position, RdoorLimit) > 0.01f)
         {
             Debug.Log(Vector3.Distance(Rdoor.transform.position, RdoorLimit));
             Rdoor.transform.position -= Rdoor.transform.forward * 0.8f * Time.deltaTime;
