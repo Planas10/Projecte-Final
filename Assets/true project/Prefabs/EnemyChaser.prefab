@@ -166,6 +166,64 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6359037973369110905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5351318767747921505}
+  - component: {fileID: 913801426649725117}
+  - component: {fileID: 2712039225788724397}
+  m_Layer: 0
+  m_Name: Chaser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5351318767747921505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359037973369110905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7769786815801682522}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &913801426649725117
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359037973369110905}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2712039225788724397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359037973369110905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8f752f8199c754dbeba51d69585603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6870875939322975233
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,12 +316,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7769786815801682522}
-  - component: {fileID: 6960316926277923046}
   - component: {fileID: 6960316926277923047}
   - component: {fileID: 6960316926277923045}
   - component: {fileID: 5788391477489701665}
   - component: {fileID: 818535921749271218}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyChaser
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -287,22 +344,10 @@ Transform:
   - {fileID: 8789114013796027034}
   - {fileID: 303943990865712877}
   - {fileID: 1554757619547728281}
+  - {fileID: 5351318767747921505}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6960316926277923046
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6960316926277923040}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &6960316926277923047
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -337,13 +382,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fefa0d2d4b91349aee31dc21852431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  playerS: {fileID: 0}
+  waypoints: []
   ChasingLight: {fileID: 7647801178698031920}
   AlertLight: {fileID: 7647801177146329518}
   currentPoint: 0
   SearchTime: 0
-  Anim: {fileID: 0}
+  IsChasingPlayer: 0
   Trapped: 0
 --- !u!54 &5788391477489701665
 Rigidbody:

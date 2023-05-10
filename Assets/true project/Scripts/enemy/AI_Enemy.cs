@@ -25,7 +25,7 @@ public class AI_Enemy : MonoBehaviour
 
     private Vector3 InitialPos;
 
-    private bool IsChasingPlayer;
+    public bool IsChasingPlayer;
     private bool LookingForPlayer;
     private bool IsDistracted;
 
@@ -110,21 +110,6 @@ public class AI_Enemy : MonoBehaviour
     //    }
     //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            IA.speed = alertSpeed;
-            IsDistracted = true;
-            AlertLight.SetActive(true);
-            IA.SetDestination(other.transform.position);
-        }
-        if (other.gameObject.CompareTag("Player"))
-        {
-            IsChasingPlayer = true;
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Bullet"))
@@ -143,11 +128,6 @@ public class AI_Enemy : MonoBehaviour
         {
             transform.position = InitialPos;
             IsChasingPlayer = false;
-        }
-
-        if (collision.gameObject.GetComponent<HologramaTrampa1>())
-        {
-            Trapped = true;
         }
     }
 
@@ -216,5 +196,13 @@ private void ChasePlayer()
             transform.LookAt(player.transform.position);
             IA.SetDestination(player.transform.position);
         }
+    }
+
+    public void Bulleted(Vector3 position)
+    {
+        IA.speed = alertSpeed;
+        IsDistracted = true;
+        AlertLight.SetActive(true);
+        IA.SetDestination(position);
     }
 }
