@@ -5,7 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
 
-        public AudioSource audioSource;
+    public AudioSource audioSource;
     private float force = 10f;
     private float lifeTime = 6f;
 
@@ -18,6 +18,8 @@ public class bullet : MonoBehaviour
     public BulletDistraction BulletDistractionS;
 
     private Rigidbody rb;
+    private bool coroutineLaunched= false;
+    [SerializeField] SphereCollider alarmTrigger;
 
     void Awake()
     {
@@ -33,7 +35,11 @@ public class bullet : MonoBehaviour
     {
         if (BulletDistractionS.CanDie)
         {
-            StartCoroutine(Countdown());
+            if (!coroutineLaunched)
+            {
+                coroutineLaunched = true;
+                StartCoroutine(Countdown());
+            }
         }
     }
 
@@ -41,6 +47,8 @@ public class bullet : MonoBehaviour
     {
         //Debug.Log("Me voy a destruir");
         yield return new WaitForSeconds(lifeTime);
+        alarmTrigger.radius = 0f;
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
 
     }
@@ -49,7 +57,6 @@ public class bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacles"))
         {
-            Debug.Log("colisi�n");
             //transform.parent = collision.transform;
             //rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints.FreezePosition;

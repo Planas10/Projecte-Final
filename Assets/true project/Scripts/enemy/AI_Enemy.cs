@@ -23,40 +23,44 @@ public class AI_Enemy : MonoBehaviour
 
     private NavMeshAgent IA;
 
-    private Vector3 InitialPos;
+    public Vector3 InitialPos;
+    public bool playerChased = false;
 
     public bool IsChasingPlayer;
     private bool LookingForPlayer;
-    private bool IsDistracted;
+    public bool IsDistracted;
 
     public bool Trapped = false;
-
+    bullet bulletDetected = null;
     private void Awake()
     {
         IA = GetComponent<NavMeshAgent>();
 
         player = FindObjectOfType<FPSController>().gameObject;
-        playerS = player.GetComponent<FPSController>();   
+        playerS = player.GetComponent<FPSController>();
 
         /*
         waypoints = new(FindObjectsOfType<PatrolPoint1>());
         waypoints.Sort((a, b) => { return a.name.CompareTo(b.name); });
         transform.position = waypoints[currentPoint].transform.position;
         */
-
-        InitialPos = transform.position;
+        InitialPos = gameObject.transform.position;
 
         currentPoint++;
     }
      
     void Update()
     {
-        Bullet = FindObjectOfType<bullet>();
-        if (Bullet == null)
-        {
+        //Bullet = FindObjectOfType<bullet>();
+        //if (Bullet == null)
+        //{
+        //    AlertLight.SetActive(false);
+        //    IsDistracted = false;
+        //}
+        if(IsDistracted && bulletDetected == null){
             AlertLight.SetActive(false);
             IsDistracted = false;
-        }
+        } 
         if (IsChasingPlayer)
         {
             ChasingLight.SetActive(true);
@@ -79,67 +83,35 @@ public class AI_Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (!IsDistracted)
-        {
-            //Debug.Log("Veo al player");
-            if (other.gameObject.tag == "Player")
-            {
-                switch (playerS.WalkingSound)
-                {
-                    case 5:
-                        ChasePlayer();
-                        break;
-                    //case 3:
-                    //    //Debug.Log("Veo al player mal");
-                    //    LookAround();
-                    //    break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Bullet"))
-    //    {
-    //        IsDistracted = false;
-    //    }
-    //}
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            IsDistracted = false;
-        }
-        if (other.gameObject.CompareTag("Player"))
-        {
-            IsChasingPlayer = false;
-        }
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.GetComponent<FPSController>())
         {
+            //playerChased = true;
             transform.position = InitialPos;
             IsChasingPlayer = false;
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
-    //    Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponentInChildren<BulletDistraction>() && other.gameObject.GetComponent<bullet>().CanActivate)
+        {
+            bulletDetected = other.gameObject.GetComponent<bullet>();
+            Debug.LogError("Veo la bala");
+            Bulleted(other.transform.position);
+        }
+    }
 
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawLine(InitPos, FinalPos);
-    //}
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<bullet>())
+        {
+            Debug.LogError("Dejo de ver la bala");
+            AlertLight.SetActive(false);
+            IsDistracted = false;
+        }
+    }
     private void Patrol() {
         if(waypoints.Length == 0) {
             Debug.LogError("No has ficat el patrolpoints a un enemic: " + this.gameObject.name);
@@ -186,8 +158,7 @@ public class AI_Enemy : MonoBehaviour
             IA.SetDestination(waypoints[currentPoint].transform.position);
         }
     }
-
-private void ChasePlayer()
+    public void ChasePlayer()
     {
         if (!IsDistracted)
         {
@@ -197,7 +168,6 @@ private void ChasePlayer()
             IA.SetDestination(player.transform.position);
         }
     }
-
     public void Bulleted(Vector3 position)
     {
         IA.speed = alertSpeed;
@@ -205,4 +175,5 @@ private void ChasePlayer()
         AlertLight.SetActive(true);
         IA.SetDestination(position);
     }
+
 }

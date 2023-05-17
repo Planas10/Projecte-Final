@@ -82,6 +82,7 @@ MonoBehaviour:
   CanActivate: 0
   DistractionCollider: {fileID: 4595673825101195200}
   BulletDistractionS: {fileID: 858059898741828344}
+  alarmTrigger: {fileID: 3903685074016309885}
 --- !u!82 &3973579847358821505
 AudioSource:
   m_ObjectHideFlags: 0
