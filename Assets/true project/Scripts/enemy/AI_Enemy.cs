@@ -23,11 +23,12 @@ public class AI_Enemy : MonoBehaviour
 
     private NavMeshAgent IA;
 
-    private Vector3 InitialPos;
+    public Transform InitialPos;
+    public bool playerChased = false;
 
     public bool IsChasingPlayer;
     private bool LookingForPlayer;
-    private bool IsDistracted;
+    public bool IsDistracted;
 
     public bool Trapped = false;
 
@@ -44,7 +45,7 @@ public class AI_Enemy : MonoBehaviour
         transform.position = waypoints[currentPoint].transform.position;
         */
 
-        InitialPos = transform.position;
+        InitialPos = gameObject.transform;
 
         currentPoint++;
     }
@@ -79,66 +80,14 @@ public class AI_Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (!IsDistracted)
-        {
-            //Debug.Log("Veo al player");
-            if (other.gameObject.tag == "Player")
-            {
-                switch (playerS.WalkingSound)
-                {
-                    case 5:
-                        ChasePlayer();
-                        break;
-                    //case 3:
-                    //    //Debug.Log("Veo al player mal");
-                    //    LookAround();
-                    //    break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Bullet"))
-    //    {
-    //        IsDistracted = false;
-    //    }
-    //}
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            IsDistracted = false;
-        }
-        if (other.gameObject.CompareTag("Player"))
-        {
-            IsChasingPlayer = false;
-        }
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.GetComponent<FPSController>())
         {
-            transform.position = InitialPos;
+            playerChased = true;
             IsChasingPlayer = false;
         }
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
-    //    Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
-
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawLine(InitPos, FinalPos);
-    //}
 
     private void Patrol() {
         if(waypoints.Length == 0) {
@@ -186,8 +135,7 @@ public class AI_Enemy : MonoBehaviour
             IA.SetDestination(waypoints[currentPoint].transform.position);
         }
     }
-
-private void ChasePlayer()
+    public void ChasePlayer()
     {
         if (!IsDistracted)
         {
@@ -197,7 +145,6 @@ private void ChasePlayer()
             IA.SetDestination(player.transform.position);
         }
     }
-
     public void Bulleted(Vector3 position)
     {
         IA.speed = alertSpeed;
@@ -205,4 +152,5 @@ private void ChasePlayer()
         AlertLight.SetActive(true);
         IA.SetDestination(position);
     }
+
 }

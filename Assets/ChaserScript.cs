@@ -10,15 +10,39 @@ public class ChaserScript : MonoBehaviour
     {
         enemy = GetComponentInParent<AI_Enemy>();
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (!enemy.IsDistracted)
+        {
+            //Debug.Log("Veo al player");
+            if (other.gameObject.GetComponent<FPSController>())
+            {
+                enemy.ChasePlayer();
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.GetComponentInChildren<BulletDistraction>())
         {
+            Debug.LogError("Veo la bala");
             enemy.Bulleted(other.transform.position);
         }
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.GetComponent<FPSController>())
         {
             enemy.IsChasingPlayer = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<BulletDistraction>())
+        {
+            Debug.LogError("Dejo de ver la bala");
+            enemy.IsDistracted = false;
+        }
+        if (other.gameObject.GetComponent<FPSController>())
+        {
+            enemy.IsChasingPlayer = false;
         }
     }
 }

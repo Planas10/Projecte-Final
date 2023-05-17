@@ -122,8 +122,6 @@ public class FPSController : MonoBehaviour
                 gamemanager.GODmodeActivateLights(lights[i], PClights[i]);
             }
         }
-        //Debug.Log(fillAmount);
-        //Debug.Log(InitialPos);
         if (!GameManager.Instance().IsPaused())
         {
             if (CanMove)
@@ -149,14 +147,6 @@ public class FPSController : MonoBehaviour
             if (lights[0].IsActivated == true && lights[1].IsActivated == true) { CanOpen1 = true; }
             if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
         }
-        if (CurrentLevel == 2)
-        {
-            //trapdoormanager.ActivateDoor();
-        }
-
-        //Hackeo
-        //Hacking(light5, scrollbar5, interactText);
-
     }
 
     void Move()
@@ -202,25 +192,12 @@ public class FPSController : MonoBehaviour
         }
 
         Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), Gravity, Input.GetAxis("Vertical"));
-        //Debug.Log(MoveDirection);
+
         MoveDirection = transform.TransformDirection(MoveDirection);
 
-        //Debug.Log(MoveDirection);
-
-        //pa andar quaiet
-        //if (Input.GetButton("Fire3"))
-        //{
-        //    WalkingSound = 3;
-        //    currentSpeed = silenceSpeed;
-        //    characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
-        //}
-        //else
-        //{
         WalkingSound = 5;
         currentSpeed = normalMoveSpeed;
         characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
-        //}
-        //Debug.Log(WalkingSound);
     }
 
     //disparo
@@ -240,7 +217,7 @@ public class FPSController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.GetComponent<AI_Enemy>())
         {
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
@@ -343,17 +320,6 @@ public class FPSController : MonoBehaviour
                 fillAmount = 0f;
             }
         }
-    }
-
-    private void HackingBar()
-    {
-        scrollbar.SetActive(true);
-        hackingText.enabled = true;
-    }
-    private void DeactivateHackingBar()
-    {
-        scrollbar.SetActive(false);
-        hackingText.enabled = false;
     }
     private void ActivateHackingUI()
     {

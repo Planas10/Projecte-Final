@@ -29,6 +29,7 @@ TagManager:
   - PcTrampa4
   - finalLevel
   - TrapDoor
+  - Bomb
   layers:
   - Default
   - TransparentFX

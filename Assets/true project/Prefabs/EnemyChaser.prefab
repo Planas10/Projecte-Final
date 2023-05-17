@@ -388,6 +388,7 @@ MonoBehaviour:
   currentPoint: 0
   SearchTime: 0
   IsChasingPlayer: 0
+  IsDistracted: 0
   Trapped: 0
 --- !u!54 &5788391477489701665
 Rigidbody:

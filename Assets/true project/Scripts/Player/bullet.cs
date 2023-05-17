@@ -5,7 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
 
-        public AudioSource audioSource;
+    public AudioSource audioSource;
     private float force = 10f;
     private float lifeTime = 6f;
 
@@ -49,7 +49,6 @@ public class bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacles"))
         {
-            Debug.Log("colisi�n");
             //transform.parent = collision.transform;
             //rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints.FreezePosition;
