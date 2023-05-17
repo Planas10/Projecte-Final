@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsController: {fileID: 2006000145}
+  lightsController: {fileID: 2006000149}
   PlayerAnimator: {fileID: 2006000143}
 --- !u!4 &12145674
 Transform:
@@ -4644,7 +4645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 240099089}
-  - component: {fileID: 240099088}
+  - component: {fileID: 240099090}
   m_Layer: 0
   m_Name: PatrolPointA
   m_TagString: PPenemy1
@@ -4652,18 +4653,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &240099088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240099087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 544461bf61cd3ab4db8837e049d0c800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &240099089
 Transform:
   m_ObjectHideFlags: 0
@@ -4679,6 +4668,18 @@ Transform:
   m_Father: {fileID: 1542397683}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &240099090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240099087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688ba46039a6f84082fcbaf3ac173c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &241330552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6441,7 +6442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 323394181}
-  - component: {fileID: 323394180}
+  - component: {fileID: 323394182}
   m_Layer: 0
   m_Name: PatrolPointC
   m_TagString: PPenemy1
@@ -6449,18 +6450,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &323394180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323394179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 544461bf61cd3ab4db8837e049d0c800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &323394181
 Transform:
   m_ObjectHideFlags: 0
@@ -6476,6 +6465,18 @@ Transform:
   m_Father: {fileID: 1542397683}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &323394182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323394179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688ba46039a6f84082fcbaf3ac173c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &339880252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15100,7 +15101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 765137315}
-  - component: {fileID: 765137314}
+  - component: {fileID: 765137316}
   m_Layer: 0
   m_Name: PatrolPointB
   m_TagString: PPenemy1
@@ -15108,18 +15109,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &765137314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765137313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 544461bf61cd3ab4db8837e049d0c800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &765137315
 Transform:
   m_ObjectHideFlags: 0
@@ -15135,6 +15124,18 @@ Transform:
   m_Father: {fileID: 1542397683}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -0.673, y: 0.627, z: 0.389}
+--- !u!114 &765137316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765137313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688ba46039a6f84082fcbaf3ac173c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &772599787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38485,6 +38486,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 506580545}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2006000149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7245546115156865755, guid: db32b50d23999f441921af6f601c9a4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 506580545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006000139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a8660e95df7654f920a5a832cdaebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2011249990
 GameObject:
   m_ObjectHideFlags: 0
@@ -40555,7 +40568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2131672961}
-  - component: {fileID: 2131672960}
+  - component: {fileID: 2131672962}
   m_Layer: 0
   m_Name: PatrolPointD
   m_TagString: PPenemy1
@@ -40563,18 +40576,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2131672960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131672959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 544461bf61cd3ab4db8837e049d0c800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2131672961
 Transform:
   m_ObjectHideFlags: 0
@@ -40590,6 +40591,18 @@ Transform:
   m_Father: {fileID: 1542397683}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2131672962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131672959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688ba46039a6f84082fcbaf3ac173c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2142296122
 GameObject:
   m_ObjectHideFlags: 0
@@ -41012,6 +41025,31 @@ PrefabInstance:
       propertyPath: playerS
       value: 
       objectReference: {fileID: 2006000145}
+    - target: {fileID: 6960316926277923045, guid: bfdc5fe4f6d4b634fa5d7a738812d785,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960316926277923045, guid: bfdc5fe4f6d4b634fa5d7a738812d785,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 240099090}
+    - target: {fileID: 6960316926277923045, guid: bfdc5fe4f6d4b634fa5d7a738812d785,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 765137316}
+    - target: {fileID: 6960316926277923045, guid: bfdc5fe4f6d4b634fa5d7a738812d785,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 323394182}
+    - target: {fileID: 6960316926277923045, guid: bfdc5fe4f6d4b634fa5d7a738812d785,
+        type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 2131672962}
     - target: {fileID: 7769786815801682522, guid: bfdc5fe4f6d4b634fa5d7a738812d785,
         type: 3}
       propertyPath: m_RootOrder
