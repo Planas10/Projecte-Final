@@ -23,7 +23,7 @@ public class AI_Enemy : MonoBehaviour
 
     private NavMeshAgent IA;
 
-    public Transform InitialPos;
+    public Vector3 InitialPos;
     public bool playerChased = false;
 
     public bool IsChasingPlayer;
@@ -31,33 +31,36 @@ public class AI_Enemy : MonoBehaviour
     public bool IsDistracted;
 
     public bool Trapped = false;
-
+    bullet bulletDetected = null;
     private void Awake()
     {
         IA = GetComponent<NavMeshAgent>();
 
         player = FindObjectOfType<FPSController>().gameObject;
-        playerS = player.GetComponent<FPSController>();   
+        playerS = player.GetComponent<FPSController>();
 
         /*
         waypoints = new(FindObjectsOfType<PatrolPoint1>());
         waypoints.Sort((a, b) => { return a.name.CompareTo(b.name); });
         transform.position = waypoints[currentPoint].transform.position;
         */
-
-        InitialPos = gameObject.transform;
+        InitialPos = gameObject.transform.position;
 
         currentPoint++;
     }
      
     void Update()
     {
-        Bullet = FindObjectOfType<bullet>();
-        if (Bullet == null)
-        {
+        //Bullet = FindObjectOfType<bullet>();
+        //if (Bullet == null)
+        //{
+        //    AlertLight.SetActive(false);
+        //    IsDistracted = false;
+        //}
+        if(IsDistracted && bulletDetected == null){
             AlertLight.SetActive(false);
             IsDistracted = false;
-        }
+        } 
         if (IsChasingPlayer)
         {
             ChasingLight.SetActive(true);
@@ -84,11 +87,31 @@ public class AI_Enemy : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<FPSController>())
         {
-            playerChased = true;
+            //playerChased = true;
+            transform.position = InitialPos;
             IsChasingPlayer = false;
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponentInChildren<BulletDistraction>() && other.gameObject.GetComponent<bullet>().CanActivate)
+        {
+            bulletDetected = other.gameObject.GetComponent<bullet>();
+            Debug.LogError("Veo la bala");
+            Bulleted(other.transform.position);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<bullet>())
+        {
+            Debug.LogError("Dejo de ver la bala");
+            AlertLight.SetActive(false);
+            IsDistracted = false;
+        }
+    }
     private void Patrol() {
         if(waypoints.Length == 0) {
             Debug.LogError("No has ficat el patrolpoints a un enemic: " + this.gameObject.name);

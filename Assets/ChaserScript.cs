@@ -23,11 +23,6 @@ public class ChaserScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInChildren<BulletDistraction>())
-        {
-            Debug.LogError("Veo la bala");
-            enemy.Bulleted(other.transform.position);
-        }
         if (other.gameObject.GetComponent<FPSController>())
         {
             enemy.IsChasingPlayer = true;
@@ -35,11 +30,6 @@ public class ChaserScript : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<BulletDistraction>())
-        {
-            Debug.LogError("Dejo de ver la bala");
-            enemy.IsDistracted = false;
-        }
         if (other.gameObject.GetComponent<FPSController>())
         {
             enemy.IsChasingPlayer = false;
