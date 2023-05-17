@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
@@ -46,6 +47,9 @@ public class FPSController : MonoBehaviour
     //Abrir puertas
 
     public bool IsHacking = false;
+    public bool IsWalking = false;
+    public bool Shooting = false;
+    public bool IsReloading = false;
 
     public List<LightObject> lights;
     public List<PcLightObject> PClights;
@@ -62,6 +66,7 @@ public class FPSController : MonoBehaviour
     [SerializeField] private bool isInteractable;
 
     private float fillAmount; //progreso del hackeo
+    private bool empiezoAPulsarE;
     [SerializeField] private Image progressBar;
     [SerializeField] private GameObject scrollbar;
 
@@ -78,8 +83,7 @@ public class FPSController : MonoBehaviour
 
     private bool Hactive;
     private bool Vactive;
-
-
+    private bool pulsandoE=false;
 
     private void Awake()
     {
@@ -114,6 +118,27 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            fillAmount = 0f;
+            empiezoAPulsarE = true;
+        }
+
+        if(Input.GetKeyUp(KeyCode.E))
+        {
+            fillAmount = 0f;
+            empiezoAPulsarE = false;
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            pulsandoE = true;
+        }
+        else
+        {
+            pulsandoE = false;
+        }
+
         if (Input.GetKey(KeyCode.H)) 
         {
             gamemanager.GODmode();
@@ -202,9 +227,16 @@ public class FPSController : MonoBehaviour
         }
 
         Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), Gravity, Input.GetAxis("Vertical"));
-        //Debug.Log(MoveDirection);
+//        Debug.Log(MoveDirection);
         MoveDirection = transform.TransformDirection(MoveDirection);
-
+        if (Math.Abs(MoveDirection.x) >0.1f || Math.Abs(MoveDirection.z)>0.1f)
+        {
+            IsWalking = true;
+        }
+        else
+        {
+            IsWalking = false;
+        }
         //Debug.Log(MoveDirection);
 
         //pa andar quaiet
@@ -221,6 +253,8 @@ public class FPSController : MonoBehaviour
         characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
         //}
         //Debug.Log(WalkingSound);
+
+
     }
 
     //disparo
@@ -230,10 +264,12 @@ public class FPSController : MonoBehaviour
         {
             if (RemainingAmmo > 0)
             {
+                Shooting = true;
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
                 RemainingAmmo--;
                 bulletFillAmount -= 0.1f;
                 bulletProgressBar.fillAmount = bulletFillAmount;
+                Shooting = false;
             }
         }
     }
@@ -284,7 +320,7 @@ public class FPSController : MonoBehaviour
         if (other.gameObject.CompareTag("TrapDoor"))
         {
             //Debug.Log("PcTrampa1");
-            if (Input.GetKeyDown(KeyCode.E))
+            if (empiezoAPulsarE)
             {
                 //cambiar la puerta de estado
                 //conseguir la puerta
@@ -316,12 +352,8 @@ public class FPSController : MonoBehaviour
     private void Hacking(LightObject light, PcLightObject PcLight)
     {
         if (isInteractable )
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                fillAmount = 0f;
-            }
-            if (Input.GetKey(KeyCode.E))
+        {   
+            if (pulsandoE)
             {
                 scrollbar.SetActive(true);
                 fillAmount += (Time.deltaTime / 6);
@@ -376,6 +408,7 @@ public class FPSController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.R) && RemainingAmmo < MaxAmmo)
         {
+            IsReloading = true;
             reloading = true;
             if (reloading == true)
             {
@@ -389,6 +422,7 @@ public class FPSController : MonoBehaviour
                 bulletFillAmount = 1f;
                 bulletProgressBar.fillAmount = bulletFillAmount;
                 reloading = false;
+                IsReloading = false;
             }
         }
     }

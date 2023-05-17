@@ -13,6 +13,7 @@ public class LightsController : MonoBehaviour
     public Light luz3;
     public Light luz4;
 
+    public bool DoingLucesGame = false;
 
     private int currentColorIndex = 0; // current index of the color array
 
@@ -23,6 +24,7 @@ public class LightsController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                DoingLucesGame = true;
                 // change the color of the panel light
                 luz1.color = lightColors[currentColorIndex];
 
@@ -35,6 +37,7 @@ public class LightsController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                DoingLucesGame = true;
                 // change the color of the panel light
                 luz2.color = lightColors[currentColorIndex];
 
@@ -47,6 +50,7 @@ public class LightsController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                DoingLucesGame = true;
                 // change the color of the panel light
                 luz3.color = lightColors[currentColorIndex];
 
@@ -59,6 +63,7 @@ public class LightsController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                DoingLucesGame = true;
                 // change the color of the panel light
                 luz4.color = lightColors[currentColorIndex];
 
@@ -66,5 +71,6 @@ public class LightsController : MonoBehaviour
                 currentColorIndex = (currentColorIndex + 1) % lightColors.Length;
             }
         }
+        DoingLucesGame = false;
     }
 }
