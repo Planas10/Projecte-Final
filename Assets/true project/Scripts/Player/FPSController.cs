@@ -10,6 +10,8 @@ public class FPSController : MonoBehaviour
 {
     public GameManager gamemanager;
     private ColliderMinijuegoNumeros colliderMinijuegoNumeros;
+    private PasswordCanvasManager passwordCanvasManager;
+    private TrapDoor actualTrapDoor;
 
     private bullet Bullet;
     public Camera Cam;
@@ -92,6 +94,10 @@ public class FPSController : MonoBehaviour
         {
             colliderMinijuegoNumeros = FindObjectOfType<ColliderMinijuegoNumeros>();
         }
+        if (FindObjectOfType<PasswordCanvasManager>() != null)
+        {
+            passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
+        }
 
         maxShoots = constantMaxShoots;
 
@@ -135,14 +141,12 @@ public class FPSController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             fillAmount = 0f;
-            empiezoAPulsarE = true;
+            if (actualTrapDoor != null)
+            {
+                actualTrapDoor.isOpened = !actualTrapDoor.isOpened;
+            }
         }
 
-        if(Input.GetKeyUp(KeyCode.E))
-        {
-            fillAmount = 0f;
-            empiezoAPulsarE = false;
-        }
 
         if (Input.GetKey(KeyCode.E))
         {
@@ -162,7 +166,7 @@ public class FPSController : MonoBehaviour
             }
         }
 
-        if (!GameManager.Instance().IsPaused() && !colliderMinijuegoNumeros.doingGame)
+        if (!GameManager.Instance().IsPaused() && (passwordCanvasManager == null || !passwordCanvasManager.colliderMinijuegoNumeros.doingGame))
         {
             if (CanMove)
             {
@@ -195,7 +199,7 @@ public class FPSController : MonoBehaviour
         //Hackeo
         //Hacking(light5, scrollbar5, interactText);
 
-        Debug.Log(colliderMinijuegoNumeros.gameObject.name.ToString());
+        //Debug.Log(colliderMinijuegoNumeros.gameObject.name.ToString());
     }
 
     void Move()
@@ -316,17 +320,6 @@ public class FPSController : MonoBehaviour
             Hacking(lights[4], PClights[4]);
         }
 
-        if (other.gameObject.CompareTag("TrapDoor"))
-        {
-            //Debug.Log("PcTrampa1");
-            if (empiezoAPulsarE)
-            {
-                //cambiar la puerta de estado
-                //conseguir la puerta
-                TrapDoor td = other.gameObject.GetComponentInParent<TrapDoor>();
-                td.isOpened = !td.isOpened;
-            }
-        }
 
     }
 
@@ -338,6 +331,10 @@ public class FPSController : MonoBehaviour
             other.CompareTag("Object4") ||
             other.CompareTag("Object5") ||
             other.CompareTag("FinalPC")) { DeactivateHackingUI(); }
+        if (other.gameObject.CompareTag("TrapDoor"))
+        {
+            actualTrapDoor = null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -345,6 +342,10 @@ public class FPSController : MonoBehaviour
         if (other.gameObject.CompareTag("finalLevel"))
         {
             SceneManager.LoadScene(0);
+        }
+        if (other.gameObject.CompareTag("TrapDoor"))
+        {
+            actualTrapDoor = other.gameObject.GetComponentInParent<TrapDoor>();
         }
     }
 

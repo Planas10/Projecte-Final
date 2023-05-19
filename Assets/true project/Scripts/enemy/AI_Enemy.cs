@@ -77,7 +77,12 @@ public class AI_Enemy : MonoBehaviour
 
         if (!IsChasingPlayer && !IsDistracted && !Trapped)
         {
+            IA.isStopped = false;
             Patrol();
+        }
+        else if(Trapped)
+        {
+            IA.isStopped = true;
         }
     }
 
@@ -85,7 +90,7 @@ public class AI_Enemy : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<FPSController>())
         {
-            //playerChased = true;
+            playerChased = true;
             transform.position = InitialPos;
             IsChasingPlayer = false;
         }

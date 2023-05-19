@@ -41,10 +41,11 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
     private void Update()
     {
       
-        if (isInside && Input.GetKeyDown(KeyCode.E))
+        if (isInside && Input.GetKeyDown(KeyCode.E) && passwordCanvasManager.colliderMinijuegoNumeros == this)
         {
             if (!doingGame)
             {
+        Debug.LogError(doingGame);
                 Cursor.lockState = CursorLockMode.None;
                 panel.gameObject.SetActive(true);
                 doingGame = true;
@@ -62,6 +63,11 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
 
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        passwordCanvasManager.colliderMinijuegoNumeros = this;
+    }
+
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

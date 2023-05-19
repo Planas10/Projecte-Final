@@ -17,7 +17,7 @@ public class PasswordCanvasManager : MonoBehaviour
 
     public GameObject HUD;
 
-    private ColliderMinijuegoNumeros colliderMinijuegoNumeros;
+    public ColliderMinijuegoNumeros colliderMinijuegoNumeros;
 
     private void Awake()
     {
@@ -55,12 +55,12 @@ public class PasswordCanvasManager : MonoBehaviour
             currentPasword = "";
         }
 
-        passwordText.text = currentPasword;
     }
 
     // Update is called once per frame
     void Update()
     {
+        passwordText.text = currentPasword;
         //if(Input.GetKeyUp(KeyCode.Escape))
         //{
         //    panel.gameObject.SetActive(false);
