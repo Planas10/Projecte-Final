@@ -8,24 +8,66 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
 
     public GameObject panel;
 
+    public string debugstring;
+
+    private PasswordCanvasManager passwordCanvasManager;
+
     private bool isInside = false;
+    public bool doingGame;
+
+    public GameObject HUD;
+
+    private void Awake()
+    {
+        if (FindObjectOfType<PasswordCanvasManager>() != null)
+        {
+            passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
+        }
+
+        switch (gameObject.tag)
+        {
+            case "pass1":
+                passwordCanvasManager.correctPassword = passwordCanvasManager.password1;
+                break;
+            case "pass2":
+                passwordCanvasManager.correctPassword = passwordCanvasManager.password2;
+                break;
+            case "pass3":
+                passwordCanvasManager.correctPassword = passwordCanvasManager.password3;
+                break;
+        }
+    }
 
     private void Update()
     {
+      
         if (isInside && Input.GetKeyDown(KeyCode.E))
         {
-            panel.gameObject.SetActive(true);
+            if (!doingGame)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                panel.gameObject.SetActive(true);
+                doingGame = true;
+                HUD.SetActive(false);
+            }
+            else
+            {
+                Debug.LogError(debugstring);
+                isInside = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                doingGame = false;
+                HUD.SetActive(true);
+                panel.gameObject.SetActive(false);
+            }
 
         }
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-
         if (other.gameObject.CompareTag("Player"))
         {
             isInside = true;
         }
-
     }
 
     void OnTriggerExit(Collider other)
@@ -34,11 +76,9 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isInside = false;
-            if (panel.gameObject.activeSelf)
-            {
-                panel.gameObject.SetActive(false);
-
-            }
+            Cursor.lockState = CursorLockMode.Locked;
+            doingGame = false;
+            HUD.SetActive(true);
         }
 
     }

@@ -9,7 +9,7 @@ using System;
 public class FPSController : MonoBehaviour
 {
     public GameManager gamemanager;
-
+    private ColliderMinijuegoNumeros colliderMinijuegoNumeros;
 
     private bullet Bullet;
     public Camera Cam;
@@ -88,6 +88,11 @@ public class FPSController : MonoBehaviour
 
     private void Awake()
     {
+        if (FindObjectOfType<ColliderMinijuegoNumeros>() != null)
+        {
+            colliderMinijuegoNumeros = FindObjectOfType<ColliderMinijuegoNumeros>();
+        }
+
         maxShoots = constantMaxShoots;
 
         lights = new(FindObjectsOfType<LightObject>());
@@ -156,9 +161,8 @@ public class FPSController : MonoBehaviour
                 gamemanager.GODmodeActivateLights(lights[i], PClights[i]);
             }
         }
-        //Debug.Log(fillAmount);
-        //Debug.Log(InitialPos);
-        if (!GameManager.Instance().IsPaused())
+
+        if (!GameManager.Instance().IsPaused() && !colliderMinijuegoNumeros.doingGame)
         {
             if (CanMove)
             {
@@ -176,7 +180,7 @@ public class FPSController : MonoBehaviour
         if (!IsHacking) { CanMove = true; }
         else { CanMove = false; }
 
-        //Debug.Log(SpawnPoint.transform.position);
+        
 
         if (CurrentLevel == 1)
         {
@@ -191,6 +195,7 @@ public class FPSController : MonoBehaviour
         //Hackeo
         //Hacking(light5, scrollbar5, interactText);
 
+        Debug.Log(colliderMinijuegoNumeros.gameObject.name.ToString());
     }
 
     void Move()

@@ -8,7 +8,7 @@ public class NextScene : MonoBehaviour
 
 
     void OnCollisionEnter(){
-        Debug.LogError("collisión");
+        //Debug.LogError("collisión");
         SceneManager.LoadScene("LVL2");
 
     }

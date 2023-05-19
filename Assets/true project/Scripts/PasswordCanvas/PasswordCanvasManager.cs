@@ -5,12 +5,27 @@ using UnityEngine.UI;
 
 public class PasswordCanvasManager : MonoBehaviour
 {
-    public string password;
+    public string correctPassword;
+    public string password1;
+    public string password2;
+    public string password3;
     [SerializeField] private Text passwordText;
 
     private string currentPasword = "";
 
     public GameObject panel;
+
+    public GameObject HUD;
+
+    private ColliderMinijuegoNumeros colliderMinijuegoNumeros;
+
+    private void Awake()
+    {
+        if (FindObjectOfType<ColliderMinijuegoNumeros>() != null)
+        {
+            colliderMinijuegoNumeros = FindObjectOfType<ColliderMinijuegoNumeros>();
+        }
+    }
 
     public void ButtonPressed(string s)
     {
@@ -22,14 +37,16 @@ public class PasswordCanvasManager : MonoBehaviour
         {
             //mek
         }
-        passwordText.text = currentPasword;
     }
 
     public void EnterPressed()
     {
-        if(password == currentPasword)
+        if(correctPassword == currentPasword)
         {
             panel.gameObject.SetActive(false);
+            HUD.SetActive(true);
+            colliderMinijuegoNumeros.doingGame = false;
+            currentPasword = "";
             //ok
         }
         else
