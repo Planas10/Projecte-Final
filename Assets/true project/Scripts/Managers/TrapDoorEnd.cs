@@ -27,11 +27,11 @@ public class TrapDoorEnd : MonoBehaviour
         {
             if (Vector3.Distance(LTrapDoor.transform.position, LTrapDoorLimit) > 0.01f)
             {
-                LTrapDoor.transform.position -= LTrapDoor.transform.forward * 0.8f * Time.deltaTime;
+                LTrapDoor.transform.position -= LTrapDoor.transform.right * 0.8f * Time.deltaTime;
             }
             if (Vector3.Distance(RTrapDoor.transform.position, RTrapDoorLimit) > 0.01f)
             {
-                RTrapDoor.transform.position += RTrapDoor.transform.forward * 0.8f * Time.deltaTime;
+                RTrapDoor.transform.position -= RTrapDoor.transform.right * 0.8f * Time.deltaTime;
             }
         }
     }

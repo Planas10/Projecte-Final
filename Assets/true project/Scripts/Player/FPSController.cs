@@ -10,6 +10,8 @@ public class FPSController : MonoBehaviour
 {
     public GameManager gamemanager;
 
+
+    private bullet Bullet;
     public Camera Cam;
     public bullet sound_bullet;
     public Transform boquilla;
@@ -20,8 +22,6 @@ public class FPSController : MonoBehaviour
 
     CharacterController characterController;
 
-    [SerializeField] private float silenceSpeed = 2f;
-
     [SerializeField] private float normalMoveSpeed = 5f;
 
     private float currentSpeed;
@@ -30,7 +30,8 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] public int WalkingSound;
 
-    private float ShootInterval = 10f;
+    private int maxShoots;
+    [SerializeField] private int constantMaxShoots;
     public int MaxAmmo;
     public int RemainingAmmo;
     private bool CanReload;
@@ -87,6 +88,8 @@ public class FPSController : MonoBehaviour
 
     private void Awake()
     {
+        maxShoots = constantMaxShoots;
+
         lights = new(FindObjectsOfType<LightObject>());
         lights.Sort((a, b) => { return a.name.CompareTo(b.name); });
 
@@ -118,6 +121,12 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+        Bullet = FindObjectOfType<bullet>();
+        if (Bullet == null)
+        {
+            maxShoots = constantMaxShoots;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             fillAmount = 0f;
@@ -227,7 +236,6 @@ public class FPSController : MonoBehaviour
         }
 
         Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"), Gravity, Input.GetAxis("Vertical"));
-//        Debug.Log(MoveDirection);
         MoveDirection = transform.TransformDirection(MoveDirection);
         if (Math.Abs(MoveDirection.x) >0.1f || Math.Abs(MoveDirection.z)>0.1f)
         {
@@ -237,24 +245,9 @@ public class FPSController : MonoBehaviour
         {
             IsWalking = false;
         }
-        //Debug.Log(MoveDirection);
-
-        //pa andar quaiet
-        //if (Input.GetButton("Fire3"))
-        //{
-        //    WalkingSound = 3;
-        //    currentSpeed = silenceSpeed;
-        //    characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
-        //}
-        //else
-        //{
         WalkingSound = 5;
         currentSpeed = normalMoveSpeed;
         characterController.Move(MoveDirection * currentSpeed * Time.deltaTime);
-        //}
-        //Debug.Log(WalkingSound);
-
-
     }
 
     //disparo
@@ -262,11 +255,12 @@ public class FPSController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (RemainingAmmo > 0)
+            if (RemainingAmmo > 0 && maxShoots > 0)
             {
                 Shooting = true;
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
                 RemainingAmmo--;
+                maxShoots--;
                 bulletFillAmount -= 0.1f;
                 bulletProgressBar.fillAmount = bulletFillAmount;
                 Shooting = false;
@@ -351,7 +345,7 @@ public class FPSController : MonoBehaviour
 
     private void Hacking(LightObject light, PcLightObject PcLight)
     {
-        if (isInteractable )
+        if (isInteractable)
         {   
             if (pulsandoE)
             {
@@ -406,7 +400,7 @@ public class FPSController : MonoBehaviour
 
     private void Reload()
     {
-        if (Input.GetKey(KeyCode.R) && RemainingAmmo < MaxAmmo)
+        if (pulsandoE && RemainingAmmo < MaxAmmo)
         {
             IsReloading = true;
             reloading = true;

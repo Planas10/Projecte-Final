@@ -12,19 +12,17 @@ public class ChaserScript : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (!enemy.IsDistracted)
+        if (other.gameObject.GetComponent<FPSController>())
         {
-            //Debug.Log("Veo al player");
-            if (other.gameObject.GetComponent<FPSController>())
-            {
-                enemy.ChasePlayer();
-            }
+            enemy.IsDistracted = false;
+            enemy.ChasePlayer();
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<FPSController>())
         {
+            enemy.IsDistracted = false;
             enemy.IsChasingPlayer = true;
         }
     }

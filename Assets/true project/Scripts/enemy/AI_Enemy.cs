@@ -51,12 +51,10 @@ public class AI_Enemy : MonoBehaviour
      
     void Update()
     {
-        //Bullet = FindObjectOfType<bullet>();
-        //if (Bullet == null)
-        //{
-        //    AlertLight.SetActive(false);
-        //    IsDistracted = false;
-        //}
+        if (gameObject.name == "EnemyChaser1")
+        {
+            Debug.LogError(gameObject.name + "Trapped: " + Trapped);
+        }
         if(IsDistracted && bulletDetected == null){
             AlertLight.SetActive(false);
             IsDistracted = false;
@@ -97,8 +95,11 @@ public class AI_Enemy : MonoBehaviour
     {
         if (other.gameObject.GetComponentInChildren<BulletDistraction>() && other.gameObject.GetComponent<bullet>().CanActivate)
         {
+            if (IsChasingPlayer)
+            {
+                return;
+            }
             bulletDetected = other.gameObject.GetComponent<bullet>();
-            Debug.LogError("Veo la bala");
             Bulleted(other.transform.position);
         }
     }
@@ -107,7 +108,6 @@ public class AI_Enemy : MonoBehaviour
     {
         if (other.gameObject.GetComponent<bullet>())
         {
-            Debug.LogError("Dejo de ver la bala");
             AlertLight.SetActive(false);
             IsDistracted = false;
         }
