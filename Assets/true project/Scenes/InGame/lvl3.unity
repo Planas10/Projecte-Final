@@ -11000,7 +11000,7 @@ PrefabInstance:
     - target: {fileID: 572439183569220477, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.92
+      value: -35.4
       objectReference: {fileID: 0}
     - target: {fileID: 572439183569220477, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
@@ -11010,7 +11010,7 @@ PrefabInstance:
     - target: {fileID: 572439183569220477, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.04
+      value: -19.13
       objectReference: {fileID: 0}
     - target: {fileID: 572439183569220477, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
@@ -13519,6 +13519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3749407009441574507, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749407009441574507, guid: 1dc07a05fb947fc41a7c306015251074,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -14806,8 +14811,8 @@ GameObject:
   - component: {fileID: 673856888}
   - component: {fileID: 673856887}
   m_Layer: 0
-  m_Name: ColliderMinijuegoNumeros (1)
-  m_TagString: Untagged
+  m_Name: ColliderMinijuegoNumeros3
+  m_TagString: pass3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14840,6 +14845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 343108255}
+  debugstring: patata3
   doingGame: 0
   HUD: {fileID: 2118429553}
 --- !u!65 &673856888
@@ -18376,7 +18382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5d023281589d84b821706c7a891fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  password: 999
+  correctPassword: 
+  password1: 999
+  password2: 123
+  password3: 987
   passwordText: {fileID: 169051362}
   panel: {fileID: 343108255}
   HUD: {fileID: 2118429553}
@@ -21302,6 +21311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ordinador (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749407009441574507, guid: 1dc07a05fb947fc41a7c306015251074,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3749407009441574507, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
@@ -37073,8 +37087,8 @@ GameObject:
   - component: {fileID: 1783730722}
   - component: {fileID: 1783730721}
   m_Layer: 0
-  m_Name: ColliderMinijuegoNumeros (1)
-  m_TagString: Untagged
+  m_Name: ColliderMinijuegoNumeros2
+  m_TagString: pass2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37092,6 +37106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 343108255}
+  debugstring: patata2
   doingGame: 0
   HUD: {fileID: 2118429553}
 --- !u!65 &1783730722
@@ -43900,6 +43915,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3749407009441574507, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749407009441574507, guid: 1dc07a05fb947fc41a7c306015251074,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -44253,8 +44273,8 @@ GameObject:
   - component: {fileID: 2111338844}
   - component: {fileID: 2111338846}
   m_Layer: 0
-  m_Name: ColliderMinijuegoNumeros
-  m_TagString: Untagged
+  m_Name: ColliderMinijuegoNumeros1
+  m_TagString: pass1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44300,6 +44320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 343108255}
+  debugstring: patata1
   doingGame: 0
   HUD: {fileID: 2118429553}
 --- !u!1 &2118429553
