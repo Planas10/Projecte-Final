@@ -12,6 +12,7 @@ public class FPSController : MonoBehaviour
     private ColliderMinijuegoNumeros colliderMinijuegoNumeros;
     private PasswordCanvasManager passwordCanvasManager;
     private TrapDoor actualTrapDoor;
+    private NormalDoor actualNormalDoor;
 
     private bullet Bullet;
     public Camera Cam;
@@ -144,6 +145,11 @@ public class FPSController : MonoBehaviour
             if (actualTrapDoor != null)
             {
                 actualTrapDoor.isOpened = !actualTrapDoor.isOpened;
+            }            
+            
+            if (actualNormalDoor != null)
+            {
+                actualNormalDoor.isOpened = !actualNormalDoor.isOpened;
             }
         }
 
@@ -346,6 +352,11 @@ public class FPSController : MonoBehaviour
         if (other.gameObject.CompareTag("TrapDoor"))
         {
             actualTrapDoor = other.gameObject.GetComponentInParent<TrapDoor>();
+        } 
+        
+        if (other.gameObject.CompareTag("NormalDoor"))
+        {
+            actualNormalDoor = other.gameObject.GetComponentInParent<NormalDoor>();
         }
     }
 
