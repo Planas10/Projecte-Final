@@ -19,6 +19,10 @@ public class PasswordCanvasManager : MonoBehaviour
 
     public ColliderMinijuegoNumeros colliderMinijuegoNumeros;
 
+    public AudioSource ok;
+
+    public AudioSource mek;
+
     private void Awake()
     {
         if (FindObjectOfType<ColliderMinijuegoNumeros>() != null)
@@ -36,6 +40,7 @@ public class PasswordCanvasManager : MonoBehaviour
         else
         {
             //mek
+            mek.Play();
         }
     }
 
@@ -47,11 +52,15 @@ public class PasswordCanvasManager : MonoBehaviour
             HUD.SetActive(true);
             colliderMinijuegoNumeros.doingGame = false;
             currentPasword = "";
+
             //ok
+            ok.Play();
+
         }
         else
         {
             //mec
+            mek.Play();
             currentPasword = "";
         }
 

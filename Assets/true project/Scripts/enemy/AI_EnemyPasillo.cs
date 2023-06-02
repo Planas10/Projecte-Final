@@ -17,11 +17,13 @@ public class AI_EnemyPasillo : MonoBehaviour
 
     public float viewDistance = 10f;
     public float fieldOfView = 90f;
+    public float AttackDistance = 5f;
 
     public LayerMask layerMask;
 
     private bool persiguiendoPlayer;
 
+    private Animator animator;
 
 
     private void Awake()
@@ -29,7 +31,9 @@ public class AI_EnemyPasillo : MonoBehaviour
         raycastD = new Vector3(transform.position.x, transform.position.y, transform.position.z) + transform.forward * 20f;
         IA = GetComponent<NavMeshAgent>();
         initPos = transform.position;
-        initRot = transform.rotation;   
+        initRot = transform.rotation;
+
+        animator = GetComponent<Animator>();
     }
 
     private void OnDrawGizmos()
@@ -58,6 +62,30 @@ public class AI_EnemyPasillo : MonoBehaviour
         if(persiguiendoPlayer==true)
         {
             IA.SetDestination(jugador.transform.position);
+        }
+
+        if (persiguiendoPlayer)
+        {
+            IA.SetDestination(jugador.transform.position);
+            animator.SetBool("Run", true);
+            animator.SetBool("Attack", false);
+        }
+        //else
+        //{
+        //    IA.SetDestination(transform.position); // Detiene el enemigo
+        //    animator.SetBool("Run", false);
+        //    animator.SetBool("Attack", true);
+        //}
+
+        float distanceToPlayer = Vector3.Distance(transform.position, jugador.transform.position);
+
+        if (distanceToPlayer <= AttackDistance)
+        {
+            animator.SetBool("Attack", true);
+        }
+        else
+        {
+            animator.SetBool("Attack", false);
         }
 
 
