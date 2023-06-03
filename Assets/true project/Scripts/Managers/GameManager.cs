@@ -6,10 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    PauseMenu pausemenu;
-    [SerializeField]
-    FPSController fpsController;
+    public PauseMenu pausemenu;
+    public FPSController fpsController;
+    public Reload reload;
 
     public GameObject doorLeft;
     public GameObject doorRight;
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        BulletText.text = fpsController.RemainingAmmo + "/" + fpsController.MaxAmmo;
+        BulletText.text = reload.RemainingAmmo + "/" + reload.MaxAmmo;
         if (fpsController.CanOpen1)
         {
             //OpenDoor1(doorRight, doorLeft);

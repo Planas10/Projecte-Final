@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WalkSOund : MonoBehaviour
 {
-    public AudioSource audioWalk; // Reference to the AudioSource component
+ // Reference to the AudioSource component
 
 
     public Animator animator;
@@ -12,7 +12,7 @@ public class WalkSOund : MonoBehaviour
     void Start()
     {
         // Get the AudioSource component attached to the same GameObject
-        audioWalk = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -24,7 +24,6 @@ public class WalkSOund : MonoBehaviour
 
             Debug.Log("walk");
             // Play the sound
-            audioWalk.Play();
             }
    
         

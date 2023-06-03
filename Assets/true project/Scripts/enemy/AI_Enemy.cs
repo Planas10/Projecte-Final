@@ -51,10 +51,10 @@ public class AI_Enemy : MonoBehaviour
      
     void Update()
     {
-        if (gameObject.name == "EnemyChaser1")
-        {
-            Debug.LogError(gameObject.name + "Trapped: " + Trapped);
-        }
+        //if (gameObject.name == "EnemyChaser1")
+        //{
+        //    Debug.LogError(gameObject.name + "Trapped: " + Trapped);
+        //}
         if(IsDistracted && bulletDetected == null){
             AlertLight.SetActive(false);
             IsDistracted = false;

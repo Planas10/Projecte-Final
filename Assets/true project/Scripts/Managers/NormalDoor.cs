@@ -58,7 +58,6 @@ public class NormalDoor : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isOpened);
         if (isOpened)
         {
             OpenTrapDoors();

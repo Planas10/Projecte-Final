@@ -13,13 +13,17 @@ public class FPSController : MonoBehaviour
     private PasswordCanvasManager passwordCanvasManager;
     private TrapDoor actualTrapDoor;
     private NormalDoor actualNormalDoor;
+    public Reload reload;
 
     private bullet Bullet;
-    public Camera Cam;
     public bullet sound_bullet;
+    public Camera Cam;
     public Transform boquilla;
 
     public int CurrentLevel;
+
+    [Header ("Audio")]
+    public AudioSource audioWalk;
 
     //public GameObject SpawnPoint;
 
@@ -35,8 +39,6 @@ public class FPSController : MonoBehaviour
 
     private int maxShoots;
     [SerializeField] private int constantMaxShoots;
-    public int MaxAmmo;
-    public int RemainingAmmo;
     private bool CanReload;
 
     private Quaternion InitialRotation;
@@ -53,7 +55,6 @@ public class FPSController : MonoBehaviour
     public bool IsHacking = false;
     public bool IsWalking = false;
     public bool Shooting = false;
-    public bool IsReloading = false;
 
     public List<LightObject> lights;
     public List<PcLightObject> PClights;
@@ -70,16 +71,13 @@ public class FPSController : MonoBehaviour
     [SerializeField] private bool isInteractable;
 
     private float fillAmount; //progreso del hackeo
-    private bool empiezoAPulsarE;
+
     [SerializeField] private Image progressBar;
     [SerializeField] private GameObject scrollbar;
 
-    private float bulletFillAmount = 1f;
-    private float reloadTime = 3f;
-    private float reloadingTime;
-    private bool reloading = false;
-    [SerializeField] private Image bulletProgressBar;
     [SerializeField] private GameObject bulletScrollbar;
+    
+
 
     //Audio
 
@@ -92,53 +90,51 @@ public class FPSController : MonoBehaviour
 
     private void Awake()
     {
-        if (FindObjectOfType<ColliderMinijuegoNumeros>() != null)
-        {
-            colliderMinijuegoNumeros = FindObjectOfType<ColliderMinijuegoNumeros>();
-        }
-        if (FindObjectOfType<PasswordCanvasManager>() != null)
-        {
-            passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
-        }
+        audioWalk = GetComponent<AudioSource>();
+        characterController = GetComponent<CharacterController>();
 
-        maxShoots = constantMaxShoots;
+
+        if (FindObjectOfType<ColliderMinijuegoNumeros>() != null)
+            colliderMinijuegoNumeros = FindObjectOfType<ColliderMinijuegoNumeros>();
 
         lights = new(FindObjectsOfType<LightObject>());
         lights.Sort((a, b) => { return a.name.CompareTo(b.name); });
 
+
+        if (FindObjectOfType<PasswordCanvasManager>() != null)
+            passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
+
         PClights = new(FindObjectsOfType<PcLightObject>());
         PClights.Sort((a, b) => { return a.name.CompareTo(b.name); });
 
+
+        maxShoots = constantMaxShoots;
         InitialRotation = transform.rotation;
         InitialPos = transform.position;
 
-        reloadingTime = reloadTime;
-        bulletProgressBar.fillAmount = bulletFillAmount;
-
         //Definir componentes(SpawnPoint, CharacterController y NavMesh)
         //SpawnPoint = FindObjectOfType<SpawnPointScript>();
-        characterController = GetComponent<CharacterController>();
     }
 
     void Start()
     {
-        RemainingAmmo = MaxAmmo;
         hackingText.enabled = false;
         interactText.enabled = false;
+        isInteractable = false;
+
         scrollbar.SetActive(false);
         bulletScrollbar.SetActive(true);
+
         progressBar.fillAmount = 0f;
-        isInteractable = false;
         fillAmount = 0f;
     }
 
     void Update()
     {
         Bullet = FindObjectOfType<bullet>();
+
         if (Bullet == null)
-        {
             maxShoots = constantMaxShoots;
-        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -179,7 +175,7 @@ public class FPSController : MonoBehaviour
             {
                 if (pulsadaE)
                 {
-                    Reload();
+                    StartCoroutine(reload.ReloadWeapon());
                 }
                 Move();
                 Shoot();
@@ -280,14 +276,14 @@ public class FPSController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (RemainingAmmo > 0 && maxShoots > 0)
+            if (reload.RemainingAmmo > 0 && maxShoots > 0)
             {
                 Shooting = true;
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
-                RemainingAmmo--;
+                reload.RemainingAmmo--;
                 maxShoots--;
-                bulletFillAmount -= 0.1f;
-                bulletProgressBar.fillAmount = bulletFillAmount;
+                reload.bulletFillAmount -= 0.1f;
+                reload.bulletProgressBar.fillAmount = reload.bulletFillAmount;
                 Shooting = false;
             }
         }
@@ -424,12 +420,5 @@ public class FPSController : MonoBehaviour
         progressBar.fillAmount = 0f;
         fillAmount = 0f;
         scrollbar.SetActive(false);
-    }
-    private IEnumerator Reload() {
-        IsReloading = true;
-        yield return new WaitForSeconds(reloadTime);
-        RemainingAmmo = MaxAmmo;
-        bulletProgressBar.fillAmount = bulletFillAmount;
-        IsReloading = false;
     }
 }
