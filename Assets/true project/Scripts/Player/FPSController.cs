@@ -87,6 +87,7 @@ public class FPSController : MonoBehaviour
     private bool Vactive;
     private bool pulsandoE;
     private bool pulsadaE;
+    private bool pulsadaR;
 
     private void Awake()
     {
@@ -150,6 +151,8 @@ public class FPSController : MonoBehaviour
             }
         }
 
+        //Assignar Inputs
+        //E
         if (Input.GetKeyDown(KeyCode.E))
             pulsadaE = true;
         else
@@ -159,6 +162,13 @@ public class FPSController : MonoBehaviour
             pulsandoE = true;
         else
             pulsandoE = false;
+        //R
+        if (Input.GetKeyDown(KeyCode.R))
+            pulsadaR = true;
+        else
+            pulsadaR = false;
+
+
 
         if (Input.GetKey(KeyCode.H)) 
         {
@@ -173,7 +183,7 @@ public class FPSController : MonoBehaviour
         {
             if (CanMove)
             {
-                if (pulsadaE)
+                if (pulsadaR)
                 {
                     StartCoroutine(reload.ReloadWeapon());
                 }
