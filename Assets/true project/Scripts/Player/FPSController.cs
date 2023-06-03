@@ -87,7 +87,8 @@ public class FPSController : MonoBehaviour
 
     private bool Hactive;
     private bool Vactive;
-    private bool pulsandoE=false;
+    private bool pulsandoE;
+    private bool pulsadaE;
 
     private void Awake()
     {
@@ -153,15 +154,15 @@ public class FPSController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+            pulsadaE = true;
+        else
+            pulsadaE = false;
 
         if (Input.GetKey(KeyCode.E))
-        {
             pulsandoE = true;
-        }
         else
-        {
             pulsandoE = false;
-        }
 
         if (Input.GetKey(KeyCode.H)) 
         {
@@ -176,10 +177,14 @@ public class FPSController : MonoBehaviour
         {
             if (CanMove)
             {
-                Reload();
+                if (pulsadaE)
+                {
+                    Reload();
+                }
                 Move();
                 Shoot();
             }
+            MouseMove();    
             Cursor.lockState = CursorLockMode.Locked;
         }
         else
@@ -194,7 +199,9 @@ public class FPSController : MonoBehaviour
 
         if (CurrentLevel == 1)
         {
-            if (lights[0].IsActivated == true && lights[1].IsActivated == true) { CanOpen1 = true; }
+            if (lights[0].IsActivated == true && lights[1].IsActivated == true) { 
+                CanOpen1 = true;
+            }
             if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
         }
         if (CurrentLevel == 2)
@@ -208,8 +215,7 @@ public class FPSController : MonoBehaviour
         //Debug.Log(colliderMinijuegoNumeros.gameObject.name.ToString());
     }
 
-    void Move()
-    {
+    private void MouseMove() {
         h_mouse = mouseHorizontal * Input.GetAxis("Mouse X");
         v_mouse = mouseVertical * -Input.GetAxis("Mouse Y");
 
@@ -217,6 +223,10 @@ public class FPSController : MonoBehaviour
         Cam.transform.Rotate(v_mouse, 0, 0);
 
         v_mouse = Mathf.Clamp(v_mouse, -80, 80);
+    }
+
+    void Move()
+    {
 
         if (Input.GetButtonDown("Horizontal"))
         {
@@ -415,27 +425,11 @@ public class FPSController : MonoBehaviour
         fillAmount = 0f;
         scrollbar.SetActive(false);
     }
-
-    private void Reload()
-    {
-        if (pulsandoE && RemainingAmmo < MaxAmmo)
-        {
-            IsReloading = true;
-            reloading = true;
-            if (reloading == true)
-            {
-                Debug.Log(reloadingTime);
-                reloadingTime -= Time.deltaTime;
-            }
-            if (reloadingTime <= 0f)
-            {
-                RemainingAmmo = MaxAmmo;
-                reloadingTime = reloadTime;
-                bulletFillAmount = 1f;
-                bulletProgressBar.fillAmount = bulletFillAmount;
-                reloading = false;
-                IsReloading = false;
-            }
-        }
+    private IEnumerator Reload() {
+        IsReloading = true;
+        yield return new WaitForSeconds(reloadTime);
+        RemainingAmmo = MaxAmmo;
+        bulletProgressBar.fillAmount = bulletFillAmount;
+        IsReloading = false;
     }
 }

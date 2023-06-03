@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Reload : MonoBehaviour
 {
-    public AudioSource audioSource; // Reference to the AudioSource component
+     // Reference to the AudioSource component
     public Animator animator;
     private bool reloading = false;
     void Start()
@@ -24,8 +24,6 @@ public class Reload : MonoBehaviour
             // Play the sound
             audioSource.Play();
         }
-
-
 
         if(Input.GetKeyUp(KeyCode.R)) 
         {
