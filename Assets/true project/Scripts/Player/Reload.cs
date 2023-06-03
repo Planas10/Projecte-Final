@@ -13,6 +13,7 @@ public class Reload : MonoBehaviour
     public int RemainingAmmo;
     public bool IsReloading = false;
     public float reloadTime;
+    public bool canReloadNow;
 
     [Header ("Canvas UI")]
     public Image bulletProgressBar;
@@ -27,11 +28,14 @@ public class Reload : MonoBehaviour
 
     public IEnumerator ReloadWeapon()
     {
-        IsReloading = true;
-        audioReload.Play();
-        yield return new WaitForSeconds(reloadTime);
-        RemainingAmmo = MaxAmmo;
-        bulletProgressBar.fillAmount = bulletFillAmount;
-        IsReloading = false;
+        if (canReloadNow)
+        {
+            IsReloading = true;
+            audioReload.Play();
+            yield return new WaitForSeconds(reloadTime);
+            RemainingAmmo = MaxAmmo;
+            bulletProgressBar.fillAmount = bulletFillAmount;
+            IsReloading = false;
+        }
     }
 }

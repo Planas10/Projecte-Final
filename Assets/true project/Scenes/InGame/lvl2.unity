@@ -63585,6 +63585,11 @@ PrefabInstance:
       objectReference: {fileID: 1856799942}
     - target: {fileID: 572439183569220474, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
+      propertyPath: audioWalk
+      value: 
+      objectReference: {fileID: 1856799945}
+    - target: {fileID: 572439183569220474, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
       propertyPath: scrollbar
       value: 
       objectReference: {fileID: 1079854006}
@@ -63752,6 +63757,12 @@ Camera:
 --- !u!1 &1856799944 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 572439183569220476, guid: db32b50d23999f441921af6f601c9a4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1856799940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1856799945 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3839752152635637781, guid: db32b50d23999f441921af6f601c9a4a,
     type: 3}
   m_PrefabInstance: {fileID: 1856799940}
   m_PrefabAsset: {fileID: 0}
