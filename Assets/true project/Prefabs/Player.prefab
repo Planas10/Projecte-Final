@@ -125,28 +125,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamemanager: {fileID: 0}
-  reload: {fileID: 0}
-  Cam: {fileID: 572439184351219670}
+  reload: {fileID: 6319569159787828802}
   sound_bullet: {fileID: -2574999195590560912, guid: c5b6c44f79eaa1443aae532b2d7edc6c,
     type: 3}
+  Cam: {fileID: 572439184351219670}
   boquilla: {fileID: 572439183500307486}
   CurrentLevel: 1
-  audioWalk: {fileID: 0}
+  audioWalk: {fileID: 3839752152635637781}
   normalMoveSpeed: 4
   WalkingSound: 0
   constantMaxShoots: 0
-  IsHacking: 0
   IsWalking: 0
   Shooting: 0
-  lights: []
-  PClights: []
-  CanOpen1: 0
-  CanOpen2: 0
-  interactText: {fileID: 0}
-  hackingText: {fileID: 0}
-  isInteractable: 0
-  progressBar: {fileID: 0}
-  scrollbar: {fileID: 0}
+  CanMove: 0
   bulletScrollbar: {fileID: 0}
   pasos: {fileID: 572439183569220465}
 --- !u!114 &572439183569220470
@@ -179,6 +170,7 @@ MonoBehaviour:
   RemainingAmmo: 0
   IsReloading: 0
   reloadTime: 3
+  canReloadNow: 0
   bulletProgressBar: {fileID: 0}
   bulletFillAmount: 1
 --- !u!114 &7245546115156865755
