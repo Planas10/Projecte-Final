@@ -74,6 +74,7 @@ public class FPSController : MonoBehaviour
 
     private void Awake()
     {
+        CanMove = true;
         audioWalk = GetComponent<AudioSource>();
         characterController = GetComponent<CharacterController>();
 
@@ -91,9 +92,6 @@ public class FPSController : MonoBehaviour
         maxShoots = constantMaxShoots;
         InitialRotation = transform.rotation;
         InitialPos = transform.position;
-
-        //Definir componentes(SpawnPoint, CharacterController y NavMesh)
-        //SpawnPoint = FindObjectOfType<SpawnPointScript>();
     }
 
     private void Start()
@@ -131,7 +129,6 @@ public class FPSController : MonoBehaviour
         {
             if (CanMove)
             {
-                Debug.LogError("Puedo moverme");
                 if (pulsadaR)
                 {
                     StartCoroutine(reload.ReloadWeapon());
