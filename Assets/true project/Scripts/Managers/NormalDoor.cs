@@ -5,11 +5,10 @@ using UnityEngine;
 public class NormalDoor : MonoBehaviour
 {
     public GameObject LTrapDoor;
-    public Vector3 LTrapDoorLimit;
-    public GameObject RTrapDoor;
-    public Vector3 RTrapDoorLimit;
+    public GameObject LTrapDoorLimit;
 
-    public float distance = 4f;
+    public GameObject RTrapDoor;
+    public GameObject RTrapDoorLimit;
 
     private Vector3 LTrapDoorInitPos;
     private Vector3 RTrapDoorInitPos;
@@ -21,36 +20,36 @@ public class NormalDoor : MonoBehaviour
     {
         LTrapDoorInitPos = LTrapDoor.transform.position;
         RTrapDoorInitPos = RTrapDoor.transform.position;
-        LTrapDoorLimit = LTrapDoor.transform.position + LTrapDoor.transform.right * distance;
-        RTrapDoorLimit = RTrapDoor.transform.position + RTrapDoor.transform.right * distance;
 
         if (isOpened)
         {
-            LTrapDoor.transform.position = LTrapDoorLimit;
-            RTrapDoor.transform.position = RTrapDoorLimit;
+            LTrapDoor.transform.position = LTrapDoorLimit.transform.position;
+            RTrapDoor.transform.position = RTrapDoorLimit.transform.position;
         }
     }
-    
+
     private void OpenTrapDoors()
     {
-        Debug.Log((Vector3.Distance(LTrapDoor.transform.position, LTrapDoorLimit) > 0.01f) + "1");
-        if (Vector3.Distance(LTrapDoor.transform.position, LTrapDoorLimit) > 0.01f)
+        //Debug.Log(Vector3.Distance(LTrapDoor.transform.position, LTrapDoorLimit.transform.position) < distance);
+        if (Vector3.Distance(LTrapDoor.transform.position, LTrapDoorLimit.transform.position) > 0.5f)
         {
             Debug.Log("HOLA");
-            LTrapDoor.transform.position -= LTrapDoor.transform.right * 0.8f * Time.deltaTime;
+            LTrapDoor.transform.position -= LTrapDoor.transform.right * 1f * Time.deltaTime;
         }
-        if (Vector3.Distance(RTrapDoor.transform.position, RTrapDoorLimit) > 0.01f)
+        if (Vector3.Distance(RTrapDoor.transform.position, RTrapDoorLimit.transform.position) > 0.5f)
         {
-            RTrapDoor.transform.position -= RTrapDoor.transform.right * 0.8f * Time.deltaTime;
+            RTrapDoor.transform.position -= RTrapDoor.transform.right * 1f * Time.deltaTime;
         }
     }
     private void CloseTrapDoors()
     {
-        if (Vector3.Distance(LTrapDoor.transform.position, LTrapDoorInitPos) > 0.01f)
+        //Debug.Log(Vector3.Distance(RTrapDoor.transform.position, RTrapDoorLimit.transform.position) < 3f/* < distance*/);
+        Debug.Log(Vector3.Distance(RTrapDoor.transform.position, RTrapDoorInitPos)/* < distance*/);
+        if (Vector3.Distance(LTrapDoor.transform.position, LTrapDoorInitPos) > 0.02f)
         {
             LTrapDoor.transform.position += LTrapDoor.transform.right * 0.8f * Time.deltaTime;
         }
-        if (Vector3.Distance(RTrapDoor.transform.position, RTrapDoorInitPos) > 0.01f)
+        if (Vector3.Distance(RTrapDoor.transform.position, RTrapDoorInitPos) > 0.02f)
         {
             RTrapDoor.transform.position += RTrapDoor.transform.right * 0.8f * Time.deltaTime;
         }
@@ -61,7 +60,8 @@ public class NormalDoor : MonoBehaviour
         if (isOpened)
         {
             OpenTrapDoors();
-        }else
+        }
+        else
         {
             CloseTrapDoors();
         }

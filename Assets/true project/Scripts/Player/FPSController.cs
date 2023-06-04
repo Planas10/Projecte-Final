@@ -358,6 +358,10 @@ public class FPSController : MonoBehaviour
         {
             actualTrapDoor = null;
         }
+        if (other.gameObject.CompareTag("NormalDoor"))
+        {
+            actualNormalDoor = null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
