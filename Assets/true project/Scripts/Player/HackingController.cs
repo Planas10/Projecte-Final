@@ -22,7 +22,7 @@ public class HackingController : MonoBehaviour
 
     private bool pulsandoE;
 
-    public bool IsHacking = false;
+    
 
     public List<LightObject> lights;
     public List<PcLightObject> PClights;
@@ -58,7 +58,7 @@ public class HackingController : MonoBehaviour
         //check inputs
         if (Input.GetKeyUp(KeyCode.E)) {  }
 
-        if (!IsHacking) { fpsController.CanMove = true; }
+        if (!fpsController.IsHacking) { fpsController.CanMove = true; }
         else { fpsController.CanMove = false; }
     }
 
@@ -110,10 +110,10 @@ public class HackingController : MonoBehaviour
                 scrollbar.SetActive(true);
                 fillAmount += (Time.deltaTime / 6);
                 progressBar.fillAmount = fillAmount;
-                IsHacking = true;
+                fpsController.IsHacking = true;
                 if (fillAmount >= 1f)
                 {
-                    IsHacking = false;
+                    fpsController.IsHacking = false;
                     light.ActivateLight(true);
                     PcLight.GetComponent<Light>().color = Color.green;
                     DeactivateHackingUI();
@@ -122,7 +122,7 @@ public class HackingController : MonoBehaviour
             else
             {
                 scrollbar.SetActive(false);
-                IsHacking = false;
+                fpsController.IsHacking = false;
                 progressBar.fillAmount = 0f;
                 fillAmount = 0f;
             }

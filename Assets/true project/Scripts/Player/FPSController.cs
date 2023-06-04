@@ -55,6 +55,7 @@ public class FPSController : MonoBehaviour
 
     public bool IsWalking = false;
     public bool Shooting = false;
+    public bool IsHacking = false;
 
 
     //Hackeo
@@ -236,7 +237,7 @@ public class FPSController : MonoBehaviour
         {
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
-            hackingController.IsHacking = false;
+            IsHacking = false;
             hackingController.DeactivateHackingUI();
             characterController.enabled = true;
             //Debug.Log(transform.position);
@@ -246,6 +247,7 @@ public class FPSController : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        
         if (other.gameObject.CompareTag("TrapDoor"))
         {
             actualTrapDoor = null;
@@ -253,6 +255,12 @@ public class FPSController : MonoBehaviour
         if (other.gameObject.CompareTag("NormalDoor"))
         {
             actualNormalDoor = null;
+        }
+        
+        if (other.gameObject.CompareTag("PcCodigo"))
+        {
+            Debug.LogError("SALIENDO");
+            passwordCanvasManager = null;
         }
     }
 
@@ -271,6 +279,14 @@ public class FPSController : MonoBehaviour
         {
             actualNormalDoor = other.gameObject.GetComponentInParent<NormalDoor>();
         }
+        
+        if (other.gameObject.CompareTag("PcCodigo"))
+        {
+            Debug.LogError("ENTRANDO");
+            passwordCanvasManager = other.gameObject.GetComponentInParent<PasswordCanvasManager>();
+        }
+
+
     }
 
 }

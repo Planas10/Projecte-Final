@@ -30,9 +30,8 @@ TagManager:
   - finalLevel
   - TrapDoor
   - Bomb
-  - pass1
-  - pass2
-  - pass3
+  - NormalDoor
+  - PcCodigo
   layers:
   - Default
   - TransparentFX
