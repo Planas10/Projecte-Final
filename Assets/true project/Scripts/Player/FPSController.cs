@@ -131,6 +131,7 @@ public class FPSController : MonoBehaviour
         {
             if (CanMove)
             {
+                Debug.LogError("Puedo moverme");
                 if (pulsadaR)
                 {
                     StartCoroutine(reload.ReloadWeapon());
@@ -164,15 +165,17 @@ public class FPSController : MonoBehaviour
 
     void Move()
     {
-
+        Debug.LogError("Movimiento");
         if (Input.GetButtonDown("Horizontal"))
         {
+            Debug.LogError("derecha/izquierda");
             Hactive = true;
             pasos.Play();
         }
 
         if (Input.GetButtonDown("Vertical"))
         {
+            Debug.LogError("alante/atras");
             Vactive = true;
             pasos.Play();
         }
