@@ -162,17 +162,14 @@ public class FPSController : MonoBehaviour
 
     void Move()
     {
-        Debug.LogError("Movimiento");
         if (Input.GetButtonDown("Horizontal"))
         {
-            Debug.LogError("derecha/izquierda");
             Hactive = true;
             pasos.Play();
         }
 
         if (Input.GetButtonDown("Vertical"))
         {
-            Debug.LogError("alante/atras");
             Vactive = true;
             pasos.Play();
         }
