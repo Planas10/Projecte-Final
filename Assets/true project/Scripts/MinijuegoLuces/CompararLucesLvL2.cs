@@ -19,6 +19,8 @@ public class CompararLucesLvL2 : MonoBehaviour
     public GameObject LPuerta;
     public GameObject RPuerta;
 
+    public CineamticaPuertaLaser cinemachineCamera;
+
 
     private void Awake()
     {
@@ -54,10 +56,24 @@ public class CompararLucesLvL2 : MonoBehaviour
 
         if (Luz1Activada && Luz2Activada && Luz3Activada && Luz4Activada)
         {
-            lasersPuerta.SetActive(false);
-            RPuerta.SetActive(false);
-            LPuerta.SetActive(false);
+            StartCoroutine(CineamticaLuces());    
+
         }
 
+    }
+
+    public IEnumerator CineamticaLuces()
+    {
+        cinemachineCamera.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(6f);
+
+        lasersPuerta.SetActive(false);
+        RPuerta.SetActive(false);
+        LPuerta.SetActive(false);
+
+        yield return new WaitForSeconds(2f);
+
+        cinemachineCamera.gameObject.SetActive(false);
     }
 }
