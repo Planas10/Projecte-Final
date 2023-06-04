@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17471921, g: 0.21854497, b: 0.30081415, a: 1}
+  m_IndirectSpecularColor: {r: 0.17471895, g: 0.2185443, b: 0.30081335, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fpsController: {fileID: 2006000145}
   reload: {fileID: 2006000155}
-  lightsController: {fileID: 2006000149}
+  lightsController: {fileID: 0}
   PlayerAnimator: {fileID: 2006000143}
 --- !u!4 &12145674
 Transform:
@@ -17665,7 +17665,8 @@ PrefabInstance:
       propertyPath: luz4
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7245546115156865755, guid: db32b50d23999f441921af6f601c9a4a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db32b50d23999f441921af6f601c9a4a, type: 3}
 --- !u!1001 &519452923
 PrefabInstance:
@@ -19905,11 +19906,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 630666649}
   - {fileID: 995661012}
   - {fileID: 2076873002}
-  - {fileID: 630666649}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20066,7 +20067,7 @@ PrefabInstance:
     - target: {fileID: 4558559144754263249, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4558559144754263249, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
@@ -21507,6 +21508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 343108255}
   debugstring: patata3
+  password: 997
   doingGame: 0
   HUD: {fileID: 2118429553}
 --- !u!65 &673856888
@@ -25561,7 +25563,7 @@ RectTransform:
   m_Children:
   - {fileID: 343108256}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -25581,9 +25583,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correctPassword: 
-  password1: 999
-  password2: 123
-  password3: 987
   passwordText: {fileID: 169051362}
   panel: {fileID: 343108255}
   HUD: {fileID: 2118429553}
@@ -29040,7 +29039,7 @@ PrefabInstance:
     - target: {fileID: 4558559144754263249, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4558559144754263249, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
@@ -95248,9 +95247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correctPassword: 
-  password1: 
-  password2: 
-  password3: 
   passwordText: {fileID: 0}
   panel: {fileID: 0}
   HUD: {fileID: 0}
@@ -95873,6 +95869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 343108255}
   debugstring: patata2
+  password: 998
   doingGame: 0
   HUD: {fileID: 2118429553}
 --- !u!65 &1783730722
@@ -97371,52 +97368,8 @@ Transform:
   - {fileID: 458894063}
   - {fileID: 831305544}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1852705073
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1852705075}
-  - component: {fileID: 1852705074}
-  m_Layer: 0
-  m_Name: MinijuegoController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1852705074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852705073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbece397fcfee8f448b0506e31abd466, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1852705075
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852705073}
-  m_LocalRotation: {x: -0, y: -0.7071065, z: -0, w: 0.7071071}
-  m_LocalPosition: {x: -24.775246, y: 3.4746928, z: -4.500393}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1854055522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98932,7 +98885,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 630666649}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1889730520
 MonoBehaviour:
@@ -111627,18 +111580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8db37222451fae4ba13b0e128ad0d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2006000149 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7245546115156865755, guid: db32b50d23999f441921af6f601c9a4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 506580545}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51a8660e95df7654f920a5a832cdaebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2006000155 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6319569159787828802, guid: db32b50d23999f441921af6f601c9a4a,
@@ -113541,7 +113482,7 @@ PrefabInstance:
     - target: {fileID: 4558559144754263249, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4558559144754263249, guid: 1dc07a05fb947fc41a7c306015251074,
         type: 3}
@@ -113915,7 +113856,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 630666649}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2111338846
 MonoBehaviour:
@@ -113931,6 +113872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 343108255}
   debugstring: patata1
+  password: 999
   doingGame: 0
   HUD: {fileID: 2118429553}
 --- !u!1 &2118429553

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class PasswordCanvasManager : MonoBehaviour
 {
     public string correctPassword;
-    public string password1;
-    public string password2;
-    public string password3;
     [SerializeField] private Text passwordText;
 
     private string currentPasword = "";

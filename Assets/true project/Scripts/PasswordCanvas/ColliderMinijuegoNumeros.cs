@@ -12,6 +12,8 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
 
     private PasswordCanvasManager passwordCanvasManager;
 
+    public string password;
+
     private bool isInside = false;
     public bool doingGame;
 
@@ -24,18 +26,8 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
             passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
         }
 
-        switch (gameObject.tag)
-        {
-            case "pass1":
-                passwordCanvasManager.correctPassword = passwordCanvasManager.password1;
-                break;
-            case "pass2":
-                passwordCanvasManager.correctPassword = passwordCanvasManager.password2;
-                break;
-            case "pass3":
-                passwordCanvasManager.correctPassword = passwordCanvasManager.password3;
-                break;
-        }
+        passwordCanvasManager.correctPassword = password;
+
     }
 
     private void Update()
