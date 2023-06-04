@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public PauseMenu pausemenu;
     public FPSController fpsController;
     public Reload reload;
+    public HackingController hackingController;
 
     public GameObject doorLeft;
     public GameObject doorRight;
@@ -38,11 +39,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         BulletText.text = reload.RemainingAmmo + "/" + reload.MaxAmmo;
-        if (fpsController.CanOpen1)
+        if (hackingController.CanOpen1)
         {
             //OpenDoor1(doorRight, doorLeft);
         }
-        if (fpsController.CanOpen2)
+        if (hackingController.CanOpen2)
         {
             //OpenDoor2(doorRight2,doorLeft2);
         }
@@ -64,9 +65,9 @@ public class GameManager : MonoBehaviour
 
     public void GODmode() {
 
-        for (int i = 0; i < fpsController.lights.ToArray().Length; i++)
+        for (int i = 0; i < hackingController.lights.ToArray().Length; i++)
         {
-            fpsController.lights[i].IsActivated = true;
+            hackingController.lights[i].IsActivated = true;
         }
     }
     public void GODmodeActivateLights(LightObject light, PcLightObject PcLight) { light.ActivateLight(true); PcLight.GetComponent<Light>().color = Color.green; }

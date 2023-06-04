@@ -9,11 +9,12 @@ using System;
 public class FPSController : MonoBehaviour
 {
     public GameManager gamemanager;
+    public Reload reload;
     private ColliderMinijuegoNumeros colliderMinijuegoNumeros;
     private PasswordCanvasManager passwordCanvasManager;
     private TrapDoor actualTrapDoor;
     private NormalDoor actualNormalDoor;
-    public Reload reload;
+    private HackingController hackingController;
 
     private bullet Bullet;
     public bullet sound_bullet;
@@ -52,32 +53,15 @@ public class FPSController : MonoBehaviour
 
     //Abrir puertas
 
-    public bool IsHacking = false;
     public bool IsWalking = false;
     public bool Shooting = false;
 
-    public List<LightObject> lights;
-    public List<PcLightObject> PClights;
 
-
-    public bool CanOpen1;
-    public bool CanOpen2;
     //Hackeo
 
-    private bool CanMove;
-
-    [SerializeField] private Text interactText; //texto interactuar con E
-    [SerializeField] private Text hackingText; //Texto hackeo
-    [SerializeField] private bool isInteractable;
-
-    private float fillAmount; //progreso del hackeo
-
-    [SerializeField] private Image progressBar;
-    [SerializeField] private GameObject scrollbar;
+    public bool CanMove;
 
     [SerializeField] private GameObject bulletScrollbar;
-    
-
 
     //Audio
 
@@ -85,8 +69,6 @@ public class FPSController : MonoBehaviour
 
     private bool Hactive;
     private bool Vactive;
-    private bool pulsandoE;
-    private bool pulsadaE;
     private bool pulsadaR;
 
     private void Awake()
@@ -98,15 +80,11 @@ public class FPSController : MonoBehaviour
         if (FindObjectOfType<ColliderMinijuegoNumeros>() != null)
             colliderMinijuegoNumeros = FindObjectOfType<ColliderMinijuegoNumeros>();
 
-        lights = new(FindObjectsOfType<LightObject>());
-        lights.Sort((a, b) => { return a.name.CompareTo(b.name); });
-
-
         if (FindObjectOfType<PasswordCanvasManager>() != null)
             passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
-
-        PClights = new(FindObjectsOfType<PcLightObject>());
-        PClights.Sort((a, b) => { return a.name.CompareTo(b.name); });
+        
+        if (FindObjectOfType<HackingController>() != null)
+            hackingController = FindObjectOfType<HackingController>();
 
 
         maxShoots = constantMaxShoots;
@@ -117,17 +95,9 @@ public class FPSController : MonoBehaviour
         //SpawnPoint = FindObjectOfType<SpawnPointScript>();
     }
 
-    void Start()
+    private void Start()
     {
-        hackingText.enabled = false;
-        interactText.enabled = false;
-        isInteractable = false;
-
-        scrollbar.SetActive(false);
         bulletScrollbar.SetActive(true);
-
-        progressBar.fillAmount = 0f;
-        fillAmount = 0f;
     }
 
     void Update()
@@ -139,7 +109,6 @@ public class FPSController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            fillAmount = 0f;
             if (actualTrapDoor != null)
             {
                 actualTrapDoor.isOpened = !actualTrapDoor.isOpened;
@@ -151,33 +120,11 @@ public class FPSController : MonoBehaviour
             }
         }
 
-        //Assignar Inputs
-        //E
-        if (Input.GetKeyDown(KeyCode.E))
-            pulsadaE = true;
-        else
-            pulsadaE = false;
-
-        if (Input.GetKey(KeyCode.E))
-            pulsandoE = true;
-        else
-            pulsandoE = false;
-        //R
         if (Input.GetKeyDown(KeyCode.R))
             pulsadaR = true;
         else
             pulsadaR = false;
 
-
-
-        if (Input.GetKey(KeyCode.H)) 
-        {
-            gamemanager.GODmode();
-            for (int i = 0; i < lights.ToArray().Length; i++)
-            {
-                gamemanager.GODmodeActivateLights(lights[i], PClights[i]);
-            }
-        }
 
         if (!GameManager.Instance().IsPaused() && (passwordCanvasManager == null || !passwordCanvasManager.colliderMinijuegoNumeros.doingGame))
         {
@@ -196,23 +143,6 @@ public class FPSController : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.None;
-        }
-
-        if (!IsHacking) { CanMove = true; }
-        else { CanMove = false; }
-
-        
-
-        if (CurrentLevel == 1)
-        {
-            if (lights[0].IsActivated == true && lights[1].IsActivated == true) { 
-                CanOpen1 = true;
-            }
-            if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
-        }
-        if (CurrentLevel == 2)
-        {
-            //trapdoormanager.ActivateDoor();
         }
 
         //Hackeo
@@ -306,54 +236,16 @@ public class FPSController : MonoBehaviour
         {
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
-            IsHacking = false;
-            DeactivateHackingUI();
+            hackingController.IsHacking = false;
+            hackingController.DeactivateHackingUI();
             characterController.enabled = true;
             //Debug.Log(transform.position);
         }
 
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        //Debug.Log(other.gameObject.tag);
-        if (other.gameObject.CompareTag("Object1") && !lights[0].IsActivated)
-        {
-            ActivateHackingUI();
-            Hacking(lights[0], PClights[0]);
-        }
-        if (other.gameObject.CompareTag("Object2") && !lights[1].IsActivated)
-        {
-            ActivateHackingUI();
-            Hacking(lights[1], PClights[1]);
-        }
-        if (other.gameObject.CompareTag("Object3") && !lights[2].IsActivated)
-        {
-            ActivateHackingUI();
-            Hacking(lights[2], PClights[2]);
-        }
-        if (other.gameObject.CompareTag("Object4") && !lights[3].IsActivated)
-        {
-            ActivateHackingUI();
-            Hacking(lights[3], PClights[3]);
-        }
-        if (other.gameObject.CompareTag("Object5") && !lights[4].IsActivated)
-        {
-            ActivateHackingUI();
-            Hacking(lights[4], PClights[4]);
-        }
-
-
-    }
-
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Object1") ||
-            other.CompareTag("Object2") ||
-            other.CompareTag("Object3") ||
-            other.CompareTag("Object4") ||
-            other.CompareTag("Object5") ||
-            other.CompareTag("FinalPC")) { DeactivateHackingUI(); }
         if (other.gameObject.CompareTag("TrapDoor"))
         {
             actualTrapDoor = null;
@@ -373,66 +265,12 @@ public class FPSController : MonoBehaviour
         if (other.gameObject.CompareTag("TrapDoor"))
         {
             actualTrapDoor = other.gameObject.GetComponentInParent<TrapDoor>();
-        } 
-        
+        }
+
         if (other.gameObject.CompareTag("NormalDoor"))
         {
             actualNormalDoor = other.gameObject.GetComponentInParent<NormalDoor>();
         }
     }
 
-    private void Hacking(LightObject light, PcLightObject PcLight)
-    {
-        if (isInteractable)
-        {   
-            if (pulsandoE)
-            {
-                scrollbar.SetActive(true);
-                fillAmount += (Time.deltaTime / 6);
-                progressBar.fillAmount = fillAmount;
-                IsHacking = true;
-                if (fillAmount >= 1f)
-                {
-                    IsHacking = false;
-                    light.ActivateLight(true);
-                    PcLight.GetComponent<Light>().color = Color.green;
-                    DeactivateHackingUI();
-                }
-            }
-            else
-            {
-                scrollbar.SetActive(false);
-                IsHacking = false;
-                progressBar.fillAmount = 0f;
-                fillAmount = 0f;
-            }
-        }
-    }
-
-    private void HackingBar()
-    {
-        scrollbar.SetActive(true);
-        hackingText.enabled = true;
-    }
-    private void DeactivateHackingBar()
-    {
-        scrollbar.SetActive(false);
-        hackingText.enabled = false;
-    }
-    private void ActivateHackingUI()
-    {
-        isInteractable = true;
-        progressBar.enabled = true;
-        interactText.enabled = true;
-    }
-    private void DeactivateHackingUI()
-    {
-        isInteractable = false;
-        interactText.enabled = false;
-        hackingText.enabled = false;
-        progressBar.enabled = false;
-        progressBar.fillAmount = 0f;
-        fillAmount = 0f;
-        scrollbar.SetActive(false);
-    }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17471921, g: 0.21854497, b: 0.30081415, a: 1}
+  m_IndirectSpecularColor: {r: 0.17471895, g: 0.2185443, b: 0.30081335, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsController: {fileID: 2006000145}
+  hackingController: {fileID: 0}
+  reload: {fileID: 0}
   lightsController: {fileID: 2006000149}
   PlayerAnimator: {fileID: 2006000143}
 --- !u!4 &12145674
@@ -10022,9 +10024,19 @@ PrefabInstance:
       objectReference: {fileID: 2006000147}
     - target: {fileID: 572439183569220474, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
+      propertyPath: reload
+      value: 
+      objectReference: {fileID: 2006000154}
+    - target: {fileID: 572439183569220474, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
       propertyPath: boquilla
       value: 
       objectReference: {fileID: 398775799}
+    - target: {fileID: 572439183569220474, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: audioWalk
+      value: 
+      objectReference: {fileID: 2006000151}
     - target: {fileID: 572439183569220474, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
       propertyPath: scrollbar
@@ -27167,6 +27179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausemenu: {fileID: 592491844}
   fpsController: {fileID: 2006000145}
+  reload: {fileID: 0}
+  hackingController: {fileID: 0}
   doorLeft: {fileID: 106450490}
   doorRight: {fileID: 106450489}
   doorLeft2: {fileID: 1189006274}
@@ -38498,6 +38512,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a8660e95df7654f920a5a832cdaebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2006000151 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3839752152635637781, guid: db32b50d23999f441921af6f601c9a4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 506580545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2006000154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6319569159787828802, guid: db32b50d23999f441921af6f601c9a4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 506580545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006000139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735dcd892b35b7740a855f1496e7bb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2006000157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006000139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590c2d2be0b6571418fbb62ba4363898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsController: {fileID: 2006000145}
+  interactText: {fileID: 1369366733}
+  hackingText: {fileID: 1823164584}
+  progressBar: {fileID: 104666218}
+  scrollbar: {fileID: 1567380690}
+  bulletScrollbar: {fileID: 0}
+  CanOpen1: 0
+  CanOpen2: 0
+  IsHacking: 0
+  lights: []
+  PClights: []
 --- !u!1 &2011249990
 GameObject:
   m_ObjectHideFlags: 0
