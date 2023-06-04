@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class CompararLucesLvL2 : MonoBehaviour
     public GameObject LPuerta;
     public GameObject RPuerta;
 
-    public CineamticaPuertaLaser cinemachineCamera;
+    public CinemachineVirtualCamera CinematicaPuertaLaser;
 
 
     private void Awake()
@@ -64,7 +65,7 @@ public class CompararLucesLvL2 : MonoBehaviour
 
     public IEnumerator CineamticaLuces()
     {
-        cinemachineCamera.gameObject.SetActive(true);
+        CinematicaPuertaLaser.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(6f);
 
@@ -74,6 +75,6 @@ public class CompararLucesLvL2 : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        cinemachineCamera.gameObject.SetActive(false);
+        CinematicaPuertaLaser.gameObject.SetActive(false);
     }
 }
