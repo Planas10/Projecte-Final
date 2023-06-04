@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public PauseMenu pausemenu;
     public FPSController fpsController;
     public Reload reload;
-    public HackingController hackingController;
 
     public GameObject doorLeft;
     public GameObject doorRight;
@@ -39,14 +38,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         BulletText.text = reload.RemainingAmmo + "/" + reload.MaxAmmo;
-        if (hackingController.CanOpen1)
-        {
-            //OpenDoor1(doorRight, doorLeft);
-        }
-        if (hackingController.CanOpen2)
-        {
-            //OpenDoor2(doorRight2,doorLeft2);
-        }
     }
 
     public bool IsPaused() { return pausemenu.GameIsPaused; }
@@ -61,14 +52,6 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(int sceneNumber) {
         Debug.LogError("Cambio de escena");
         SceneManager.LoadScene(sceneNumber); 
-    }
-
-    public void GODmode() {
-
-        for (int i = 0; i < hackingController.lights.ToArray().Length; i++)
-        {
-            hackingController.lights[i].IsActivated = true;
-        }
     }
     public void GODmodeActivateLights(LightObject light, PcLightObject PcLight) { light.ActivateLight(true); PcLight.GetComponent<Light>().color = Color.green; }
 
