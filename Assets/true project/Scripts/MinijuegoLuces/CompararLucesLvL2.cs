@@ -57,7 +57,7 @@ public class CompararLucesLvL2 : MonoBehaviour
 
         if (Luz1Activada && Luz2Activada && Luz3Activada && Luz4Activada)
         {
-            StartCoroutine(CineamticaLuces());    
+            StartCoroutine(CineamticaLuces());   
 
         }
 
