@@ -56,7 +56,8 @@ public class HackingController : MonoBehaviour
         if (lights[2].IsActivated == true && lights[3].IsActivated == true && lights[4].IsActivated == true) { CanOpen2 = true; }
 
         //check inputs
-        if (Input.GetKeyUp(KeyCode.E)) {  }
+        if (Input.GetKey(KeyCode.E)) { pulsandoE = true; }
+        else { pulsandoE = false; }
 
         if (!fpsController.IsHacking) { fpsController.CanMove = true; }
         else { fpsController.CanMove = false; }
