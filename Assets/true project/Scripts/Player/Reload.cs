@@ -26,6 +26,14 @@ public class Reload : MonoBehaviour
         RemainingAmmo = MaxAmmo;
     }
 
+    private void Update()
+    {
+        if (RemainingAmmo < MaxAmmo)
+            canReloadNow = true;
+        else
+            canReloadNow = false;
+    }
+
     public IEnumerator ReloadWeapon()
     {
         if (canReloadNow)
