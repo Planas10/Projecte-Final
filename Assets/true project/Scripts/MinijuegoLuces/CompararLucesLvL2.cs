@@ -80,15 +80,16 @@ public class CompararLucesLvL2 : MonoBehaviour
 
         yield return new WaitForSeconds(1.75f);
 
-        
         RPuerta.SetActive(false);
         LPuerta.SetActive(false);
 
+        
+
         yield return new WaitForSeconds(2f);
 
-        lasersPuerta.SetActive(false);
+        lasersPuerta.SetActive(false);        
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.5f);     
 
         camarasLvl2.gameObject.SetActive(false);
         Player.gameObject.SetActive(true);

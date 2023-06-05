@@ -37,7 +37,8 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
         {
             if (!doingGame)
             {
-        Debug.LogError(doingGame);
+        
+                Debug.LogError(doingGame);
                 Cursor.lockState = CursorLockMode.None;
                 panel.gameObject.SetActive(true);
                 doingGame = true;

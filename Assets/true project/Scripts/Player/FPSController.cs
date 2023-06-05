@@ -256,7 +256,7 @@ public class FPSController : MonoBehaviour
         
         if (other.gameObject.CompareTag("PcCodigo"))
         {
-            Debug.LogError("SALIENDO");
+            //Debug.LogError("SALIENDO");
             passwordCanvasManager = null;
         }
     }
@@ -279,7 +279,7 @@ public class FPSController : MonoBehaviour
         
         if (other.gameObject.CompareTag("PcCodigo"))
         {
-            Debug.LogError("ENTRANDO");
+            //Debug.LogError("ENTRANDO");
             passwordCanvasManager = other.gameObject.GetComponentInParent<PasswordCanvasManager>();
         }
 

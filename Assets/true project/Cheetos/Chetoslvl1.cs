@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Chetoslvl1 : MonoBehaviour
 {
-    private GameManager gameManager;
-    private HackingController hackingController;
+    public GameManager gameManager;
+    public HackingController hackingController;
 
     private void Update()
     {
