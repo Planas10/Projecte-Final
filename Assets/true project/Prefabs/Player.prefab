@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 572439183569220475}
   - component: {fileID: 572439183569220468}
   - component: {fileID: 572439183569220474}
-  - component: {fileID: 572439183569220470}
   - component: {fileID: 6319569159787828802}
   - component: {fileID: 7245546115156865755}
   - component: {fileID: 572439183569220471}
@@ -131,28 +130,16 @@ MonoBehaviour:
   Cam: {fileID: 572439184351219670}
   boquilla: {fileID: 572439183500307486}
   CurrentLevel: 1
-  audioWalk: {fileID: 3839752152635637781}
   normalMoveSpeed: 4
   WalkingSound: 0
   constantMaxShoots: 0
   IsWalking: 0
   Shooting: 0
+  IsHacking: 0
   CanMove: 0
   bulletScrollbar: {fileID: 0}
   pasos: {fileID: 572439183569220465}
---- !u!114 &572439183569220470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572439183569220476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 314595bc7d63cb24486516a26912ce65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 572439183569220471}
+  disparo: {fileID: 0}
 --- !u!114 &6319569159787828802
 MonoBehaviour:
   m_ObjectHideFlags: 0

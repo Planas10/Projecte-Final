@@ -23,9 +23,6 @@ public class FPSController : MonoBehaviour
 
     public int CurrentLevel;
 
-    [Header ("Audio")]
-    public AudioSource audioWalk;
-
     //public GameObject SpawnPoint;
 
     CharacterController characterController;
@@ -39,6 +36,7 @@ public class FPSController : MonoBehaviour
     [SerializeField] public int WalkingSound;
 
     private int maxShoots;
+    //variable a definir que marca el maximo de balas que pueden estar activas al mismo tiempo
     [SerializeField] private int constantMaxShoots;
     private bool CanReload;
 
@@ -51,22 +49,16 @@ public class FPSController : MonoBehaviour
     float h_mouse;
     float v_mouse;
 
-    //Abrir puertas
-
     public bool IsWalking = false;
     public bool Shooting = false;
     public bool IsHacking = false;
-
-
-    //Hackeo
 
     public bool CanMove;
 
     [SerializeField] private GameObject bulletScrollbar;
 
-    //Audio
-
     public AudioSource pasos;
+    public AudioSource disparo;
 
     private bool Hactive;
     private bool Vactive;
@@ -75,7 +67,9 @@ public class FPSController : MonoBehaviour
     private void Awake()
     {
         CanMove = true;
-        audioWalk = GetComponent<AudioSource>();
+
+        disparo = GetComponent<AudioSource>();
+
         characterController = GetComponent<CharacterController>();
 
 
@@ -214,9 +208,12 @@ public class FPSController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.LogError("pulso raton");
             if (reload.RemainingAmmo > 0 && maxShoots > 0)
             {
+                Debug.LogError("disparo");
                 Shooting = true;
+                disparo.Play();
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
                 reload.RemainingAmmo--;
                 maxShoots--;
