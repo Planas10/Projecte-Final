@@ -19,8 +19,12 @@ public class CompararLucesLvL2 : MonoBehaviour
     public GameObject lasersPuerta;
     public GameObject LPuerta;
     public GameObject RPuerta;
+    public GameObject Player;
+    public GameObject camaras;
 
-    public CinemachineVirtualCamera CinematicaPuertaLaser;
+    public CinemachineBrain camarasLvl2;
+
+    SerializeField bool CanDoCinematic;
 
 
     private void Awake()
@@ -56,8 +60,12 @@ public class CompararLucesLvL2 : MonoBehaviour
         }
 
         if (Luz1Activada && Luz2Activada && Luz3Activada && Luz4Activada)
-        {
-            StartCoroutine(CineamticaLuces());    
+        {           
+            
+            if(CanDoCinematic)
+            {
+                StartCoroutine(CineamticaLuces());
+            }
 
         }
 
@@ -65,7 +73,9 @@ public class CompararLucesLvL2 : MonoBehaviour
 
     public IEnumerator CineamticaLuces()
     {
-        CinematicaPuertaLaser.gameObject.SetActive(true);
+        camarasLvl2.gameObject.SetActive(true);
+        Player.gameObject.SetActive(false);
+        camaras.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(6f);
 
@@ -75,6 +85,9 @@ public class CompararLucesLvL2 : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        CinematicaPuertaLaser.gameObject.SetActive(false);
+        camarasLvl2.gameObject.SetActive(false);
+        Player.gameObject.SetActive(true);
+        camaras.gameObject.SetActive(false);
+        CanDoCinematic = false;
     }
 }
