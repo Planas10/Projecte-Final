@@ -21,7 +21,7 @@ public class Reload : MonoBehaviour
 
     private void Awake()
     {
-        audioReload = GetComponent<AudioSource>();
+        //audioReload = GetComponent<AudioSource>();        
         bulletProgressBar.fillAmount = bulletFillAmount;
         RemainingAmmo = MaxAmmo;
     }

@@ -65077,6 +65077,16 @@ PrefabInstance:
       propertyPath: luz4
       value: 
       objectReference: {fileID: 1425735732}
+    - target: {fileID: 7916295061893203383, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916295061893203383, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 16ea247604c195b44ad94b96d7d736ac, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db32b50d23999f441921af6f601c9a4a, type: 3}
 --- !u!114 &1856799941 stripped
