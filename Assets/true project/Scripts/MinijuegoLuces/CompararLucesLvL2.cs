@@ -24,11 +24,12 @@ public class CompararLucesLvL2 : MonoBehaviour
 
     public CinemachineBrain camarasLvl2;
 
-    SerializeField bool CanDoCinematic;
+    [SerializeField] private bool CanDoCinematic;
 
 
     private void Awake()
     {
+        CanDoCinematic = true;
         lucesAbajo = new(FindObjectsOfType<LuzPcMinijuego>());
         lucesAbajo.Sort((a, b) => { return a.name.CompareTo(b.name); });
 
@@ -77,13 +78,17 @@ public class CompararLucesLvL2 : MonoBehaviour
         Player.gameObject.SetActive(false);
         camaras.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(1.75f);
 
-        lasersPuerta.SetActive(false);
+        
         RPuerta.SetActive(false);
         LPuerta.SetActive(false);
 
         yield return new WaitForSeconds(2f);
+
+        lasersPuerta.SetActive(false);
+
+        yield return new WaitForSeconds(1.5f);
 
         camarasLvl2.gameObject.SetActive(false);
         Player.gameObject.SetActive(true);
