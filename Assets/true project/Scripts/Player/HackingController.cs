@@ -27,13 +27,6 @@ public class HackingController : MonoBehaviour
     public List<LightObject> lights;
     public List<PcLightObject> PClights;
 
-    //public AudioSource Button;
-    public AudioSource ok;
-
-    //public AudioClip hacking;
-
-    //public float segundos;
-
     private void Awake()
     {
         lights = new(FindObjectsOfType<LightObject>());
@@ -115,17 +108,15 @@ public class HackingController : MonoBehaviour
         {
             if (pulsandoE)
             {
-                scrollbar.SetActive(true);                
+                scrollbar.SetActive(true);
                 fillAmount += (Time.deltaTime / 6);
                 progressBar.fillAmount = fillAmount;
                 fpsController.IsHacking = true;
-                //StartCoroutine(PlayAudioWithDuration());
                 if (fillAmount >= 1f)
                 {
                     fpsController.IsHacking = false;
                     light.ActivateLight(true);
                     PcLight.GetComponent<Light>().color = Color.green;
-                    ok.Play();
                     DeactivateHackingUI();
                 }
             }
@@ -156,10 +147,4 @@ public class HackingController : MonoBehaviour
         fillAmount = 0f;
         scrollbar.SetActive(false);
     }
-
-    //public IEnumerator PlayAudioWithDuration()
-    //{
-    //    Button.PlayOneShot(hacking);
-    //    yield return new WaitForSeconds(segundos);
-    //}
 }

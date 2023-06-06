@@ -17,10 +17,14 @@ public class CompararLucesLvL2 : MonoBehaviour
     private bool LucesBien = false;
 
     public GameObject lasersPuerta;
-    public GameObject LPuerta;
-    public GameObject RPuerta;
+
     public GameObject Player;
     public GameObject camaras;
+
+    public GameObject LPuerta;
+    public GameObject LPuertaLimit;
+    public GameObject RPuerta;
+    public GameObject RPuertaLimit;
 
     public CinemachineBrain camarasLvl2;
 
@@ -41,24 +45,24 @@ public class CompararLucesLvL2 : MonoBehaviour
     {
 
         if (lucesAbajo[0].gameObject.GetComponent<Light>().color == lucesArriba[0].gameObject.GetComponent<Light>().color)
-        {
             Luz1Activada = true;
-        }
+        else
+            Luz1Activada = false;
 
         if (lucesAbajo[1].gameObject.GetComponent<Light>().color == lucesArriba[1].gameObject.GetComponent<Light>().color)
-        {
             Luz2Activada = true;
-        }
+        else
+            Luz2Activada = false;
 
         if (lucesAbajo[2].gameObject.GetComponent<Light>().color == lucesArriba[2].gameObject.GetComponent<Light>().color)
-        {
             Luz3Activada = true;
-        }
+        else
+            Luz3Activada = false;
 
         if (lucesAbajo[3].gameObject.GetComponent<Light>().color == lucesArriba[3].gameObject.GetComponent<Light>().color)
-        {
             Luz4Activada = true;
-        }
+        else
+            Luz4Activada = false;
 
         if (Luz1Activada && Luz2Activada && Luz3Activada && Luz4Activada)
         {           
@@ -72,18 +76,27 @@ public class CompararLucesLvL2 : MonoBehaviour
 
     }
 
+    private void AbrirPuertaNormal() {
+        if (Vector3.Distance(LPuerta.transform.position, LPuertaLimit.transform.position) > 0.5f)
+        {
+            Debug.Log("HOLA");
+            LPuerta.transform.position -= LPuerta.transform.right * 1f * Time.deltaTime;
+        }
+        if (Vector3.Distance(RPuerta.transform.position, RPuertaLimit.transform.position) > 0.5f)
+        {
+            RPuerta.transform.position -= RPuerta.transform.right * 1f * Time.deltaTime;
+        }
+    }
+
     public IEnumerator CineamticaLuces()
     {
         camarasLvl2.gameObject.SetActive(true);
         Player.gameObject.SetActive(false);
         camaras.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(1.5f);
 
-        RPuerta.SetActive(false);
-        LPuerta.SetActive(false);
-
-        
+        AbrirPuertaNormal();
 
         yield return new WaitForSeconds(2f);
 

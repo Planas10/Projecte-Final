@@ -64,6 +64,8 @@ public class FPSController : MonoBehaviour
     private bool Vactive;
     private bool pulsadaR;
 
+    private bool nullHackingController;
+
     private void Awake()
     {
         CanMove = true;
@@ -78,9 +80,14 @@ public class FPSController : MonoBehaviour
 
         if (FindObjectOfType<PasswordCanvasManager>() != null)
             passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
-        
+
         if (FindObjectOfType<HackingController>() != null)
+        {
+            nullHackingController = false;
             hackingController = FindObjectOfType<HackingController>();
+        }
+        else
+            nullHackingController = true;
 
 
         maxShoots = constantMaxShoots;
@@ -232,9 +239,9 @@ public class FPSController : MonoBehaviour
             characterController.enabled = false;
             transform.SetPositionAndRotation(InitialPos, InitialRotation);
             IsHacking = false;
-            hackingController.DeactivateHackingUI();
+            if (!nullHackingController)
+                hackingController.DeactivateHackingUI();
             characterController.enabled = true;
-            //Debug.Log(transform.position);
         }
 
     }
