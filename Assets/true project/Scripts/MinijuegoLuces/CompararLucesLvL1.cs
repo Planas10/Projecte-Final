@@ -81,7 +81,7 @@ public class CompararLucesLvL1 : MonoBehaviour
         if (Luz1Activada && Luz2Activada && Luz3Activada && Luz4Activada)
         {
             Debug.Log("lucesOK");
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene("lvl2");
         }
 
     }

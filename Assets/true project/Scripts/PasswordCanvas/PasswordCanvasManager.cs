@@ -53,6 +53,8 @@ public class PasswordCanvasManager : MonoBehaviour
             //ok
             ok.Play();
 
+            colliderMinijuegoNumeros.OpenDoors();
+
         }
         else
         {
@@ -67,9 +69,9 @@ public class PasswordCanvasManager : MonoBehaviour
     void Update()
     {
         passwordText.text = currentPasword;
-        //if(Input.GetKeyUp(KeyCode.Escape))
-        //{
-        //    panel.gameObject.SetActive(false);
-        //}
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            panel.gameObject.SetActive(false);
+        }
     }
 }

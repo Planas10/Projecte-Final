@@ -5,5 +5,5 @@ using UnityEngine.SceneManagement;
 
 public class ControlerControler : MonoBehaviour
 {
-    public void ButtonBack() { SceneManager.LoadScene(2); }
+    public void ButtonBack() { SceneManager.LoadScene("Settings"); }
 }

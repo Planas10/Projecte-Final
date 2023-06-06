@@ -139,7 +139,7 @@ MonoBehaviour:
   CanMove: 0
   bulletScrollbar: {fileID: 0}
   pasos: {fileID: 572439183569220465}
-  disparo: {fileID: 0}
+  disparo: {fileID: 572439183569220471}
 --- !u!114 &6319569159787828802
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,9 +9,9 @@ public class MenuController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
     }
-    public void ButtonStart() { SceneManager.LoadScene(1); }
-    public void CreditsButton() { SceneManager.LoadScene(4); }
-    public void buttonSettings() { SceneManager.LoadScene(2); }
+    public void ButtonStart() { SceneManager.LoadScene("lvl1"); }
+    public void CreditsButton() { SceneManager.LoadScene("Credits"); }
+    public void buttonSettings() { SceneManager.LoadScene("Settings"); }
     public void ButtonQuit() { Application.Quit(); }
 
 }

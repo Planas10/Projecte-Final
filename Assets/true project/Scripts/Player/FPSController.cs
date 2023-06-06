@@ -10,7 +10,6 @@ public class FPSController : MonoBehaviour
 {
     public GameManager gamemanager;
     public Reload reload;
-    private ColliderMinijuegoNumeros colliderMinijuegoNumeros;
     private PasswordCanvasManager passwordCanvasManager;
     private TrapDoor actualTrapDoor;
     private NormalDoor actualNormalDoor;
@@ -20,8 +19,6 @@ public class FPSController : MonoBehaviour
     public bullet sound_bullet;
     public Camera Cam;
     public Transform boquilla;
-
-    public int CurrentLevel;
 
     //public GameObject SpawnPoint;
 
@@ -38,7 +35,6 @@ public class FPSController : MonoBehaviour
     private int maxShoots;
     //variable a definir que marca el maximo de balas que pueden estar activas al mismo tiempo
     [SerializeField] private int constantMaxShoots;
-    private bool CanReload;
 
     private Quaternion InitialRotation;
     private Vector3 InitialPos;
@@ -73,10 +69,6 @@ public class FPSController : MonoBehaviour
         disparo = GetComponent<AudioSource>();
 
         characterController = GetComponent<CharacterController>();
-
-
-        if (FindObjectOfType<ColliderMinijuegoNumeros>() != null)
-            colliderMinijuegoNumeros = FindObjectOfType<ColliderMinijuegoNumeros>();
 
         if (FindObjectOfType<PasswordCanvasManager>() != null)
             passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
@@ -215,10 +207,8 @@ public class FPSController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.LogError("pulso raton");
             if (reload.RemainingAmmo > 0 && maxShoots > 0)
             {
-                Debug.LogError("disparo");
                 Shooting = true;
                 disparo.Play();
                 bullet bullet = Instantiate(sound_bullet, boquilla.position, Quaternion.Euler(boquilla.forward));
@@ -258,18 +248,18 @@ public class FPSController : MonoBehaviour
             actualNormalDoor = null;
         }
         
-        if (other.gameObject.CompareTag("PcCodigo"))
-        {
-            //Debug.LogError("SALIENDO");
-            passwordCanvasManager = null;
-        }
+        //if (other.gameObject.CompareTag("PcCodigo"))
+        //{
+        //    //Debug.LogError("SALIENDO");
+        //    passwordCanvasManager = null;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("finalLevel"))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("lvl3");
         }
         if (other.gameObject.CompareTag("TrapDoor"))
         {
@@ -281,11 +271,11 @@ public class FPSController : MonoBehaviour
             actualNormalDoor = other.gameObject.GetComponentInParent<NormalDoor>();
         }
         
-        if (other.gameObject.CompareTag("PcCodigo"))
-        {
-            //Debug.LogError("ENTRANDO");
-            passwordCanvasManager = other.gameObject.GetComponentInParent<PasswordCanvasManager>();
-        }
+        //if (other.gameObject.CompareTag("PcCodigo"))
+        //{
+        //    //Debug.LogError("ENTRANDO");
+        //    passwordCanvasManager = other.gameObject.GetComponentInParent<PasswordCanvasManager>();
+        //}
         if (other.gameObject.GetComponent<Spawnpoint>())
         {
             InitialRotation = transform.rotation;

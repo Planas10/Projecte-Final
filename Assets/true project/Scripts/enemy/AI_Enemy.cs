@@ -137,7 +137,7 @@ public class AI_Enemy : MonoBehaviour
         }
         if (!LookingForPlayer)
         {
-            transform.LookAt(transform.forward/*waypoints[currentPoint].transform.position*/);
+            transform.LookAt(waypoints[currentPoint].transform.position);
             IA.SetDestination(waypoints[currentPoint].transform.position);
         }
     }

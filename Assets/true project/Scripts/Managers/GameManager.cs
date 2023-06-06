@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     public bool IsPaused() { return pausemenu.GameIsPaused; }
 
     public void ChangeScene(int sceneNumber) {
-        Debug.LogError("Cambio de escena");
         SceneManager.LoadScene(sceneNumber); 
     }
     public void GODmodeActivateLights(LightObject light, PcLightObject PcLight) { light.ActivateLight(true); PcLight.GetComponent<Light>().color = Color.green; }

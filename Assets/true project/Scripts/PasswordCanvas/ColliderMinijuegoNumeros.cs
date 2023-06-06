@@ -19,6 +19,12 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
 
     public GameObject HUD;
 
+    public GameObject LDoor;
+    public GameObject LDoorLimit;
+
+    public GameObject RDoor;
+    public GameObject RDoorLimit;
+
     private void Awake()
     {
         if (FindObjectOfType<PasswordCanvasManager>() != null)
@@ -31,14 +37,11 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
     }
 
     private void Update()
-    {
-      
-        if (isInside && Input.GetKeyDown(KeyCode.E) && passwordCanvasManager.colliderMinijuegoNumeros == this)
+    {      
+        if (isInside && passwordCanvasManager.colliderMinijuegoNumeros == this)
         {
-            if (!doingGame)
+            if (doingGame)
             {
-        
-                Debug.LogError(doingGame);
                 Cursor.lockState = CursorLockMode.None;
                 panel.gameObject.SetActive(true);
                 doingGame = true;
@@ -46,7 +49,6 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
             }
             else
             {
-                Debug.LogError(debugstring);
                 isInside = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 doingGame = false;
@@ -56,23 +58,22 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
 
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        passwordCanvasManager.colliderMinijuegoNumeros = this;
-    }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.GetComponent<FPSController>())
         {
+            passwordCanvasManager.colliderMinijuegoNumeros = this;
             isInside = true;
+            if (Input.GetKeyDown(KeyCode.E))
+                doingGame = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.GetComponent<FPSController>())
         {
             isInside = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -80,6 +81,18 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
             HUD.SetActive(true);
         }
 
+    }
+
+    public void OpenDoors()
+    {
+        if (Vector3.Distance(LDoor.transform.position, LDoorLimit.transform.position) > 0.5f)
+        {
+            LDoor.transform.position -= LDoor.transform.right * 1f * Time.deltaTime;
+        }
+        if (Vector3.Distance(RDoor.transform.position, RDoorLimit.transform.position) > 0.5f)
+        {
+            RDoor.transform.position -= RDoor.transform.right * 1f * Time.deltaTime;
+        }
     }
 
 }
