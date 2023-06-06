@@ -32,6 +32,8 @@ TagManager:
   - Bomb
   - NormalDoor
   - PcCodigo
+  - PortalFinal
+  - reactor
   layers:
   - Default
   - TransparentFX
