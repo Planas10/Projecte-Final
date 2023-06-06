@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.7830189, g: 0.3796903, b: 0.3796903, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: f531e09e2ad2fb440b4eed7605863143, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17471921, g: 0.21854497, b: 0.30081415, a: 1}
+  m_IndirectSpecularColor: {r: 0.0007787092, g: 0.0041236565, b: 0.019990839, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -155,7 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fpsController: {fileID: 2006000145}
   reload: {fileID: 2006000154}
-  lightsController: {fileID: 2006000149}
   PlayerAnimator: {fileID: 2006000143}
 --- !u!4 &12145674
 Transform:
@@ -954,7 +953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &53760893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3133,7 +3132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &135782669
 Transform:
   m_ObjectHideFlags: 0
@@ -6402,7 +6401,7 @@ PrefabInstance:
     - target: {fileID: 1178249186483765133, guid: 8d5608543f0da0e4b9579aba7cd22eb1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1178249186483765133, guid: 8d5608543f0da0e4b9579aba7cd22eb1,
         type: 3}
@@ -6661,7 +6660,7 @@ PrefabInstance:
     - target: {fileID: 1178249186483765133, guid: 8d5608543f0da0e4b9579aba7cd22eb1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1178249186483765133, guid: 8d5608543f0da0e4b9579aba7cd22eb1,
         type: 3}
@@ -7024,7 +7023,7 @@ PrefabInstance:
     - target: {fileID: 1178249186483765133, guid: 8d5608543f0da0e4b9579aba7cd22eb1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1178249186483765133, guid: 8d5608543f0da0e4b9579aba7cd22eb1,
         type: 3}
@@ -15772,7 +15771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &811937460
 Transform:
   m_ObjectHideFlags: 0
@@ -24478,7 +24477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1288344502
 Transform:
   m_ObjectHideFlags: 0
@@ -27589,10 +27588,6 @@ MonoBehaviour:
   pausemenu: {fileID: 592491844}
   fpsController: {fileID: 2006000145}
   reload: {fileID: 2006000154}
-  doorLeft: {fileID: 106450490}
-  doorRight: {fileID: 106450489}
-  doorLeft2: {fileID: 1189006274}
-  doorRight2: {fileID: 528150071}
   BulletText: {fileID: 683347466}
 --- !u!1001 &1450508358
 PrefabInstance:
@@ -38971,18 +38966,6 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 506580545}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2006000149 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7245546115156865755, guid: db32b50d23999f441921af6f601c9a4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 506580545}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006000139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51a8660e95df7654f920a5a832cdaebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2006000151 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3839752152635637781, guid: db32b50d23999f441921af6f601c9a4a,
@@ -39022,7 +39005,6 @@ MonoBehaviour:
   CanOpen2: 0
   lights: []
   PClights: []
-  ok: {fileID: 2006000161}
 --- !u!82 &2006000160 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 572439183569220471, guid: db32b50d23999f441921af6f601c9a4a,

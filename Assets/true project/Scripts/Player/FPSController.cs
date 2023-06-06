@@ -247,12 +247,6 @@ public class FPSController : MonoBehaviour
         {
             actualNormalDoor = null;
         }
-        
-        //if (other.gameObject.CompareTag("PcCodigo"))
-        //{
-        //    //Debug.LogError("SALIENDO");
-        //    passwordCanvasManager = null;
-        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -270,12 +264,6 @@ public class FPSController : MonoBehaviour
         {
             actualNormalDoor = other.gameObject.GetComponentInParent<NormalDoor>();
         }
-        
-        //if (other.gameObject.CompareTag("PcCodigo"))
-        //{
-        //    //Debug.LogError("ENTRANDO");
-        //    passwordCanvasManager = other.gameObject.GetComponentInParent<PasswordCanvasManager>();
-        //}
         if (other.gameObject.GetComponent<Spawnpoint>())
         {
             InitialRotation = transform.rotation;

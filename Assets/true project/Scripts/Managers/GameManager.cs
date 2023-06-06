@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
     public FPSController fpsController;
     public Reload reload;
 
-    public GameObject doorLeft;
-    public GameObject doorRight;
-    public GameObject doorLeft2;
-    public GameObject doorRight2;
+    //public GameObject doorLeft;
+    //public GameObject doorRight;
+    //public GameObject doorLeft2;
+    //public GameObject doorRight2;
 
     private static GameManager instance;
     [SerializeField] private Text BulletText;

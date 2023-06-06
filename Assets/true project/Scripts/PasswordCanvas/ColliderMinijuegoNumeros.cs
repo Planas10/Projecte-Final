@@ -25,8 +25,11 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
     public GameObject RDoor;
     public GameObject RDoorLimit;
 
+    public bool gameCompleted;
+
     private void Awake()
     {
+        gameCompleted = false;
         if (FindObjectOfType<PasswordCanvasManager>() != null)
         {
             passwordCanvasManager = FindObjectOfType<PasswordCanvasManager>();
@@ -85,11 +88,11 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
 
     public void OpenDoors()
     {
-        if (Vector3.Distance(LDoor.transform.position, LDoorLimit.transform.position) > 0.5f)
+        if (Vector3.Distance(LDoor.transform.position, LDoorLimit.transform.position) < 0.5f)
         {
             LDoor.transform.position -= LDoor.transform.right * 1f * Time.deltaTime;
         }
-        if (Vector3.Distance(RDoor.transform.position, RDoorLimit.transform.position) > 0.5f)
+        if (Vector3.Distance(RDoor.transform.position, RDoorLimit.transform.position) < 0.5f)
         {
             RDoor.transform.position -= RDoor.transform.right * 1f * Time.deltaTime;
         }

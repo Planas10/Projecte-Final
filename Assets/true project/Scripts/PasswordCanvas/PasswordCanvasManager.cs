@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class PasswordCanvasManager : MonoBehaviour
@@ -47,13 +48,12 @@ public class PasswordCanvasManager : MonoBehaviour
         {
             panel.gameObject.SetActive(false);
             HUD.SetActive(true);
+            colliderMinijuegoNumeros.gameCompleted = true;
             colliderMinijuegoNumeros.doingGame = false;
             currentPasword = "";
 
             //ok
             ok.Play();
-
-            colliderMinijuegoNumeros.OpenDoors();
 
         }
         else
@@ -69,9 +69,13 @@ public class PasswordCanvasManager : MonoBehaviour
     void Update()
     {
         passwordText.text = currentPasword;
-        if (Input.GetKeyUp(KeyCode.Escape))
+        //if (Input.GetKeyUp(KeyCode.Escape))
+        //{
+        //    panel.gameObject.SetActive(false);
+        //}
+        if (colliderMinijuegoNumeros.gameCompleted)
         {
-            panel.gameObject.SetActive(false);
+            colliderMinijuegoNumeros.OpenDoors();
         }
     }
 }
