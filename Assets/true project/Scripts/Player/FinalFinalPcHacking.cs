@@ -24,14 +24,29 @@ public class FinalFinalPcHacking : MonoBehaviour
     public GameObject particulasReactor;
     public GameObject particulasFinal;
 
+    private void Awake()
+    {
+        isInteractable = false;
+    }
+
+    private void Start()
+    {
+        hackingText.enabled = false;
+        interactText.enabled = false;
+
+        scrollbar.SetActive(false);
+
+        progressBar.fillAmount = 0f;
+        fillAmount = 0f;
+    }
+
     private void Update()
     {
+        Debug.LogError(isInteractable);
         if(Input.GetKey(KeyCode.E))
             pulsandoE = true;
         else
             pulsandoE = false;
-        isInteractable = false;
-        FinalHack();
     }
 
     private void OnTriggerStay(Collider other)
@@ -39,7 +54,10 @@ public class FinalFinalPcHacking : MonoBehaviour
         if (other.gameObject.CompareTag("reactor"))
         {
             ActivateHackingUI();
-            FinalHack();
+            if (isInteractable)
+            {
+                FinalHack();
+            }
         }
     }
 
@@ -52,30 +70,28 @@ public class FinalFinalPcHacking : MonoBehaviour
 
     private void FinalHack()
     {
-        if (isInteractable)
+        if (pulsandoE)
         {
-            if (pulsandoE)
+            scrollbar.SetActive(true);
+            fillAmount += (Time.deltaTime / 10);
+            progressBar.fillAmount = fillAmount;
+            fpsController.IsHacking = true;
+            if (fillAmount >= 1f)
             {
-                scrollbar.SetActive(true);
-                fillAmount += (Time.deltaTime / 10);
-                progressBar.fillAmount = fillAmount;
-                fpsController.IsHacking = true;
-                if (fillAmount >= 1f)
-                {
-                    fpsController.IsHacking = false;
-                    particulasReactor.SetActive(false);
-                    particulasFinal.SetActive(true);
-                    CoreSound.enabled = false;
-                    DeactivateHackingUI();
-                }
-            }
-            else
-            {
-                scrollbar.SetActive(false);
+                isInteractable = false;
                 fpsController.IsHacking = false;
-                progressBar.fillAmount = 0f;
-                fillAmount = 0f;
+                particulasReactor.SetActive(false);
+                particulasFinal.SetActive(true);
+                CoreSound.enabled = false;
+                DeactivateHackingUI();
             }
+        }
+        else
+        {
+            scrollbar.SetActive(false);
+            fpsController.IsHacking = false;
+            progressBar.fillAmount = 0f;
+            fillAmount = 0f;
         }
     }
 
@@ -94,7 +110,6 @@ public class FinalFinalPcHacking : MonoBehaviour
 
     public void DeactivateHackingUI()
     {
-        isInteractable = false;
         interactText.enabled = false;
         hackingText.enabled = false;
         progressBar.enabled = false;

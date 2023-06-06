@@ -108,6 +108,7 @@ public class HackingController : MonoBehaviour
         {
             if (pulsandoE)
             {
+                hackingText.enabled = true;
                 scrollbar.SetActive(true);
                 fillAmount += (Time.deltaTime / 6);
                 progressBar.fillAmount = fillAmount;

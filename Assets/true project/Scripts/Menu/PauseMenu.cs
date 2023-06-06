@@ -12,6 +12,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject PuntoDeMiraUI;
     public GameObject HUD;
 
+
+
     // Update is called once per frame
     void Update()
     {

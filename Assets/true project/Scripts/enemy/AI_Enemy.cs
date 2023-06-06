@@ -17,7 +17,7 @@ public class AI_Enemy : MonoBehaviour
 
     [SerializeField] private float SearchTime = 4f;
 
-    private float normalSpeed = 5f;
+    public float normalSpeed;
     private float alertSpeed = 6.5f;
     private float chaseSpeed = 8f;
 
