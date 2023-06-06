@@ -30,6 +30,7 @@ public class FinalFinalPcHacking : MonoBehaviour
             pulsandoE = true;
         else
             pulsandoE = false;
+        isInteractable = false;
         FinalHack();
     }
 

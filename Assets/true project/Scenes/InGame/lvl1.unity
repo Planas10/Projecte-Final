@@ -10306,11 +10306,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 616477307066481301, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 944b7d1d317027742a7406b94d7b87ea, type: 2}
+    - target: {fileID: 631168939442220760, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1714f2c3f7cfa4e4185f072739ee3756, type: 2}
+    - target: {fileID: 1582101800332469265, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85b602d67b2cddc4d910404a2f4823c2, type: 2}
+    - target: {fileID: 2329212543732936274, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 944b7d1d317027742a7406b94d7b87ea, type: 2}
+    - target: {fileID: 3120885329326167766, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 36851987f22aad44499a24c7c8542c0a, type: 2}
+    - target: {fileID: 3640547732566153178, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1714f2c3f7cfa4e4185f072739ee3756, type: 2}
+    - target: {fileID: 4047986456878128394, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1714f2c3f7cfa4e4185f072739ee3756, type: 2}
+    - target: {fileID: 6104282531997110831, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1714f2c3f7cfa4e4185f072739ee3756, type: 2}
     - target: {fileID: 6319569159787828802, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
       propertyPath: bulletProgressBar
       value: 
       objectReference: {fileID: 1294024040}
+    - target: {fileID: 6649326547783372217, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 36851987f22aad44499a24c7c8542c0a, type: 2}
     - target: {fileID: 7245546115156865755, guid: db32b50d23999f441921af6f601c9a4a,
         type: 3}
       propertyPath: luz1
@@ -10341,6 +10386,11 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 16ea247604c195b44ad94b96d7d736ac, type: 3}
+    - target: {fileID: 8219197817883685258, guid: db32b50d23999f441921af6f601c9a4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85b602d67b2cddc4d910404a2f4823c2, type: 2}
     m_RemovedComponents:
     - {fileID: 7432365601103416696, guid: db32b50d23999f441921af6f601c9a4a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db32b50d23999f441921af6f601c9a4a, type: 3}
@@ -17654,7 +17704,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hackea los ordenadores marcados con una luz para pasar de nivel.
+  m_Text: Pulas E para hackear los ordenadores marcados con una luz para abrir las
+    puertas.
 --- !u!222 &912596657
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26985,8 +27036,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Manten pulsado "Shift izquierdo" para moverte sigilosamente y evitar ser
-    detectado.
+  m_Text: Pulsa R para recargar el arma
 --- !u!222 &1413755103
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38500,8 +38550,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dispara cerca de los enemigos para distraerlos temporalmente. Recuerda
-    que tienes balas limitadas
+  m_Text: 'Dispara cerca de los enemigos para distraerlos temporalmente.
+
+    Solo
+    puedes disparar 2 balas al mismo tiempo.'
 --- !u!222 &1959469796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -39061,6 +39113,7 @@ MonoBehaviour:
   scrollbar: {fileID: 1567380690}
   CanOpen1: 0
   CanOpen2: 0
+  correct: {fileID: 2006000161}
   lights: []
   PClights: []
 --- !u!82 &2006000160 stripped

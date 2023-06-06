@@ -22,7 +22,7 @@ public class HackingController : MonoBehaviour
 
     private bool pulsandoE;
 
-    
+    public AudioSource correct;
 
     public List<LightObject> lights;
     public List<PcLightObject> PClights;
@@ -117,6 +117,7 @@ public class HackingController : MonoBehaviour
                     fpsController.IsHacking = false;
                     light.ActivateLight(true);
                     PcLight.GetComponent<Light>().color = Color.green;
+                    correct.Play();
                     DeactivateHackingUI();
                 }
             }
