@@ -68,6 +68,8 @@ public class PasswordCanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        correctPassword = colliderMinijuegoNumeros.password;
+
         passwordText.text = currentPasword;
         //if (Input.GetKeyUp(KeyCode.Escape))
         //{
