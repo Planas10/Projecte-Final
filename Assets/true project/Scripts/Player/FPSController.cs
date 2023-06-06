@@ -286,7 +286,11 @@ public class FPSController : MonoBehaviour
             //Debug.LogError("ENTRANDO");
             passwordCanvasManager = other.gameObject.GetComponentInParent<PasswordCanvasManager>();
         }
-
+        if (other.gameObject.GetComponent<Spawnpoint>())
+        {
+            InitialRotation = transform.rotation;
+            InitialPos = other.gameObject.GetComponent<Spawnpoint>().transform.position;
+        }
 
     }
 

@@ -27,7 +27,10 @@ public class ResetEnemyPos : MonoBehaviour
         {
             for (int i = 0; i < enemies.ToArray().Length; i++)
             {
-                enemies[i].transform.position = enemies[i].InitialPos;
+                if (!enemies[i].Trapped)
+                {
+                    enemies[i].transform.position = enemies[i].InitialPos;
+                }
                 enemies[i].GetComponent<AI_Enemy>().playerChased = false;
             }
         }

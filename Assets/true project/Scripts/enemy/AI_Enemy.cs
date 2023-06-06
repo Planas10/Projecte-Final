@@ -68,13 +68,6 @@ public class AI_Enemy : MonoBehaviour
             ChasingLight.SetActive(false);
         }
 
-        //Debug.Log(IsDistracted);
-
-        Vector3 TargetDir = player.transform.position - transform.position;
-
-        Physics.Raycast(transform.position, player.transform.position);
-        //float Angle = Vector3.SignedAngle(, Vector3.forward);
-
         if (!IsChasingPlayer && !IsDistracted && !Trapped)
         {
             IA.isStopped = false;
@@ -124,21 +117,6 @@ public class AI_Enemy : MonoBehaviour
         }
 
         IA.speed = normalSpeed;
-        //RaycastHit hit;
-        //Vector3 InitPos = new Vector3(transform.position.x, 1f, transform.position.z);
-        //Vector3 FinalPos = new Vector3(transform.position.x, 1f, 20f);
-        //if (Physics.Linecast(InitPos, Player.transform.position, out hit))
-        //{
-        //    if (hit.collider.gameObject.CompareTag("Player") && Vector3.Distance(Player.transform.position, InitPos) <= 10f)
-        //    {
-        //        //Miro si se encuentra en mi angulo de visión
-        //        Vector3 vectorPlayerSelf = Player.transform.position - transform.position;
-        //        vectorPlayerSelf.Normalize();
-        //        if (Vector3.Angle(FinalPos, vectorPlayerSelf) <= 45f) {
-        //            Debug.Log("veo al player");
-        //        }
-        //    }
-        //}
 
         if (Vector3.Distance(transform.position, waypoints[currentPoint].transform.position) < 1)
         {
@@ -159,7 +137,7 @@ public class AI_Enemy : MonoBehaviour
         }
         if (!LookingForPlayer)
         {
-            transform.LookAt(waypoints[currentPoint].transform.position);
+            transform.LookAt(transform.forward/*waypoints[currentPoint].transform.position*/);
             IA.SetDestination(waypoints[currentPoint].transform.position);
         }
     }

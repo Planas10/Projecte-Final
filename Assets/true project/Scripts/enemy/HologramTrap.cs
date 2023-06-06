@@ -13,5 +13,12 @@ public class HologramTrap : MonoBehaviour
             other.gameObject.GetComponent<AI_Enemy>().Trapped = !trapDoor.isOpened;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<AI_Enemy>() != null)
+        {
+            other.gameObject.GetComponent<AI_Enemy>().Trapped = !trapDoor.isOpened;
+        }
+    }
 
 }

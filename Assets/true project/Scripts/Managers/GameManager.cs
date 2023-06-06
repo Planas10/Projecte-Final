@@ -15,11 +15,6 @@ public class GameManager : MonoBehaviour
     public GameObject doorLeft2;
     public GameObject doorRight2;
 
-    //public GameObject emptyObjectDoorRight;
-    //public GameObject emptyObjectDoorLeft;
-    //public GameObject emptyObjectDoorRight2;
-    //public GameObject emptyObjectDoorLeft2;
-
     private static GameManager instance;
     [SerializeField] private Text BulletText;
     public static GameManager Instance() {
@@ -41,11 +36,6 @@ public class GameManager : MonoBehaviour
     }
 
     public bool IsPaused() { return pausemenu.GameIsPaused; }
-    //private void ActivarTextoTuto(GameObject texto) { texto.SetActive(true); }
-    //private void DesactivarTextoTuto(GameObject texto) { texto.SetActive(false); }
-    //private void ActivarLuces(GameObject luz, bool LightIsActivated) { luz.SetActive(true); LightIsActivated = true; }
-    //private void InicializarHackeo(bool ActiveStatus, GameObject scrollbar, Text texto, Image progressbar, float fillprogress) { }
-    //private void ActivarHackeo(bool ActiveStatus, GameObject scrollbar, Text texto, Image progressbar, float fillprogress) { }
 
     public void ChangeScene(int sceneNumber) {
         Debug.LogError("Cambio de escena");
