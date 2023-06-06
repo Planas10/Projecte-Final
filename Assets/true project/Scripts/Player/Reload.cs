@@ -18,6 +18,7 @@ public class Reload : MonoBehaviour
     [Header ("Canvas UI")]
     public Image bulletProgressBar;
     public float bulletFillAmount = 1f;
+    private float constantBulletFillmount = 1f;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class Reload : MonoBehaviour
             audioReload.Play();
             yield return new WaitForSeconds(reloadTime);
             RemainingAmmo = MaxAmmo;
+            bulletFillAmount = constantBulletFillmount;
             bulletProgressBar.fillAmount = bulletFillAmount;
             IsReloading = false;
         }

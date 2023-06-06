@@ -84,8 +84,6 @@ public class ColliderMinijuegoNumeros : MonoBehaviour
 
     public void OpenDoors()
     {
-        Debug.LogError(Vector3.Distance(LDoor.transform.position, LDoorLimit.transform.position));
-        //Debug.Log(Vector3.Distance(RDoor.transform.position, RDoorLimit.transform.position) < 0.5f);
         if (Vector3.Distance(LDoor.transform.position, LDoorLimit.transform.position) < 14f)
         {
             LDoor.transform.position -= LDoor.transform.right * 1f * Time.deltaTime;

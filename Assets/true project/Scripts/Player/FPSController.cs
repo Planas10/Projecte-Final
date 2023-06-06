@@ -269,6 +269,10 @@ public class FPSController : MonoBehaviour
             InitialRotation = transform.rotation;
             InitialPos = other.gameObject.GetComponent<Spawnpoint>().transform.position;
         }
+        if (other.gameObject.CompareTag("PortalFinal"))
+        {
+            SceneManager.LoadScene("Main_Menu");
+        }
 
     }
 
